@@ -1,0 +1,19 @@
+{
+  "name": "tripee",
+  "private": true,
+  "packageManager": "pnpm@11.25.0",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "pnpm --dir frontend dev --port 5174 --strictPort",
+    "build": "pnpm --dir frontend build",
+    "test:admin": "pnpm --dir frontend test:admin",
+    "test:api": "pnpm --dir tools/api-contract test",
+    "test:db": "pnpm --dir tools/db-validation test",
+    "test": "pnpm test:admin && pnpm test:api && pnpm test:db",
+    "api:generate": "pnpm --dir tools/api-contract build",
+    "format": "pnpm --dir frontend exec prettier --write .. --ignore-path ../.prettierignore",
+    "format:check": "pnpm --dir frontend exec prettier --check .. --ignore-path ../.prettierignore"
+  }
+}

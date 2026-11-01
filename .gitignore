@@ -1,0 +1,22 @@
+node_modules/
+.pnpm-store/
+frontend/dist/
+.env
+.env.*
+!.env.example
+tools/db-validation/results.json
+tools/api-contract/results.json
+
+# 로컬 보관 자료와 실행 산출물은 저장소에서 제외함.
+.local-archive/
+dist/
+coverage/
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.pem
+*.key
+*.p12
+*.pfx

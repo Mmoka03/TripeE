@@ -1,0 +1,7 @@
+**/node_modules/
+.pnpm-store/
+.local-archive/
+**/dist/
+**/pnpm-lock.yaml
+**/results.json
+docs/openapi-v1.json
