@@ -29,6 +29,12 @@ username: tripee_app
 password: .env의 POSTGRES_PASSWORD 값
 ```
 
+초기 DDL은 기본 `public`이 아닌 `tripee` 스키마에 테이블을 생성함. 생성 여부는 아래처럼 확인함.
+
+```sh
+docker compose exec db psql -U tripee_app -d tripee -c '\\dt tripee.*'
+```
+
 포트가 이미 사용 중이면 `.env`의 `POSTGRES_HOST_PORT`만 변경함. 팀 전체가 같은 비밀번호를 Git으로 공유하지 않으며, 필요한 경우 별도 안전한 채널에서 합의함.
 
 ## 초기 DDL 동작
