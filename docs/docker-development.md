@@ -13,13 +13,13 @@
 ## 실행
 
 ```sh
-cp .env.example .env
-docker compose up -d db
+cp -n .env.example .env
+docker compose up -d --wait db
 docker compose ps
 docker compose logs -f db
 ```
 
-기본 호스트 포트는 `5433`이며, 컨테이너 내부 PostgreSQL 포트는 `5432`임. 따라서 로컬 클라이언트와 이후 Spring Boot 개발 설정의 연결 정보는 아래와 같음.
+호스트는 `127.0.0.1:5433`으로 제한하며, 컨테이너 내부 PostgreSQL 포트는 `5432`임. 로컬 DB 관리 도구의 연결 정보는 아래와 같음.
 
 ```text
 host: localhost
@@ -32,10 +32,16 @@ password: .env의 POSTGRES_PASSWORD 값
 초기 DDL은 기본 `public`이 아닌 `tripee` 스키마에 테이블을 생성함. 생성 여부는 아래처럼 확인함.
 
 ```sh
-docker compose exec db psql -U tripee_app -d tripee -c '\\dt tripee.*'
+docker compose exec db psql -U tripee_app -d tripee -c '\dt tripee.*'
 ```
 
 포트가 이미 사용 중이면 `.env`의 `POSTGRES_HOST_PORT`만 변경함. 팀 전체가 같은 비밀번호를 Git으로 공유하지 않으며, 필요한 경우 별도 안전한 채널에서 합의함.
+
+이미지는 기존 볼륨을 생성한 OS 계열과 동일한 `postgres:18.6-trixie`로 고정함. 버전 변경 시 별도 검증 후 팀에 공유함. 필수 환경변수가 비어 있으면 Compose 단계에서 오류로 중단함. `--wait`는 DB healthcheck 완료를 기다리며, healthcheck 자체가 스키마 생성 성공까지 보장하지 않으므로 위 테이블 확인도 수행함.
+
+현재 `POSTGRES_USER`로 만든 `tripee_app`은 이름과 달리 초기화·관리용 슈퍼유저임. Spring Boot 연결 전 별도 비슈퍼유저 앱 계정을 만들고 필요한 권한만 부여해야 함. 앱 연결에는 `tripee` 스키마 설정도 필요함. 기존 볼륨에서는 `.env`의 계정·비밀번호를 수정해도 실제 DB 계정이 바뀌지 않으며, 별도 SQL로 변경해야 함.
+
+PowerShell에서는 최초 한 번 `Copy-Item .env.example .env`로 환경 파일을 준비함. 기존 `.env`가 있으면 복사를 생략함. 위 psql 예시의 계정·DB 이름은 예시값이므로 직접 변경했다면 함께 맞춤.
 
 ## 초기 DDL 동작
 
