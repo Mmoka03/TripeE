@@ -21,6 +21,8 @@ pnpm dev
 Docker 없이 실행 가능함. 지도와 웹폰트를 불러오려면 인터넷 연결이 필요함.
 지도 스타일을 바꾸려면 `frontend/.env.example`을 `.env.local`로 복사해 수정함.
 
+PostgreSQL 개발 DB는 Docker Compose로 선택 실행할 수 있음. 설정과 초기화 주의점은 [Docker 개발 DB 실행](docs/docker-development.md)을 따름.
+
 ## 현재 구현
 
 - 지도 확대·축소, 도시 핀 선택, 겹친 핀 목록, 도시·국가 검색
