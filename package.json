@@ -13,9 +13,11 @@
     "test:wireframe": "node --test tools/wireframe-export/build.test.mjs",
     "test:api": "pnpm --dir tools/api-contract test",
     "test:db": "pnpm --dir tools/db-validation test",
-    "test": "pnpm test:admin && pnpm test:frontend && pnpm test:wireframe && pnpm test:api && pnpm test:db",
+    "test": "pnpm test:admin && pnpm test:frontend && pnpm test:wireframe && pnpm test:api && pnpm test:db && pnpm test:git",
     "api:generate": "pnpm --dir tools/api-contract build",
     "format": "pnpm --dir frontend exec prettier --write .. --ignore-path ../.prettierignore",
-    "format:check": "pnpm --dir frontend exec prettier --check .. --ignore-path ../.prettierignore"
+    "format:check": "pnpm --dir frontend exec prettier --check .. --ignore-path ../.prettierignore",
+    "git:setup": "git config --local core.hooksPath .githooks",
+    "test:git": "node --test tools/git-conventions/check.test.mjs"
   }
 }

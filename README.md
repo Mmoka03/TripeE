@@ -12,6 +12,7 @@ Node.js 24, pnpm 11.25.0을 사용함. 저장소 루트에서 실행함.
 ```sh
 pnpm install --frozen-lockfile
 pnpm --dir frontend install --frozen-lockfile
+pnpm git:setup
 pnpm dev
 ```
 
@@ -60,7 +61,7 @@ pnpm build
 pnpm format:check
 ```
 
-`pnpm test`는 관리자 시연·지도 묶음·소개 예제·와이어프레임 생성·API 계약·DB 제약조건을 검사함. 실제 서버 연동과 PostgreSQL 다중 연결 검증은 별도로 진행할 예정임. 지도 번들의 크기 경고가 남아 있음.
+`pnpm test`는 관리자 시연·지도 묶음·소개 예제·와이어프레임 생성·API 계약·DB 제약조건·Git 규칙을 검사함. 실제 서버 연동과 PostgreSQL 다중 연결 검증은 별도로 진행할 예정임. 지도 번들의 크기 경고가 남아 있음.
 
 ## 문서
 
