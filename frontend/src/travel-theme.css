@@ -1,0 +1,1257 @@
+@font-face {
+  font-family: TripeE;
+  src: url('/design/pretendard.woff2') format('woff2');
+  font-weight: 45 920;
+  font-display: swap;
+}
+/* 지도와 핀을 중심으로 두고 탐색 도구만 떠 있는 형태로 구성함. */
+.app {
+  --accent: var(--map-accent);
+  --border: var(--map-line);
+  font-family: TripeE, sans-serif;
+  color: var(--map-ink);
+  background: var(--map-paper);
+}
+.app > header {
+  height: 64px;
+  padding: 0 24px;
+  background: var(--map-paper);
+  border-bottom: 1px solid var(--map-line);
+}
+.app .brand {
+  letter-spacing: -0.7px;
+}
+.app .brand-mark {
+  background: #fb7966;
+  color: #152d35;
+}
+.app .header-note {
+  color: var(--map-muted);
+}
+.app .preview-badge,
+.app .sample-label {
+  background: var(--map-soft);
+  color: var(--map-muted);
+}
+.app .journey-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  white-space: nowrap;
+  font-size: 13px;
+  text-decoration: none;
+}
+.app > main {
+  position: relative;
+  padding: 10px;
+  gap: 10px;
+}
+.app .map-stage {
+  border-radius: 12px;
+  border: 1px solid var(--map-line);
+  background: var(--map-sea);
+}
+
+/* 아이콘과 입력란이 하나의 외곽선을 공유하며 펼쳐짐. 닫힌 입력란은 inert 처리함. */
+.app .map-top,
+.app .has-detail .map-top {
+  --search-height: 48px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: var(--search-height);
+  min-width: 0;
+  z-index: 25;
+  transition: width 420ms cubic-bezier(0.22, 0.8, 0.24, 1);
+}
+.app .map-top.search-open,
+.app .has-detail .map-top.search-open {
+  width: min(410px, calc(100% - 86px));
+}
+.search-shell {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--search-height);
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--map-pin);
+  box-shadow: 0 5px 18px #173c4528;
+  transition:
+    background-color 250ms ease,
+    box-shadow 250ms ease;
+}
+.search-open .search-shell {
+  background: var(--map-paper);
+  box-shadow:
+    0 0 0 1px var(--map-line),
+    0 7px 24px #173c4520;
+}
+.search-open .search-shell:focus-within {
+  box-shadow:
+    0 0 0 1px var(--map-muted),
+    0 7px 24px #173c4524;
+}
+.app button.search-toggle {
+  position: relative;
+  width: var(--search-height);
+  height: var(--search-height);
+  min-height: var(--search-height);
+  flex: 0 0 var(--search-height);
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--map-pinText);
+  border: 0;
+  box-shadow: none;
+  transition: color 220ms ease;
+}
+.app .search-open button.search-toggle {
+  color: var(--map-muted);
+}
+.app button.search-toggle:focus-visible {
+  outline-offset: -4px;
+}
+.search-toggle > span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transition:
+    opacity 220ms ease,
+    transform 320ms cubic-bezier(0.22, 0.8, 0.24, 1);
+}
+.search-toggle .close-glyph {
+  opacity: 0;
+  transform: rotate(-70deg) scale(0.65);
+}
+.search-open .search-toggle .search-glyph {
+  opacity: 0;
+  transform: rotate(45deg) scale(0.65);
+}
+.search-open .search-toggle .close-glyph {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+.app .map-top form {
+  flex: 1;
+  min-width: 0;
+  height: var(--search-height);
+  min-height: var(--search-height);
+  border: 0;
+  border-radius: 0;
+  padding: 0 7px 0 0;
+  gap: 8px;
+  box-shadow: none;
+  background: transparent;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-10px);
+  pointer-events: none;
+  transition:
+    opacity 140ms ease,
+    transform 240ms ease,
+    visibility 0s linear 240ms;
+}
+.app .search-open form {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  pointer-events: auto;
+  transition:
+    opacity 240ms ease 100ms,
+    transform 320ms cubic-bezier(0.22, 0.8, 0.24, 1) 60ms,
+    visibility 0s;
+}
+.app .map-top form > .icon {
+  display: none;
+}
+.app .map-top form input {
+  font-size: 14px;
+  outline: none;
+}
+.app .map-top form button {
+  height: 34px;
+  min-height: 34px;
+  width: 48px;
+  flex: 0 0 48px;
+  border-radius: 18px;
+  background: var(--map-pin);
+  opacity: 0;
+  transform: scale(0.85);
+  transition:
+    opacity 120ms ease,
+    transform 180ms ease;
+}
+.app .search-open form button {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 200ms ease 160ms,
+    transform 300ms cubic-bezier(0.22, 0.8, 0.24, 1) 100ms;
+}
+.app .search-results {
+  position: absolute;
+  top: calc(var(--search-height) + 8px);
+  left: 0;
+  right: 0;
+  background: var(--map-paper);
+  box-shadow: 0 10px 30px #173c4525;
+  border-radius: 16px;
+  max-height: min(280px, calc(100dvh - 240px));
+  overscroll-behavior: contain;
+}
+.app .search-results > button > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.app .search-results > button > small {
+  flex: 0 0 auto;
+  max-width: 40%;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+.app .search-results > button:hover {
+  background: var(--map-soft);
+}
+.app .map-bottom,
+.app .has-detail .map-bottom {
+  left: 20px;
+  right: 20px;
+  bottom: 40px;
+  justify-content: space-between;
+}
+.app .city-shortcuts {
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.app .city-shortcuts button {
+  min-height: 40px;
+  padding: 0 18px;
+  background: var(--map-paper);
+  border: 1px solid var(--map-line);
+  border-radius: 22px;
+  font-size: 13px;
+  box-shadow: 0 3px 12px #173c4515;
+}
+.app .city-shortcuts button[aria-pressed='true'] {
+  background: var(--map-pin);
+  color: var(--map-pinText);
+}
+.app .pin-control {
+  background: var(--map-paper);
+  border: 1px solid var(--map-line);
+  border-radius: 20px;
+  color: var(--map-muted);
+  gap: 8px;
+}
+.app .pin-control output {
+  min-width: 34px;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  color: var(--map-ink);
+}
+.app .pin-control input {
+  width: 90px;
+}
+.app button.city-pin {
+  min-width: 66px;
+  min-height: var(--pin-size);
+  padding: 5px 12px;
+  border: 2px solid var(--map-paper);
+  border-radius: 24px;
+  background: var(--map-pin);
+  color: var(--map-pinText);
+  font-weight: 650;
+  font-size: calc(var(--pin-size) * 0.36);
+  box-shadow: 0 3px 10px #16384145;
+}
+.app .city-pin::before {
+  background: var(--map-dot);
+}
+.app button.city-pin.selected {
+  background: var(--map-accent);
+  box-shadow:
+    0 0 0 5px #a43e3320,
+    0 3px 10px #16384145;
+}
+.app .continent-label {
+  font-family: TripeE, sans-serif;
+  color: var(--map-muted);
+  letter-spacing: 0.08em;
+  text-shadow: 0 1px 3px #fff;
+  font-weight: 600;
+}
+.app .maplibregl-ctrl-group {
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px #173c4525;
+}
+.app .maplibregl-ctrl-group button {
+  width: 40px;
+  height: 40px;
+}
+.app .maplibregl-ctrl-top-right {
+  top: 10px;
+  right: 10px;
+}
+.app .detail {
+  --detail-gutter: 24px;
+  background: var(--map-paper);
+  border-color: var(--map-line);
+  border-radius: 12px;
+  width: 390px;
+  flex: 0 0 390px;
+  padding: var(--detail-gutter);
+}
+.app .detail h2 {
+  font-size: 32px;
+  letter-spacing: -1px;
+}
+.app .detail .eyebrow {
+  color: var(--map-accent);
+}
+.app .detail-heading {
+  padding-bottom: 18px;
+  border-color: var(--map-line);
+}
+.app .tags > span {
+  background: var(--map-soft);
+  color: var(--map-muted);
+}
+.app .review-toolbar,
+.app .mobile-attribution {
+  background: var(--map-paper);
+  color: var(--map-muted);
+}
+.app .cluster-card {
+  background: var(--map-paper);
+  border-color: var(--map-line);
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+@media (min-width: 1101px) {
+  .app .has-detail .detail {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    max-height: none;
+  }
+}
+@media (min-width: 701px) and (max-width: 1100px) {
+  .app .detail {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 5;
+    max-height: none;
+  }
+  .app .has-detail .map-top.search-open {
+    width: min(370px, calc(100% - 430px));
+  }
+  .app .has-detail .map-bottom {
+    right: 410px;
+  }
+  .app .has-detail .maplibregl-ctrl-top-right {
+    right: 410px;
+    top: 78px;
+  }
+}
+@media (max-width: 700px) {
+  .app > header {
+    height: 56px;
+    padding: 0 14px;
+    gap: 10px;
+  }
+  .app .sample-label {
+    display: none;
+  }
+  .app .journey-link {
+    margin-left: auto;
+    font-size: 12px;
+  }
+  .app > main {
+    padding: 6px;
+  }
+
+  .app .map-top,
+  .app .has-detail .map-top {
+    --search-height: 44px;
+    top: 12px;
+    left: 12px;
+  }
+  .app .map-top.search-open,
+  .app .has-detail .map-top.search-open {
+    width: calc(100% - 72px);
+  }
+  .app .map-top form {
+    gap: 5px;
+    padding-right: 6px;
+  }
+  .app .map-top form input {
+    font-size: 16px;
+  }
+  .app .map-top form button {
+    width: 42px;
+    flex-basis: 42px;
+    min-width: 42px;
+    height: 32px;
+    min-height: 32px;
+    padding: 0;
+    font-size: 11px;
+  }
+  .app .map-bottom,
+  .app .has-detail .map-bottom {
+    left: 12px;
+    right: 12px;
+    bottom: 14px;
+    row-gap: 10px;
+  }
+  .app .city-shortcuts {
+    gap: 5px;
+  }
+  .app .city-shortcuts button {
+    height: 36px;
+    min-height: 36px;
+    min-width: 54px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+  .app .pin-control {
+    padding: 0 8px;
+    font-size: 10px;
+  }
+  .app .pin-control input {
+    width: 70px;
+  }
+  .app .maplibregl-ctrl-top-right {
+    top: 2px;
+    right: 2px;
+  }
+  .app .detail {
+    --detail-gutter: 18px;
+    position: absolute;
+    top: auto;
+    left: 6px;
+    right: 6px;
+    /* 상세 패널 아래에도 지도 출처를 확인할 공간을 남김. */
+    bottom: 38px;
+    width: auto;
+    max-height: min(75%, calc(100% - 108px));
+    padding: var(--detail-gutter);
+    z-index: 6;
+    flex: none;
+    border-radius: 18px 18px 10px 10px;
+  }
+  .app .detail h2 {
+    font-size: 27px;
+  }
+  .app .has-detail .map-bottom,
+  .app .has-group .map-bottom {
+    display: none;
+  }
+  .app .continent-label {
+    font-size: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app .map-top,
+  .search-shell,
+  .app button.search-toggle,
+  .search-toggle > span,
+  .app .map-top form,
+  .app .map-top form button {
+    transition: none;
+  }
+}
+
+.brand-icon {
+  display: block;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+}
+.app .map-top input,
+.app .review-toolbar select {
+  color: var(--map-ink);
+}
+.app .review-toolbar select {
+  background: var(--map-paper);
+  border-color: var(--map-line);
+}
+.app .map-top input::placeholder {
+  color: var(--map-muted);
+}
+.app .map-top form button {
+  color: var(--map-pinText);
+}
+.app button.city-pin.selected {
+  color: var(--map-paper);
+}
+.app .map-attribution {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  padding: 3px 9px;
+  background: var(--map-paper);
+  color: var(--map-ink);
+  font-size: 11px;
+  line-height: 1.5;
+  border-radius: 0 5px 0 0;
+}
+.app .map-attribution a {
+  text-decoration: none;
+}
+.app .map-attribution a:hover {
+  text-decoration: underline;
+}
+.app .maplibregl-ctrl-group,
+.app .maplibregl-ctrl-group button {
+  background: var(--map-paper);
+}
+.app[data-theme='midnight'] .maplibregl-ctrl-icon {
+  filter: invert(1);
+}
+.app[data-theme='midnight'] .continent-label {
+  text-shadow: 0 1px 3px #102030;
+}
+.app[data-theme='midnight'] .detail p,
+.app[data-theme='midnight'] .detail small,
+.app[data-theme='midnight'] .search-results small {
+  color: var(--map-muted);
+}
+.app[data-theme='midnight'] .detail .photo,
+.app[data-theme='midnight'] .safety-summary,
+.app[data-theme='midnight'] .safety-detail {
+  background: var(--map-soft);
+  color: var(--map-ink);
+}
+.app[data-theme='midnight'] .detail button,
+.app[data-theme='midnight'] .cluster-card button,
+.app[data-theme='midnight'] .search-results button {
+  background: var(--map-paper);
+  color: var(--map-ink);
+}
+.app[data-theme='midnight'] .map-status {
+  background: var(--map-paper);
+  color: var(--map-ink);
+}
+.app[data-theme='midnight'] .map-status button {
+  background: var(--map-accent);
+  color: var(--map-paper);
+}
+.app .theme-picker {
+  gap: 6px;
+}
+@media (max-width: 700px) {
+  .app .map-bottom,
+  .app .has-detail .map-bottom {
+    bottom: 32px;
+  }
+  .app .map-attribution {
+    font-size: 10px;
+  }
+  .app .review-toolbar {
+    gap: 3px 10px;
+  }
+  .app .review-toolbar > span:first-child {
+    display: none;
+  }
+}
+.app[data-theme='midnight'] .photo-caption,
+.app[data-theme='midnight'] .detail-heading h2 span {
+  color: var(--map-muted);
+}
+.app[data-theme='midnight'] .safety-summary > .icon,
+.app[data-theme='midnight'] .experience-number {
+  color: var(--map-accent);
+}
+/* 검색 동작은 오른쪽 돋보기로 표현하고 최근 상세 조회만 바로가기에 표시함. */
+.app .map-top form button {
+  width: 34px;
+  flex-basis: 34px;
+  min-width: 34px;
+  padding: 0;
+  border-radius: 50%;
+}
+.app .map-top form button > .icon {
+  width: 17px;
+  height: 17px;
+}
+.app .map-bottom,
+.app .has-detail .map-bottom {
+  align-items: flex-end;
+}
+.recent-city-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  max-width: 100%;
+}
+.app .city-shortcuts button {
+  max-width: min(190px, 100%);
+}
+.city-shortcuts button > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.recent-label {
+  align-self: flex-start;
+  color: var(--map-ink);
+  background: var(--map-paper);
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 10px;
+  line-height: 1.4;
+}
+.app .pin-control {
+  margin-left: auto;
+}
+@media (max-width: 700px) {
+  .app .map-top form button {
+    width: 32px;
+    flex-basis: 32px;
+    min-width: 32px;
+  }
+  .recent-city-group {
+    gap: 5px;
+  }
+}
+/* 이름 없는 핀: 커서와 키보드 포커스에만 도시명 안내를 표시함. */
+.app button.city-pin.icon-city-pin {
+  width: max(var(--pin-hit-size, 36px), calc(var(--marker-width) + 8px));
+  height: max(var(--pin-hit-size, 36px), calc(var(--marker-height) + 8px));
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  gap: 0;
+  color: var(--map-pin);
+  overflow: visible;
+}
+.app .icon-city-pin::before {
+  display: none;
+}
+.pin-symbol {
+  display: block;
+  width: var(--pin-size);
+  height: var(--pin-size);
+  overflow: visible;
+  filter: drop-shadow(0 1px 0 var(--map-paper)) drop-shadow(0 2px 2px #122c4540);
+}
+.app button.icon-city-pin.selected {
+  background: var(--map-paper);
+  color: var(--map-accent);
+  box-shadow: 0 0 0 2px var(--map-accent);
+}
+.app .icon-city-pin:hover,
+.app .icon-city-pin:focus-visible {
+  z-index: 8;
+}
+.pin-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 5px);
+  transform: translate(-50%, 5px);
+  width: max-content;
+  max-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  white-space: normal;
+  text-align: left;
+  padding: 10px 13px;
+  border: 1px solid var(--map-line);
+  border-radius: 12px;
+  background: var(--map-paper);
+  color: var(--map-ink);
+  box-shadow: 0 6px 24px #142a3c30;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.14s ease,
+    transform 0.14s ease,
+    visibility 0s 0.14s;
+}
+.pin-tooltip strong {
+  font-size: 14px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.pin-tooltip small {
+  font-size: 11px;
+  color: var(--map-muted);
+}
+.pin-tooltip em {
+  font-style: normal;
+  font-size: 10px;
+  color: var(--map-accent);
+  margin-top: 4px;
+}
+.icon-city-pin[data-side='right'] .pin-tooltip {
+  left: 0;
+  transform: translate(0, 5px);
+}
+.icon-city-pin[data-side='left'] .pin-tooltip {
+  left: auto;
+  right: 0;
+  transform: translate(0, 5px);
+}
+.icon-city-pin[data-below='true'] .pin-tooltip {
+  bottom: auto;
+  top: calc(100% + 5px);
+}
+@media (hover: hover) {
+  .icon-city-pin:hover .pin-tooltip {
+    visibility: visible;
+    opacity: 1;
+    translate: 0 -5px;
+    transition-delay: 180ms;
+  }
+}
+.icon-city-pin:focus-visible .pin-tooltip {
+  visibility: visible;
+  opacity: 1;
+  translate: 0 -5px;
+  transition-delay: 0s;
+}
+.nearby-hint {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--map-muted);
+  margin: 8px 0 12px;
+}
+.app .cluster-option .nearby-city-name {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  color: var(--map-ink);
+  font-size: 14px;
+}
+.nearby-city-name small {
+  font-size: 11px;
+  color: var(--map-muted);
+}
+@media (pointer: coarse) {
+  .app button.city-pin.icon-city-pin {
+    --pin-hit-size: 44px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pin-tooltip {
+    transition: none;
+  }
+}
+/* 여행 티켓을 닮은 수량 표식. 반복되는 원형 링을 없애고 색상 띠로 강조함. */
+.app .icon-city-pin .pin-symbol {
+  display: grid;
+  place-items: center;
+  width: var(--marker-width);
+  height: var(--marker-height);
+  border: 0;
+  border-radius: 3px 3px 1px 1px;
+  background: var(--map-pin);
+  color: var(--map-ink);
+  filter: none;
+  box-shadow: 0 2px 4px #122c4520;
+  font-size: calc(13px * var(--pin-scale));
+  font-weight: 700;
+  line-height: 1;
+}
+.app button.city-pin.icon-city-pin.cluster-pin {
+  border-radius: 7px;
+  z-index: 2;
+}
+.app .cluster-pin .pin-symbol {
+  position: relative;
+  grid-template-columns: calc(12px * var(--pin-scale)) 1fr;
+  column-gap: calc(4px * var(--pin-scale));
+  padding: 0 calc(8px * var(--pin-scale)) 0 calc(7px * var(--pin-scale));
+  border-radius: calc(6px * var(--pin-scale));
+  border-left: 3px solid var(--map-accent);
+  background: var(--map-paper);
+  color: var(--map-ink);
+  box-shadow: 0 3px 9px #122c4524;
+  font-variant-numeric: tabular-nums;
+}
+.app .cluster-pin .pin-symbol::before {
+  content: '';
+  width: calc(9px * var(--pin-scale));
+  height: calc(12px * var(--pin-scale));
+  border: 1px solid currentColor;
+  border-radius: 1px;
+  box-shadow:
+    -3px 2px 0 -1px var(--map-paper),
+    -3px 2px 0 0 currentColor;
+  opacity: 0.55;
+}
+.app button.icon-city-pin.selected {
+  background: transparent;
+  box-shadow: none;
+}
+.app .icon-city-pin.selected .pin-symbol,
+.app .icon-city-pin:hover .pin-symbol,
+.app .icon-city-pin:focus-visible .pin-symbol {
+  background: var(--map-pin);
+  color: var(--map-pinText);
+}
+.app button.city-pin.icon-city-pin:hover,
+.app button.city-pin.icon-city-pin:focus-visible {
+  z-index: 8;
+}
+.app .icon-city-pin[aria-hidden='true'] .pin-tooltip {
+  display: none;
+}
+/* 단독 도시도 같은 여행 태그 계열로 표현함. */
+.app .icon-city-pin:not(.cluster-pin) .pin-symbol {
+  border-radius: calc(6px * var(--pin-scale));
+  border-left: 3px solid var(--map-accent);
+  background: var(--map-paper);
+  color: var(--map-ink);
+  box-shadow: 0 3px 9px #122c4524;
+}
+.app .icon-city-pin .pin-symbol svg {
+  width: calc(17px * var(--pin-scale));
+  height: calc(17px * var(--pin-scale));
+}
+.app .icon-city-pin:not(.cluster-pin):is(:hover, :focus-visible, .selected) .pin-symbol {
+  background: var(--map-pin);
+  color: var(--map-pinText);
+}
+.app .cluster-card.travel-card {
+  z-index: 20;
+  left: auto;
+  right: 72px;
+  top: 22px;
+  bottom: auto;
+  transform: none;
+  width: min(360px, calc(100% - 100px));
+  max-height: min(680px, calc(100% - 96px));
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 16px 48px #10233330;
+  animation: travel-card-enter 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.travel-card-cover {
+  position: relative;
+  height: 190px;
+  flex: 0 0 190px;
+  background: #173c49;
+  overflow: hidden;
+}
+.travel-card-cover > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.travel-card-cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 15%, #061b2beb);
+  pointer-events: none;
+}
+.travel-card-heading {
+  position: absolute;
+  left: 22px;
+  right: 20px;
+  bottom: 18px;
+  z-index: 1;
+  color: white;
+}
+.travel-card-heading > span {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: #ffe0a1;
+}
+.app .travel-card-heading h2 {
+  font-size: 23px;
+  letter-spacing: -0.04em;
+  margin: 7px 0;
+  color: white;
+}
+.travel-card-heading p {
+  margin: 0;
+  font-size: 12px;
+}
+.travel-card-heading p span {
+  padding: 0 5px;
+  opacity: 0.6;
+}
+.app .travel-card .travel-card-close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  background: #102333c9;
+  color: white;
+  border: 1px solid #ffffff40;
+  border-radius: 12px;
+}
+.travel-card-credit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 10px;
+  color: var(--map-muted);
+  flex-shrink: 0;
+}
+.travel-card-credit a {
+  color: inherit;
+  text-decoration: underline;
+}
+.travel-card-list {
+  overflow-y: auto;
+  min-height: 0;
+  overscroll-behavior: contain;
+  padding: 0 14px 10px;
+}
+.travel-card-hint {
+  font-size: 12px;
+  color: var(--map-muted);
+  margin: 8px 4px 12px;
+}
+.app .travel-card .cluster-option {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) 20px;
+  gap: 10px;
+  margin: 0;
+  padding: 13px 8px;
+  min-height: 64px;
+  border: 0;
+  border-bottom: 1px solid var(--map-line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--map-ink);
+}
+.app .travel-card .cluster-option:is(:hover, :focus-visible) {
+  background: color-mix(in srgb, var(--map-accent) 9%, var(--map-paper));
+  border-radius: 9px;
+}
+.app .travel-card .travel-city-index {
+  color: var(--map-accent);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.app .travel-card .nearby-city-name {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  gap: 5px;
+}
+.app .travel-card .nearby-city-name small {
+  font-size: 10px;
+  color: var(--map-muted);
+}
+.travel-card-footnote {
+  flex-shrink: 0;
+  padding: 12px 18px;
+  border-top: 1px solid var(--map-line);
+  font-size: 10px;
+  color: var(--map-muted);
+}
+@keyframes travel-card-enter {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@media (max-width: 700px) {
+  .app .cluster-card.travel-card {
+    top: auto;
+    bottom: 32px;
+    right: 8px;
+    left: 8px;
+    width: auto;
+    max-height: 65%;
+    border-radius: 18px;
+  }
+  .travel-card-cover {
+    height: 134px;
+    flex-basis: 134px;
+  }
+  .travel-card-heading {
+    left: 18px;
+    bottom: 14px;
+  }
+  .app .travel-card-heading h2 {
+    font-size: 21px;
+    margin: 5px 0;
+  }
+  .travel-card-footnote {
+    padding: 9px 16px;
+  }
+}
+@media (max-height: 500px) {
+  .travel-card-cover {
+    height: 100px;
+    flex-basis: 100px;
+  }
+  .app .cluster-card.travel-card {
+    max-height: calc(100% - 44px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app .cluster-card.travel-card {
+    animation: none;
+  }
+}
+.group-tools {
+  padding: 4px 16px 12px;
+  border-bottom: 1px solid var(--map-line);
+  flex-shrink: 0;
+}
+.group-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.group-toolbar p {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.group-toolbar p > span {
+  margin-left: 4px;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--map-muted);
+}
+.app .travel-card .group-locate,
+.app .return-to-group {
+  font-size: 12px;
+  min-height: 40px;
+  background: transparent;
+  color: var(--map-ink);
+  border: 0;
+  border-radius: 8px;
+  padding: 0 10px;
+  gap: 6px;
+}
+.app .travel-card .group-locate {
+  border: 1px solid var(--map-line);
+}
+.app .travel-card .group-locate:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.app .group-locate:hover,
+.app .return-to-group:hover {
+  background: var(--map-soft);
+}
+.app .group-locate .icon,
+.app .return-to-group .icon {
+  width: 16px;
+  height: 16px;
+}
+.detail-navigation {
+  position: sticky;
+  top: calc(-1 * var(--detail-gutter));
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: calc(-1 * var(--detail-gutter)) calc(-1 * var(--detail-gutter)) 18px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--map-line);
+  background: var(--map-paper);
+}
+.detail-navigation-label {
+  padding-left: 10px;
+  color: var(--map-muted);
+  font-size: 12px;
+}
+.group-count {
+  min-width: 22px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--map-soft);
+  color: var(--map-muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.group-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+.group-filters input,
+.group-filters select {
+  min-width: 0;
+  width: 100%;
+  height: 40px;
+  border: 1px solid var(--map-line);
+  background: var(--map-paper);
+  color: var(--map-ink);
+  border-radius: 8px;
+  padding: 6px;
+  font: inherit;
+  font-size: 12px;
+}
+.app .icon-city-pin.selected .pin-symbol {
+  border-left-color: var(--map-pinText);
+  background: var(--map-pin);
+  color: var(--map-pinText);
+}
+@media (max-width: 700px) {
+  .app .travel-card .group-locate,
+  .app .return-to-group {
+    min-height: 44px;
+  }
+  .group-filters input,
+  .group-filters select {
+    font-size: 16px;
+  }
+  .travel-card-cover {
+    flex-basis: 110px;
+    height: 110px;
+  }
+}
+
+/* 초기 로딩에서는 표식을 숨겨 로딩 안내와 키보드 탐색을 방해하지 않도록 함. */
+.map-stage[data-map-status='loading'] .city-pin,
+.map-stage[data-map-status='loading'] .continent-label {
+  visibility: hidden;
+}
+.app .map-status {
+  background: var(--map-paper);
+  color: var(--map-ink);
+  border: 1px solid var(--map-line);
+  box-shadow: 0 8px 32px #10233324;
+}
+
+/* 높이가 낮으면 카드 전체를 스크롤하고 닫기 영역만 고정함. 목록이 0px로 눌리지 않게 함. */
+@media (max-height: 700px) {
+  .app .cluster-card.travel-card {
+    top: 12px;
+    max-height: calc(100% - 44px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scroll-padding-top: 76px;
+  }
+  .travel-card-cover {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    height: 72px;
+    flex-basis: 72px;
+  }
+  .travel-card-heading {
+    left: 16px;
+    right: 66px;
+    bottom: 10px;
+  }
+  .travel-card-heading > span {
+    display: none;
+  }
+  .app .travel-card-heading h2 {
+    font-size: 18px;
+    margin: 0 0 3px;
+  }
+  .travel-card-heading p {
+    font-size: 11px;
+  }
+  .travel-card-list {
+    flex-shrink: 0;
+    overflow: visible;
+  }
+  .app .travel-card .cluster-option {
+    scroll-margin-top: 8px;
+  }
+}
+@media (max-width: 700px) and (max-height: 700px) {
+  .app .cluster-card.travel-card {
+    top: auto;
+    max-height: calc(100% - 104px);
+  }
+  .app .maplibregl-ctrl-group {
+    display: flex;
+  }
+  .app .maplibregl-ctrl-group button + button {
+    border-top: 0;
+    border-left: 1px solid var(--map-line);
+  }
+}
+@media (max-height: 500px) {
+  .app .cluster-card.travel-card {
+    scroll-padding-top: 52px;
+  }
+  .travel-card-cover {
+    height: 48px;
+    flex-basis: 48px;
+    background: var(--map-paper);
+    border-bottom: 1px solid var(--map-line);
+  }
+  .travel-card-cover > img,
+  .travel-card-cover::after,
+  .travel-card-heading p,
+  .travel-card-credit,
+  .travel-card-footnote {
+    display: none;
+  }
+  .travel-card-heading {
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    color: var(--map-ink);
+  }
+  .app .travel-card-heading h2 {
+    font-size: 15px;
+    margin: 0;
+    color: var(--map-ink);
+  }
+  .app .travel-card .travel-card-close {
+    top: 2px;
+    right: 8px;
+    color: var(--map-ink);
+    background: var(--map-paper);
+    border: 0;
+  }
+  .group-tools {
+    padding: 0 12px 8px;
+  }
+  .group-filters {
+    margin-top: 4px;
+  }
+  .group-filters input,
+  .group-filters select {
+    height: 36px;
+  }
+  .app .has-detail .map-bottom {
+    display: none;
+  }
+}

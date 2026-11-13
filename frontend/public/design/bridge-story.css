@@ -1,0 +1,335 @@
+/* 세 면을 유지한 채 지도 그래픽이 정보 영역으로 바뀜. 기본값은 완성된 정적 화면임. */
+.bridge .fold-visual {
+  --fold-height: clamp(460px, 33vw, 590px);
+  --fold-panel-height: 174px;
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  color: #173c45;
+}
+.fold-stage {
+  position: relative;
+  height: var(--fold-height);
+  isolation: isolate;
+}
+.fold-photograph {
+  position: absolute;
+  inset: 0 0 calc(var(--fold-panel-height) + 10px);
+  overflow: hidden;
+  border-radius: 12px;
+  background: #234b50;
+}
+.fold-photograph > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+}
+.fold-photograph::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #061c2bd9, transparent 80%);
+  pointer-events: none;
+}
+.fold-photo-title {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: calc(var(--fold-panel-height) + 35px);
+  z-index: 3;
+  pointer-events: none;
+  color: #fffaf1;
+}
+.fold-photo-title > span {
+  font-size: 10px;
+  letter-spacing: 0.17em;
+}
+.fold-photo-title h3 {
+  width: max-content;
+  transform-origin: center;
+  margin: 8px 0 0;
+  font-size: clamp(36px, 3.3vw, 62px);
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+.fold-photo-title h3 span {
+  margin-left: 12px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.fold-photo-title a {
+  pointer-events: auto;
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ffffff80;
+  font-size: 12px;
+  color: inherit;
+}
+.fold-photo-title a span {
+  margin-left: 20px;
+}
+.fold-sheets {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.fold-sheet {
+  position: absolute;
+  top: calc(100% - var(--fold-panel-height));
+  width: calc((100% - 20px) / 3);
+  height: var(--fold-panel-height);
+  overflow: hidden;
+  border-radius: 10px;
+}
+.fold-panel-experience {
+  left: 0;
+  background: #bdd9df;
+  color: #183c45;
+}
+.fold-panel-season {
+  left: calc((100% - 20px) / 3 + 10px);
+  background: #fa987d;
+  color: #482e29;
+}
+.fold-panel-source {
+  right: 0;
+  background: #193d43;
+  color: #f4f0e5;
+}
+.fold-panel-landscape {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+}
+.fold-panel-landscape svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  stroke-width: 1;
+  opacity: 0.25;
+  fill: none;
+}
+.fold-panel-letter {
+  position: absolute;
+  bottom: 30px;
+  left: 22px;
+  font-size: clamp(36px, 4vw, 74px);
+  font-weight: 700;
+  letter-spacing: -0.07em;
+}
+.fold-panel-destination {
+  position: absolute;
+  top: calc(50% + 42px);
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+.fold-panel-content {
+  position: absolute;
+  inset: 0;
+  padding: 22px 18px;
+}
+.fold-panel-number {
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  opacity: 0.8;
+}
+.fold-panel-content h4 {
+  font-size: clamp(15px, 1.1vw, 20px);
+  letter-spacing: -0.04em;
+  line-height: 1.4;
+  margin: 20px 0 10px;
+}
+.fold-panel-content p {
+  font-size: 11px;
+  line-height: 1.8;
+  margin: 0;
+  word-break: keep-all;
+}
+.fold-caption {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 10px;
+  line-height: 1.5;
+  color: #596a6b;
+}
+.fold-caption a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.fold-track {
+  height: 1px;
+  background: #173c4520;
+  margin-top: 16px;
+}
+.fold-track i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: #a43e33;
+  transform-origin: left;
+}
+.fold-controls {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  color: #596a6b;
+  font-size: 10px;
+}
+.fold-animated .fold-controls {
+  display: flex;
+}
+.fold-skip {
+  font: inherit;
+  font-size: 11px;
+  border: 0;
+  background: transparent;
+  padding: 12px 0 12px 8px;
+  color: #173c45;
+  cursor: pointer;
+}
+@media (min-width: 901px) {
+  .bridge:has(.fold-visual) {
+    padding-top: 56px;
+    padding-bottom: 56px;
+    min-height: 0;
+  }
+}
+@media (max-width: 1100px) and (min-width: 901px) {
+  .fold-panel-content {
+    padding: 16px 10px;
+  }
+  .fold-panel-number {
+    font-size: 7px;
+  }
+}
+@media (max-width: 900px) {
+  .bridge .fold-visual {
+    --fold-height: 460px;
+    --fold-panel-height: 156px;
+    max-width: 620px;
+    justify-self: center;
+  }
+  .fold-panel-content {
+    padding: 20px 14px;
+  }
+  .fold-stage {
+    background: var(--paper);
+  }
+}
+@media (max-width: 600px) {
+  .bridge .fold-visual {
+    --fold-height: 405px;
+    --fold-panel-height: 145px;
+  }
+  .fold-sheet {
+    width: calc((100% - 12px) / 3);
+    border-radius: 7px;
+  }
+  .fold-panel-season {
+    left: calc((100% - 12px) / 3 + 6px);
+  }
+  .fold-panel-content {
+    padding: 15px 10px;
+  }
+  .fold-panel-number {
+    font-size: 7px;
+    letter-spacing: 0;
+  }
+  .fold-panel-content h4 {
+    font-size: 14px;
+    margin: 16px 0 8px;
+  }
+  .fold-panel-content p {
+    font-size: 10px;
+    line-height: 1.65;
+  }
+  .fold-panel-content p br {
+    display: none;
+  }
+  .fold-panel-letter {
+    font-size: 40px;
+    left: 12px;
+  }
+  .fold-panel-destination {
+    top: calc(50% + 30px);
+    font-size: 7px;
+    letter-spacing: 0.03em;
+  }
+  .fold-photo-title {
+    left: 18px;
+    right: 18px;
+    bottom: calc(var(--fold-panel-height) + 30px);
+  }
+  .fold-photo-title h3 span {
+    font-size: 13px;
+  }
+  .fold-photo-title a {
+    position: static;
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 11px;
+    padding: 6px 0;
+  }
+  .fold-caption {
+    font-size: 9px;
+  }
+  .fold-track {
+    margin-top: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fold-controls {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .bridge .fold-visual {
+    --fold-height: 425px;
+    --fold-panel-height: 165px;
+  }
+  .fold-panel-number {
+    font-size: 0;
+  }
+  .fold-panel-number::after {
+    content: attr(data-step);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+  .fold-panel-content h4 {
+    margin-top: 12px;
+  }
+  .fold-panel-content p {
+    font-size: 11px;
+  }
+}
+
+/* 세 면이 걷힌 영역만 공개함. 정적인 기본 화면에서는 사진 전체가 보임. */
+.fold-animated .fold-photograph {
+  --reveal-left: 0%;
+  --reveal-center: 0%;
+  --reveal-right: 0%;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% var(--reveal-right),
+    66.666% var(--reveal-right),
+    66.666% var(--reveal-center),
+    33.333% var(--reveal-center),
+    33.333% var(--reveal-left),
+    0 var(--reveal-left)
+  );
+}

@@ -5,3 +5,4 @@
 **/pnpm-lock.yaml
 **/results.json
 docs/openapi-v1.json
+frontend/public/design/*.min.js
