@@ -1,3 +1,14 @@
+import worldCityData from './worldCityFixtures.json';
+
+// 공개 좌표를 활용한 밀집도 검수용 데이터임. 여행 정보가 게시된 도시 목록이 아님.
+// Natural Earth populated places 110m / public domain
+// https://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-populated-places/
+const regionNames = new Intl.DisplayNames(['ko'], { type: 'region' });
+export const worldCityFixtures = worldCityData.map((city) => ({
+  ...city,
+  country: /^[A-Z]{2}$/.test(city.code) ? regionNames.of(city.code) : city.countryEn,
+}));
+
 // 화면 검수용 데이터임. 실제 여행 콘텐츠와 사진은 자료 검수 후 연결할 예정임.
 export const cities = [
   {

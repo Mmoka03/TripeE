@@ -149,9 +149,13 @@ main {
   overflow: hidden;
   background: #e9eeed;
 }
-.map {
+/* 지도 라이브러리 스타일이 나중에 로드되어도 영역을 채우도록 함. */
+.map-stage > .map {
   position: absolute;
   inset: 0;
+  /* 표식의 z-index가 지도 바깥 탐색 도구보다 높아지지 않도록 함. */
+  z-index: 0;
+  isolation: isolate;
 }
 .map-top {
   position: absolute;
@@ -249,6 +253,7 @@ form input {
 }
 .map-bottom {
   position: absolute;
+  z-index: 3;
   bottom: 36px;
   left: 16px;
   right: 16px;
@@ -372,6 +377,7 @@ form input {
 }
 .map-status {
   position: absolute;
+  z-index: 4;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

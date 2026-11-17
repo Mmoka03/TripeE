@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+  <meta charset="utf-8" />
+  <style>
+    body {
+      font: 14px/1.6 system-ui;
+      margin: 24px;
+      color: #173f44;
+    }
+    h1 {
+      font-size: 20px;
+      margin: 0 0 12px;
+    }
+    select,
+    button {
+      font: inherit;
+      padding: 10px;
+      border-radius: 8px;
+    }
+    select {
+      width: 100%;
+      border: 1px solid #bdceca;
+    }
+    button {
+      margin-top: 16px;
+      background: #174f54;
+      color: white;
+      border: 0;
+      width: 100%;
+      cursor: pointer;
+    }
+    button:disabled {
+      opacity: 0.5;
+    }
+    p {
+      font-size: 12px;
+    }
+    #status {
+      white-space: pre-wrap;
+    }
+  </style>
+  <h1>TripeE 사용자 와이어프레임</h1>
+  <p>현재 페이지 오른쪽에 새 화면을 추가함. 기존 화면은 유지함. 정적인 배치·전환 상태 검수용임.</p>
+  <select id="scope" aria-label="가져올 화면">
+    <option value="all">전체 화면</option>
+    <option value="intro">소개 페이지</option>
+    <option value="map">PC 지도</option>
+    <option value="mobile">모바일</option>
+    <option value="notes">동작 기준</option>
+  </select>
+  <button id="import">와이어프레임 가져오기</button>
+  <button id="update-fonts">기존 21개 화면의 글꼴 맞추기</button>
+  <p id="status" role="status">Pretendard 우선 적용 · 외부 네트워크 연결 없음</p>
+  <script>
+    const packageData = '__TRIPEE_WIREFRAME_DATA__';
+    const button = document.getElementById('import'),
+      fontButton = document.getElementById('update-fonts'),
+      status = document.getElementById('status');
+    fontButton.onclick = () => {
+      button.disabled = fontButton.disabled = true;
+      status.textContent = '기존 화면과 Pretendard 글꼴 확인 중…';
+      parent.postMessage(
+        { pluginMessage: { type: 'update-fonts', data: { frames: packageData.frames } } },
+        '*',
+      );
+    };
+    button.onclick = () => {
+      const scope = document.getElementById('scope').value;
+      const frames = packageData.frames.filter(
+        (f) =>
+          scope === 'all' ||
+          (f.id.startsWith('intro')
+            ? 'intro'
+            : f.id.startsWith('map')
+              ? 'map'
+              : f.id.startsWith('mobile')
+                ? 'mobile'
+                : 'notes') === scope,
+      );
+      const images = {};
+      for (const [key, base64] of Object.entries(packageData.images))
+        images[key] = Uint8Array.from(atob(base64), (char) => char.charCodeAt(0));
+      button.disabled = true;
+      fontButton.disabled = true;
+      status.textContent = '글꼴과 이미지 준비 중…';
+      parent.postMessage({ pluginMessage: { type: 'import', data: { frames, images } } }, '*');
+    };
+    onmessage = (event) => {
+      const msg = event.data.pluginMessage;
+      if (!msg) return;
+      status.textContent = msg.text;
+      if (msg.type === 'done' || msg.type === 'error')
+        button.disabled = fontButton.disabled = false;
+    };
+  </script>
+</html>

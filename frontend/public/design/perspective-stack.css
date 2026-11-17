@@ -1,0 +1,227 @@
+/* 기본값은 두 카드를 모두 읽을 수 있는 배치임. JS가 켜진 경우에만 겹침. */
+.journey-deck {
+  min-width: 0;
+  width: 100%;
+  color: #173c45;
+}
+.journey-deck-stage {
+  display: grid;
+  gap: 20px;
+}
+.journey-card {
+  position: relative;
+  border: 8px solid #fffaf1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fffaf1;
+  box-shadow: 0 18px 40px #17213226;
+  margin: 0;
+}
+.journey-mood {
+  min-height: 460px;
+}
+.journey-mood > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.journey-mood::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #0a2524e8, transparent 85%);
+}
+.journey-mood-copy {
+  position: absolute;
+  left: 28px;
+  bottom: 28px;
+  right: 28px;
+  z-index: 1;
+  color: #fffaf1;
+}
+.journey-mood-copy > span,
+.journey-guide-photo > span {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+.journey-mood-copy h3 {
+  font-size: clamp(28px, 2.5vw, 46px);
+  letter-spacing: -0.05em;
+  line-height: 1.25;
+  margin: 18px 0;
+}
+.journey-mood-copy p {
+  font-size: 12px;
+  margin: 0;
+}
+.journey-guide-photo {
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+}
+.journey-guide-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 58%;
+}
+.journey-guide-photo > span {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 6px 8px;
+  background: #173c45d9;
+  color: #fffaf1;
+}
+.journey-guide-copy {
+  padding: 20px 26px 22px;
+  word-break: keep-all;
+}
+.journey-guide-copy > span {
+  color: #a43e33;
+  font-size: 10px;
+}
+.journey-guide-copy h3 {
+  font-size: 28px;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+  margin: 10px 0 16px;
+  text-wrap: balance;
+}
+.journey-guide-copy dl {
+  margin: 0;
+}
+.journey-guide-copy dl > div {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 12px;
+  padding: 9px 0;
+  border-top: 1px solid #173c4525;
+}
+.journey-guide-copy dt {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+}
+.journey-guide-copy dd {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+.journey-guide-copy > small {
+  display: block;
+  font-size: 10px;
+  line-height: 1.5;
+  color: #596a6b;
+  margin-top: 12px;
+}
+.journey-deck-controls {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 14px 0 8px;
+  border-top: 1px solid #173c4525;
+}
+.journey-deck-status {
+  font-size: 11px;
+}
+.journey-deck-toggle {
+  font: inherit;
+  font-size: 12px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #173c4530;
+  border-radius: 8px;
+  background: transparent;
+  color: #173c45;
+  cursor: pointer;
+}
+.journey-deck-credits {
+  font-size: 9px;
+  line-height: 1.7;
+  color: #596a6b;
+  padding-top: 12px;
+}
+.journey-deck-credits a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.journey-deck.is-stacked .journey-deck-stage {
+  position: relative;
+  /* 카드가 아래로 빠질 공간을 확보해 버튼과 출처를 가리지 않도록 함. */
+  padding: 40px 9% 180px;
+  gap: 0;
+}
+.journey-deck.is-stacked .journey-card {
+  grid-area: 1 / 1;
+  min-width: 0;
+  min-height: 530px;
+}
+.journey-deck.is-stacked .journey-mood {
+  z-index: 2;
+}
+.journey-deck.is-stacked .journey-guide {
+  z-index: 1;
+}
+.journey-deck.is-stacked .journey-deck-controls {
+  display: flex;
+}
+@media (max-width: 1100px) {
+  .journey-deck.is-stacked .journey-deck-stage {
+    padding-inline: 6%;
+  }
+  .journey-guide-copy {
+    padding: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .journey-deck.is-stacked .journey-deck-stage {
+    padding-block: 28px 150px;
+  }
+  .journey-deck.is-stacked .journey-card {
+    min-height: 450px;
+    border-width: 6px;
+  }
+  .journey-guide-photo {
+    aspect-ratio: 3 / 2;
+  }
+  .journey-guide-copy {
+    padding: 16px;
+  }
+  .journey-guide-copy h3 {
+    font-size: 24px;
+    margin: 8px 0 12px;
+  }
+  .journey-guide-copy dl > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 7px 0;
+  }
+  .journey-guide-copy dt {
+    font-size: 12px;
+  }
+  .journey-guide-copy dd {
+    font-size: 12px;
+  }
+  .journey-mood-copy {
+    left: 20px;
+    right: 20px;
+    bottom: 24px;
+  }
+  .journey-mood-copy h3 {
+    font-size: 28px;
+  }
+  .journey-deck-status {
+    font-size: 10px;
+  }
+  .journey-deck-toggle {
+    font-size: 11px;
+    padding: 8px;
+  }
+}

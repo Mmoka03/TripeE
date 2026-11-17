@@ -11,6 +11,7 @@ const paths = {
   arrow: <path d="M7 17 17 7M7 7h10v10" />,
   left: <path d="m14 6-6 6 6 6" />,
   right: <path d="m10 6 6 6-6 6" />,
+  map: <path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2V5Zm6-2v16M15 5v16" />,
   alert: (
     <>
       <circle cx="12" cy="12" r="9" />

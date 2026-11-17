@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TripeE · 사용자 화면 와이어프레임</title>
+    <style>
+      @font-face {
+        font-family: Pretendard;
+        src: url('../design/pretendard.woff2');
+      }
+      * {
+        box-sizing: border-box;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      body {
+        margin: 0;
+        background: #e8ece9;
+        color: #182031;
+        font-family: Pretendard, sans-serif;
+      }
+      header {
+        padding: 28px 5vw;
+        background: #173f44;
+        color: #fff;
+      }
+      h1 {
+        font-size: 26px;
+        margin: 0 0 12px;
+      }
+      header p {
+        margin: 6px 0;
+        line-height: 1.6;
+        font-size: 14px;
+      }
+      header a {
+        color: #bcded7;
+      }
+      nav {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+      button {
+        border: 1px solid #78908c;
+        border-radius: 20px;
+        padding: 9px 18px;
+        background: transparent;
+        color: white;
+        cursor: pointer;
+        font: inherit;
+      }
+      button[aria-pressed='true'] {
+        background: #fff;
+        color: #173f44;
+      }
+      main {
+        max-width: 1600px;
+        margin: auto;
+        padding: 28px;
+      }
+      .sheet {
+        margin: 0 0 42px;
+      }
+      h2 {
+        font-size: 21px;
+      }
+      .notes {
+        max-width: 1000px;
+        color: #526363;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+      .viewport {
+        overflow: hidden;
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 6px 30px #173f4412;
+      }
+      .canvas {
+        position: relative;
+        transform-origin: top left;
+        overflow: hidden;
+      }
+      .node {
+        position: absolute;
+      }
+      .text {
+        white-space: pre-wrap;
+        line-height: 1.5;
+        margin: 0;
+      }
+      .photo {
+        object-fit: cover;
+      }
+      .mobile .viewport {
+        max-width: 390px;
+      }
+      .mobile {
+        display: inline-block;
+        vertical-align: top;
+        width: calc(25% - 20px);
+        margin-right: 20px;
+      }
+      .mobile .notes {
+        min-height: 100px;
+      }
+      footer {
+        padding: 24px 5vw;
+        color: #536766;
+      }
+      a {
+        color: inherit;
+      }
+      @media (max-width: 1000px) {
+        .mobile {
+          width: calc(50% - 20px);
+        }
+      }
+      @media (max-width: 600px) {
+        main {
+          padding: 20px;
+        }
+        .mobile {
+          width: 100%;
+          margin-right: 0;
+        }
+        .notes {
+          font-size: 14px;
+        }
+      }
+    </style>
+    <script defer src="frames.js"></script>
+    <script defer src="preview.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>TripeE · 사용자 화면 와이어프레임</h1>
+      <p>소개 6개 섹션, 주요 전환 전·후, PC·모바일 지도와 예외 상태를 반영함. PC 기준 1920×1080.</p>
+      <p>
+        화면과 동작을 설명하는 정적 와이어프레임임.
+        <a href="../design/index.html">실제 소개 페이지 ↗</a> · <a href="/">실제 지도 ↗</a>
+      </p>
+      <p>
+        2026-11-14
+        <a href="https://www.figma.com/design/j8BgA2aE2QQoOxHm9QMZMN">기존 Figma 파일 ↗</a>에 화면
+        21개를 추가했음. Pretendard 1.3.9 설치 후 Figma 텍스트 341개를 Pretendard Variable로 맞췄음.
+      </p>
+      <nav aria-label="화면 구분">
+        <button data-filter="all" aria-pressed="true">전체</button
+        ><button data-filter="intro" aria-pressed="false">소개 페이지</button
+        ><button data-filter="map" aria-pressed="false">PC 지도</button
+        ><button data-filter="mobile" aria-pressed="false">모바일</button
+        ><button data-filter="notes" aria-pressed="false">동작 기준</button>
+      </nav>
+    </header>
+    <main></main>
+    <footer>
+      텍스트·도형으로 구성했으며 실제 사진만 이미지로 사용함. 사진 출처는
+      <a href="../design/index.html#credits">소개 페이지 출처·라이선스</a>에서 확인 가능함.
+    </footer>
+  </body>
+</html>

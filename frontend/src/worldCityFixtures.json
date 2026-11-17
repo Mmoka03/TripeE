@@ -1,0 +1,2162 @@
+[
+  {
+    "id": "test-ne-1159127243",
+    "name": "바티칸 시국",
+    "english": "Vatican City",
+    "countryEn": "Vatican",
+    "code": "VA",
+    "coordinates": [12.453387, 41.903282],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159146051",
+    "name": "산마리노",
+    "english": "San Marino",
+    "countryEn": "San Marino",
+    "code": "SM",
+    "coordinates": [12.44177, 43.936096],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159146061",
+    "name": "파두츠",
+    "english": "Vaduz",
+    "countryEn": "Liechtenstein",
+    "code": "LI",
+    "coordinates": [9.51667, 47.133724],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159146343",
+    "name": "로밤바",
+    "english": "Lobamba",
+    "countryEn": "eSwatini",
+    "code": "SZ",
+    "coordinates": [31.199997, -26.466667],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159146437",
+    "name": "룩셈부르크",
+    "english": "Luxembourg",
+    "countryEn": "Luxembourg",
+    "code": "LU",
+    "coordinates": [6.130003, 49.61166],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149061",
+    "name": "팔리키르",
+    "english": "Palikir",
+    "countryEn": "Federated States of Micronesia",
+    "code": "FM",
+    "coordinates": [158.149974, 6.916644],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149063",
+    "name": "마주로",
+    "english": "Majuro",
+    "countryEn": "Marshall Islands",
+    "code": "MH",
+    "coordinates": [171.38, 7.103004],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149071",
+    "name": "푸나푸티",
+    "english": "Funafuti",
+    "countryEn": "Tuvalu",
+    "code": "TV",
+    "coordinates": [179.216647, -8.516652],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149073",
+    "name": "멜레케오크",
+    "english": "Melekeok",
+    "countryEn": "Palau",
+    "code": "PW",
+    "coordinates": [134.626549, 7.487396],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149075",
+    "name": "비르레흘루",
+    "english": "Bir Lehlou",
+    "countryEn": "Western Sahara",
+    "code": "EH",
+    "coordinates": [-9.652522, 26.119167],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149077",
+    "name": "모나코",
+    "english": "Monaco",
+    "countryEn": "Monaco",
+    "code": "MC",
+    "coordinates": [7.406913, 43.739646],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149079",
+    "name": "사우스타라와",
+    "english": "South Tarawa",
+    "countryEn": "Kiribati",
+    "code": "KI",
+    "coordinates": [173.017571, 1.338188],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149083",
+    "name": "모로니",
+    "english": "Moroni",
+    "countryEn": "Comoros",
+    "code": "KM",
+    "coordinates": [43.240244, -11.704158],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149089",
+    "name": "안도라라베야",
+    "english": "Andorra la Vella",
+    "countryEn": "Andorra",
+    "code": "AD",
+    "coordinates": [1.526594, 42.510753],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149307",
+    "name": "포트오브스페인",
+    "english": "Port of Spain",
+    "countryEn": "Trinidad and Tobago",
+    "code": "TT",
+    "coordinates": [-61.517031, 10.651997],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149385",
+    "name": "키갈리",
+    "english": "Kigali",
+    "countryEn": "Rwanda",
+    "code": "RW",
+    "coordinates": [30.058586, -1.951644],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149413",
+    "name": "음바바네",
+    "english": "Mbabane",
+    "countryEn": "eSwatini",
+    "code": "SZ",
+    "coordinates": [31.133335, -26.316651],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149449",
+    "name": "주바",
+    "english": "Juba",
+    "countryEn": "South Sudan",
+    "code": "SS",
+    "coordinates": [31.580026, 4.829975],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149457",
+    "name": "헤이그",
+    "english": "The Hague",
+    "countryEn": "Netherlands",
+    "code": "NL",
+    "coordinates": [4.269961, 52.080037],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149461",
+    "name": "류블랴나",
+    "english": "Ljubljana",
+    "countryEn": "Slovenia",
+    "code": "SI",
+    "coordinates": [14.514969, 46.055288],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149463",
+    "name": "브라티슬라바",
+    "english": "Bratislava",
+    "countryEn": "Slovakia",
+    "code": "SK",
+    "coordinates": [17.116981, 48.150018],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149469",
+    "name": "도하",
+    "english": "Doha",
+    "countryEn": "Qatar",
+    "code": "QA",
+    "coordinates": [51.532968, 25.286556],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149511",
+    "name": "포드고리차",
+    "english": "Podgorica",
+    "countryEn": "Montenegro",
+    "code": "ME",
+    "coordinates": [19.266307, 42.465972],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149593",
+    "name": "스리자야와르데네푸라코테",
+    "english": "Sri Jayawardenepura Kotte",
+    "countryEn": "Sri Lanka",
+    "code": "LK",
+    "coordinates": [79.949993, 6.900004],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149605",
+    "name": "바기오",
+    "english": "Baguio",
+    "countryEn": "Philippines",
+    "code": "PH",
+    "coordinates": [120.569943, 16.429991],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149731",
+    "name": "도도마",
+    "english": "Dodoma",
+    "countryEn": "Tanzania",
+    "code": "TZ",
+    "coordinates": [35.750004, -6.183306],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149737",
+    "name": "베른",
+    "english": "Bern",
+    "countryEn": "Switzerland",
+    "code": "CH",
+    "coordinates": [7.466976, 46.916683],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149741",
+    "name": "엘아윤",
+    "english": "Laayoune",
+    "countryEn": "Morocco",
+    "code": "MA",
+    "coordinates": [-13.200006, 27.149982],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149757",
+    "name": "프리슈티나",
+    "english": "Pristina",
+    "countryEn": "Kosovo",
+    "code": "-99",
+    "coordinates": [21.165984, 42.66671],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149847",
+    "name": "로조",
+    "english": "Roseau",
+    "countryEn": "Dominica",
+    "code": "DM",
+    "coordinates": [-61.387013, 15.301016],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149869",
+    "name": "지부티",
+    "english": "Djibouti",
+    "countryEn": "Djibouti",
+    "code": "DJ",
+    "coordinates": [43.148002, 11.595014],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149883",
+    "name": "푸트라자야",
+    "english": "Putrajaya",
+    "countryEn": "Malaysia",
+    "code": "MY",
+    "coordinates": [101.695037, 2.932515],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159149997",
+    "name": "반줄",
+    "english": "Banjul",
+    "countryEn": "The Gambia",
+    "code": "GM",
+    "coordinates": [-16.591701, 13.453876],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150073",
+    "name": "스코페",
+    "english": "Skopje",
+    "countryEn": "North Macedonia",
+    "code": "MK",
+    "coordinates": [21.433461, 42.000006],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150339",
+    "name": "브리지타운",
+    "english": "Bridgetown",
+    "countryEn": "Barbados",
+    "code": "BB",
+    "coordinates": [-59.616527, 13.102003],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150345",
+    "name": "포르토노보",
+    "english": "Porto-Novo",
+    "countryEn": "Benin",
+    "code": "BJ",
+    "coordinates": [2.616626, 6.483311],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150427",
+    "name": "부줌부라",
+    "english": "Bujumbura",
+    "countryEn": "Burundi",
+    "code": "BI",
+    "coordinates": [29.360006, -3.376087],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150431",
+    "name": "킹스타운",
+    "english": "Kingstown",
+    "countryEn": "Saint Vincent and the Grenadines",
+    "code": "VC",
+    "coordinates": [-61.220236, 13.155756],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150433",
+    "name": "캐스트리스",
+    "english": "Castries",
+    "countryEn": "Saint Lucia",
+    "code": "LC",
+    "coordinates": [-60.992875, 14.007875],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150435",
+    "name": "바스테르",
+    "english": "Basseterre",
+    "countryEn": "Saint Kitts and Nevis",
+    "code": "KN",
+    "coordinates": [-62.717009, 17.302031],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150443",
+    "name": "포트루이스",
+    "english": "Port Louis",
+    "countryEn": "Mauritius",
+    "code": "MU",
+    "coordinates": [57.499994, -20.166639],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150447",
+    "name": "세인트조지스",
+    "english": "St. George's",
+    "countryEn": "Grenada",
+    "code": "GD",
+    "coordinates": [-61.741643, 12.052633],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150451",
+    "name": "마나마",
+    "english": "Manama",
+    "countryEn": "Bahrain",
+    "code": "BH",
+    "coordinates": [50.583052, 26.236136],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150457",
+    "name": "세인트존스",
+    "english": "Saint John's",
+    "countryEn": "Antigua and Barbuda",
+    "code": "AG",
+    "coordinates": [-61.850034, 17.118036],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150469",
+    "name": "몬테비데오",
+    "english": "Montevideo",
+    "countryEn": "Uruguay",
+    "code": "UY",
+    "coordinates": [-56.186823, -34.905376],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150535",
+    "name": "로메",
+    "english": "Lomé",
+    "countryEn": "Togo",
+    "code": "TG",
+    "coordinates": [1.220811, 6.133883],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150537",
+    "name": "튀니스",
+    "english": "Tunis",
+    "countryEn": "Tunisia",
+    "code": "TN",
+    "coordinates": [10.179678, 36.802778],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150565",
+    "name": "아부다비",
+    "english": "Abu Dhabi",
+    "countryEn": "United Arab Emirates",
+    "code": "AE",
+    "coordinates": [54.366593, 24.466684],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150567",
+    "name": "아시가바트",
+    "english": "Ashgabat",
+    "countryEn": "Turkmenistan",
+    "code": "TM",
+    "coordinates": [58.383299, 37.949995],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150571",
+    "name": "루사카",
+    "english": "Lusaka",
+    "countryEn": "Zambia",
+    "code": "ZM",
+    "coordinates": [28.281382, -15.414698],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150573",
+    "name": "하라레",
+    "english": "Harare",
+    "countryEn": "Zimbabwe",
+    "code": "ZW",
+    "coordinates": [31.042764, -17.815844],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150577",
+    "name": "딜리",
+    "english": "Dili",
+    "countryEn": "East Timor",
+    "code": "TL",
+    "coordinates": [125.579456, -8.559388],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150579",
+    "name": "포트빌라",
+    "english": "Port Vila",
+    "countryEn": "Vanuatu",
+    "code": "VU",
+    "coordinates": [168.316641, -17.73335],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150583",
+    "name": "테구시갈파",
+    "english": "Tegucigalpa",
+    "countryEn": "Honduras",
+    "code": "HN",
+    "coordinates": [-87.219475, 14.103991],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150585",
+    "name": "조지타운",
+    "english": "Georgetown",
+    "countryEn": "Guyana",
+    "code": "GY",
+    "coordinates": [-58.167029, 6.801974],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150587",
+    "name": "레이캬비크",
+    "english": "Reykjavík",
+    "countryEn": "Iceland",
+    "code": "IS",
+    "coordinates": [-21.936546, 64.143459],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150589",
+    "name": "포르토프랭스",
+    "english": "Port-au-Prince",
+    "countryEn": "Haiti",
+    "code": "HT",
+    "coordinates": [-72.33798, 18.54297],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150593",
+    "name": "캄팔라",
+    "english": "Kampala",
+    "countryEn": "Uganda",
+    "code": "UG",
+    "coordinates": [32.581378, 0.318605],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150597",
+    "name": "파라마리보",
+    "english": "Paramaribo",
+    "countryEn": "Suriname",
+    "code": "SR",
+    "coordinates": [-55.167031, 5.83503],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150605",
+    "name": "니아메",
+    "english": "Niamey",
+    "countryEn": "Niger",
+    "code": "NE",
+    "coordinates": [2.11471, 13.518652],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150609",
+    "name": "두샨베",
+    "english": "Dushanbe",
+    "countryEn": "Tajikistan",
+    "code": "TJ",
+    "coordinates": [68.773879, 38.560035],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150621",
+    "name": "아순시온",
+    "english": "Asunción",
+    "countryEn": "Paraguay",
+    "code": "PY",
+    "coordinates": [-57.625834, -25.290671],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150623",
+    "name": "마나과",
+    "english": "Managua",
+    "countryEn": "Nicaragua",
+    "code": "NI",
+    "coordinates": [-86.270437, 12.154962],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150625",
+    "name": "프리타운",
+    "english": "Freetown",
+    "countryEn": "Sierra Leone",
+    "code": "SL",
+    "coordinates": [-13.236162, 8.471957],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150645",
+    "name": "이슬라마바드",
+    "english": "Islamabad",
+    "countryEn": "Pakistan",
+    "code": "PK",
+    "coordinates": [73.08063, 33.689368],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150655",
+    "name": "카트만두",
+    "english": "Kathmandu",
+    "countryEn": "Nepal",
+    "code": "NP",
+    "coordinates": [85.314696, 27.718638],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150659",
+    "name": "블룸폰테인",
+    "english": "Bloemfontein",
+    "countryEn": "South Africa",
+    "code": "ZA",
+    "coordinates": [26.229913, -29.119994],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150661",
+    "name": "프리토리아",
+    "english": "Pretoria",
+    "countryEn": "South Africa",
+    "code": "ZA",
+    "coordinates": [28.227483, -25.704975],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150663",
+    "name": "포트모르즈비",
+    "english": "Port Moresby",
+    "countryEn": "Papua New Guinea",
+    "code": "PG",
+    "coordinates": [147.192504, -9.464708],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150665",
+    "name": "호니아라",
+    "english": "Honiara",
+    "countryEn": "Solomon Islands",
+    "code": "SB",
+    "coordinates": [159.949766, -9.437994],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150667",
+    "name": "파나마시티",
+    "english": "Panama City",
+    "countryEn": "Panama",
+    "code": "PA",
+    "coordinates": [-79.534983, 8.969963],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150673",
+    "name": "라바트",
+    "english": "Rabat",
+    "countryEn": "Morocco",
+    "code": "MA",
+    "coordinates": [-6.836408, 34.025307],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150677",
+    "name": "키시너우",
+    "english": "Chișinău",
+    "countryEn": "Moldova",
+    "code": "MD",
+    "coordinates": [28.857711, 47.005024],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150683",
+    "name": "마푸투",
+    "english": "Maputo",
+    "countryEn": "Mozambique",
+    "code": "MZ",
+    "coordinates": [32.587217, -25.953332],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150715",
+    "name": "모가디슈",
+    "english": "Mogadishu",
+    "countryEn": "Somalia",
+    "code": "SO",
+    "coordinates": [45.364732, 2.068627],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150717",
+    "name": "무스카트",
+    "english": "Muscat",
+    "countryEn": "Oman",
+    "code": "OM",
+    "coordinates": [58.378311, 23.585179],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150719",
+    "name": "콜롬보",
+    "english": "Colombo",
+    "countryEn": "Sri Lanka",
+    "code": "LK",
+    "coordinates": [79.857751, 6.931966],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150781",
+    "name": "울란바토르",
+    "english": "Ulaanbaatar",
+    "countryEn": "Mongolia",
+    "code": "MN",
+    "coordinates": [106.91467, 47.918619],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150785",
+    "name": "빈트후크",
+    "english": "Windhoek",
+    "countryEn": "Namibia",
+    "code": "NA",
+    "coordinates": [17.083546, -22.570006],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150799",
+    "name": "아부자",
+    "english": "Abuja",
+    "countryEn": "Nigeria",
+    "code": "NG",
+    "coordinates": [7.489505, 9.05462],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150803",
+    "name": "비사우",
+    "english": "Bissau",
+    "countryEn": "Guinea Bissau",
+    "code": "GW",
+    "coordinates": [-15.598361, 11.865024],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150807",
+    "name": "암만",
+    "english": "Amman",
+    "countryEn": "Jordan",
+    "code": "JO",
+    "coordinates": [35.931354, 31.951971],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150809",
+    "name": "빌뉴스",
+    "english": "Vilnius",
+    "countryEn": "Lithuania",
+    "code": "LT",
+    "coordinates": [25.316635, 54.683366],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150811",
+    "name": "리가",
+    "english": "Riga",
+    "countryEn": "Latvia",
+    "code": "LV",
+    "coordinates": [24.099965, 56.950024],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150813",
+    "name": "비슈케크",
+    "english": "Bishkek",
+    "countryEn": "Kyrgyzstan",
+    "code": "KG",
+    "coordinates": [74.583258, 42.875025],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150831",
+    "name": "마세루",
+    "english": "Maseru",
+    "countryEn": "Lesotho",
+    "code": "LS",
+    "coordinates": [27.483273, -29.316674],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150835",
+    "name": "안타나나리보",
+    "english": "Antananarivo",
+    "countryEn": "Madagascar",
+    "code": "MG",
+    "coordinates": [47.514678, -18.914691],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150847",
+    "name": "키토",
+    "english": "Quito",
+    "countryEn": "Ecuador",
+    "code": "EC",
+    "coordinates": [-78.501997, -0.213042],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150849",
+    "name": "산호세",
+    "english": "San José",
+    "countryEn": "Costa Rica",
+    "code": "CR",
+    "coordinates": [-84.078814, 9.930371],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150853",
+    "name": "산살바도르",
+    "english": "San Salvador",
+    "countryEn": "El Salvador",
+    "code": "SV",
+    "coordinates": [-89.215576, 13.70328],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150855",
+    "name": "킹스턴",
+    "english": "Kingston",
+    "countryEn": "Jamaica",
+    "code": "JM",
+    "coordinates": [-76.767434, 17.977077],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150863",
+    "name": "은자메나",
+    "english": "N'Djamena",
+    "countryEn": "Chad",
+    "code": "TD",
+    "coordinates": [15.047202, 12.115042],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150867",
+    "name": "말라보",
+    "english": "Malabo",
+    "countryEn": "Equatorial Guinea",
+    "code": "GQ",
+    "coordinates": [8.783278, 3.750015],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150873",
+    "name": "아스마라",
+    "english": "Asmara",
+    "countryEn": "Eritrea",
+    "code": "ER",
+    "coordinates": [38.933324, 15.333339],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150875",
+    "name": "자그레브",
+    "english": "Zagreb",
+    "countryEn": "Croatia",
+    "code": "HR",
+    "coordinates": [15.999995, 45.800007],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150877",
+    "name": "탈린",
+    "english": "Tallinn",
+    "countryEn": "Estonia",
+    "code": "EE",
+    "coordinates": [24.728041, 59.433877],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150907",
+    "name": "릴롱궤",
+    "english": "Lilongwe",
+    "countryEn": "Malawi",
+    "code": "MW",
+    "coordinates": [33.783302, -13.983295],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150909",
+    "name": "과테말라 시티",
+    "english": "Guatemala City",
+    "countryEn": "Guatemala",
+    "code": "GT",
+    "coordinates": [-90.528911, 14.623081],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150913",
+    "name": "리브르빌",
+    "english": "Libreville",
+    "countryEn": "Gabon",
+    "code": "GA",
+    "coordinates": [9.457965, 0.385389],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150917",
+    "name": "수바",
+    "english": "Suva",
+    "countryEn": "Fiji",
+    "code": "FJ",
+    "coordinates": [178.441707, -18.133016],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150931",
+    "name": "발파라이소",
+    "english": "Valparaíso",
+    "countryEn": "Chile",
+    "code": "CL",
+    "coordinates": [-71.617026, -33.047739],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150943",
+    "name": "누악쇼트",
+    "english": "Nouakchott",
+    "countryEn": "Mauritania",
+    "code": "MR",
+    "coordinates": [-15.97534, 18.086427],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150945",
+    "name": "바마코",
+    "english": "Bamako",
+    "countryEn": "Mali",
+    "code": "ML",
+    "coordinates": [-8.001985, 12.65196],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150957",
+    "name": "베이루트",
+    "english": "Beirut",
+    "countryEn": "Lebanon",
+    "code": "LB",
+    "coordinates": [35.507762, 33.873921],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150961",
+    "name": "트빌리시",
+    "english": "Tbilisi",
+    "countryEn": "Georgia",
+    "code": "GE",
+    "coordinates": [44.78885, 41.726956],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150965",
+    "name": "누르술탄",
+    "english": "Nur-Sultan",
+    "countryEn": "Kazakhstan",
+    "code": "KZ",
+    "coordinates": [71.427774, 51.181125],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150991",
+    "name": "비엔티안",
+    "english": "Vientiane",
+    "countryEn": "Laos",
+    "code": "LA",
+    "coordinates": [102.59998, 17.966693],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150993",
+    "name": "브라자빌",
+    "english": "Brazzaville",
+    "countryEn": "Congo (Brazzaville)",
+    "code": "CG",
+    "coordinates": [15.282744, -4.25724],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150997",
+    "name": "코나크리",
+    "english": "Conakry",
+    "countryEn": "Guinea",
+    "code": "GN",
+    "coordinates": [-13.682181, 9.533469],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159150999",
+    "name": "야무수크로",
+    "english": "Yamoussoukro",
+    "countryEn": "Ivory Coast",
+    "code": "CI",
+    "coordinates": [-5.275503, 6.818381],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151059",
+    "name": "오타와",
+    "english": "Ottawa",
+    "countryEn": "Canada",
+    "code": "CA",
+    "coordinates": [-75.701961, 45.418643],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151079",
+    "name": "베오그라드",
+    "english": "Belgrade",
+    "countryEn": "Serbia",
+    "code": "RS",
+    "coordinates": [20.466045, 44.820591],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151083",
+    "name": "반다르스리브가완",
+    "english": "Bandar Seri Begawan",
+    "countryEn": "Brunei",
+    "code": "BN",
+    "coordinates": [114.933284, 4.883331],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151095",
+    "name": "수크레",
+    "english": "Sucre",
+    "countryEn": "Bolivia",
+    "code": "BO",
+    "coordinates": [-65.259516, -19.040971],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151109",
+    "name": "벨모판",
+    "english": "Belmopan",
+    "countryEn": "Belize",
+    "code": "BZ",
+    "coordinates": [-88.767073, 17.252033],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151111",
+    "name": "방기",
+    "english": "Bangui",
+    "countryEn": "Central African Republic",
+    "code": "CF",
+    "coordinates": [18.558288, 4.366644],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151115",
+    "name": "야운데",
+    "english": "Yaoundé",
+    "countryEn": "Cameroon",
+    "code": "CM",
+    "coordinates": [11.514705, 3.868647],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151117",
+    "name": "티라나",
+    "english": "Tirana",
+    "countryEn": "Albania",
+    "code": "AL",
+    "coordinates": [19.818883, 41.327541],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151119",
+    "name": "예레반",
+    "english": "Yerevan",
+    "countryEn": "Armenia",
+    "code": "AM",
+    "coordinates": [44.511606, 40.183097],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151123",
+    "name": "바쿠",
+    "english": "Baku",
+    "countryEn": "Azerbaijan",
+    "code": "AZ",
+    "coordinates": [49.860271, 40.397218],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151127",
+    "name": "프놈펜",
+    "english": "Phnom Penh",
+    "countryEn": "Cambodia",
+    "code": "KH",
+    "coordinates": [104.914689, 11.551976],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151133",
+    "name": "라파스",
+    "english": "La Paz",
+    "countryEn": "Bolivia",
+    "code": "BO",
+    "coordinates": [-68.151931, -16.496028],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151141",
+    "name": "코토누",
+    "english": "Cotonou",
+    "countryEn": "Benin",
+    "code": "BJ",
+    "coordinates": [2.404355, 6.36298],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151147",
+    "name": "소피아",
+    "english": "Sofia",
+    "countryEn": "Bulgaria",
+    "code": "BG",
+    "coordinates": [23.314708, 42.685295],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151149",
+    "name": "민스크",
+    "english": "Minsk",
+    "countryEn": "Belarus",
+    "code": "BY",
+    "coordinates": [27.564681, 53.901923],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151151",
+    "name": "팀부",
+    "english": "Thimphu",
+    "countryEn": "Bhutan",
+    "code": "BT",
+    "coordinates": [89.639014, 27.472986],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151153",
+    "name": "가보로네",
+    "english": "Gaborone",
+    "countryEn": "Botswana",
+    "code": "BW",
+    "coordinates": [25.911948, -24.646314],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151161",
+    "name": "캔버라",
+    "english": "Canberra",
+    "countryEn": "Australia",
+    "code": "AU",
+    "coordinates": [149.129026, -35.283029],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151173",
+    "name": "와가두구",
+    "english": "Ouagadougou",
+    "countryEn": "Burkina Faso",
+    "code": "BF",
+    "coordinates": [-1.52667, 12.372262],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151177",
+    "name": "사라예보",
+    "english": "Sarajevo",
+    "countryEn": "Bosnia and Herzegovina",
+    "code": "BA",
+    "coordinates": [18.383002, 43.850022],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151179",
+    "name": "네피도",
+    "english": "Naypyidaw",
+    "countryEn": "Myanmar",
+    "code": "MM",
+    "coordinates": [96.116673, 19.768503],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151187",
+    "name": "누쿠알로파",
+    "english": "Nuku'alofa",
+    "countryEn": "Tonga",
+    "code": "TO",
+    "coordinates": [-175.220564, -21.138512],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151189",
+    "name": "하르게이사",
+    "english": "Hargeisa",
+    "countryEn": "Somaliland",
+    "code": "-99",
+    "coordinates": [44.06531, 9.560022],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151191",
+    "name": "빅토리아",
+    "english": "Victoria",
+    "countryEn": "Seychelles",
+    "code": "SC",
+    "coordinates": [55.44999, -4.616632],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151195",
+    "name": "상투메",
+    "english": "São Tomé",
+    "countryEn": "Sao Tome and Principe",
+    "code": "ST",
+    "coordinates": [6.72965, 0.337466],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151197",
+    "name": "아피아",
+    "english": "Apia",
+    "countryEn": "Samoa",
+    "code": "WS",
+    "coordinates": [-171.768599, -13.835715],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151199",
+    "name": "발레타",
+    "english": "Valletta",
+    "countryEn": "Malta",
+    "code": "MT",
+    "coordinates": [14.514711, 35.899732],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151201",
+    "name": "말레",
+    "english": "Malé",
+    "countryEn": "Maldives",
+    "code": "MV",
+    "coordinates": [73.508901, 4.172037],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151203",
+    "name": "예루살렘",
+    "english": "Jerusalem",
+    "countryEn": "Israel",
+    "code": "IL",
+    "coordinates": [35.206626, 31.778408],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151205",
+    "name": "프라이아",
+    "english": "Praia",
+    "countryEn": "Cape Verde",
+    "code": "CV",
+    "coordinates": [-23.516689, 14.916698],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151207",
+    "name": "나소",
+    "english": "Nassau",
+    "countryEn": "The Bahamas",
+    "code": "BS",
+    "coordinates": [-77.350044, 25.08339],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151209",
+    "name": "니코시아",
+    "english": "Nicosia",
+    "countryEn": "Cyprus",
+    "code": "CY",
+    "coordinates": [33.366635, 35.166677],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151699",
+    "name": "웰링턴",
+    "english": "Wellington",
+    "countryEn": "New Zealand",
+    "code": "NZ",
+    "coordinates": [174.777201, -41.292068],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151251",
+    "name": "하노이",
+    "english": "Hanoi",
+    "countryEn": "Vietnam",
+    "code": "VN",
+    "coordinates": [105.848068, 21.035273],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151255",
+    "name": "앙카라",
+    "english": "Ankara",
+    "countryEn": "Turkey",
+    "code": "TR",
+    "coordinates": [32.862446, 39.929184],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151257",
+    "name": "부다페스트",
+    "english": "Budapest",
+    "countryEn": "Hungary",
+    "code": "HU",
+    "coordinates": [19.081375, 47.501952],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151259",
+    "name": "사나",
+    "english": "Sanaa",
+    "countryEn": "Yemen",
+    "code": "YE",
+    "coordinates": [44.204648, 15.356679],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151263",
+    "name": "부쿠레슈티",
+    "english": "Bucharest",
+    "countryEn": "Romania",
+    "code": "RO",
+    "coordinates": [26.098001, 44.435318],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151269",
+    "name": "다마스쿠스",
+    "english": "Damascus",
+    "countryEn": "Syria",
+    "code": "SY",
+    "coordinates": [36.29805, 33.50198],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151273",
+    "name": "리스본",
+    "english": "Lisbon",
+    "countryEn": "Portugal",
+    "code": "PT",
+    "coordinates": [-9.146812, 38.724669],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151275",
+    "name": "하르툼",
+    "english": "Khartoum",
+    "countryEn": "Sudan",
+    "code": "SD",
+    "coordinates": [32.532233, 15.590024],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151281",
+    "name": "오슬로",
+    "english": "Oslo",
+    "countryEn": "Norway",
+    "code": "NO",
+    "coordinates": [10.748033, 59.918636],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151299",
+    "name": "바르샤바",
+    "english": "Warsaw",
+    "countryEn": "Poland",
+    "code": "PL",
+    "coordinates": [21.005347, 52.230872],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151303",
+    "name": "평양직할시",
+    "english": "Pyongyang",
+    "countryEn": "North Korea",
+    "code": "KP",
+    "coordinates": [125.752745, 39.021385],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151305",
+    "name": "다르에스살람",
+    "english": "Dar es Salaam",
+    "countryEn": "Tanzania",
+    "code": "TZ",
+    "coordinates": [39.266396, -6.798067],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151309",
+    "name": "더블린",
+    "english": "Dublin",
+    "countryEn": "Ireland",
+    "code": "IE",
+    "coordinates": [-6.25698, 53.346731],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151311",
+    "name": "몬로비아",
+    "english": "Monrovia",
+    "countryEn": "Liberia",
+    "code": "LR",
+    "coordinates": [-10.79966, 6.314582],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151317",
+    "name": "쿠알라룸푸르",
+    "english": "Kuala Lumpur",
+    "countryEn": "Malaysia",
+    "code": "MY",
+    "coordinates": [101.688699, 3.139797],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151347",
+    "name": "아바나",
+    "english": "Havana",
+    "countryEn": "Cuba",
+    "code": "CU",
+    "coordinates": [-82.366128, 23.133905],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151359",
+    "name": "프라하",
+    "english": "Prague",
+    "countryEn": "Czechia",
+    "code": "CZ",
+    "coordinates": [14.422939, 50.086967],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151361",
+    "name": "쿠웨이트 시",
+    "english": "Kuwait City",
+    "countryEn": "Kuwait",
+    "code": "KW",
+    "coordinates": [47.976355, 29.371664],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151401",
+    "name": "산토도밍고",
+    "english": "Santo Domingo",
+    "countryEn": "Dominican Republic",
+    "code": "DO",
+    "coordinates": [-69.929742, 18.470745],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151403",
+    "name": "아크라",
+    "english": "Accra",
+    "countryEn": "Ghana",
+    "code": "GH",
+    "coordinates": [-0.218662, 5.55198],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151415",
+    "name": "트리폴리",
+    "english": "Tripoli",
+    "countryEn": "Libya",
+    "code": "LY",
+    "coordinates": [13.180012, 32.8925],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151417",
+    "name": "텔아비브",
+    "english": "Tel Aviv",
+    "countryEn": "Israel",
+    "code": "IL",
+    "coordinates": [34.768066, 32.081937],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151419",
+    "name": "헬싱키",
+    "english": "Helsinki",
+    "countryEn": "Finland",
+    "code": "FI",
+    "coordinates": [24.932457, 60.163804],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151437",
+    "name": "코펜하겐",
+    "english": "Copenhagen",
+    "countryEn": "Denmark",
+    "code": "DK",
+    "coordinates": [12.56154, 55.68051],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151439",
+    "name": "아비장",
+    "english": "Abidjan",
+    "countryEn": "Ivory Coast",
+    "code": "CI",
+    "coordinates": [-4.020207, 5.323126],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151443",
+    "name": "브라질리아",
+    "english": "Brasília",
+    "countryEn": "Brazil",
+    "code": "BR",
+    "coordinates": [-47.917998, -15.781394],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151465",
+    "name": "브뤼셀 시",
+    "english": "Brussels",
+    "countryEn": "Belgium",
+    "code": "BE",
+    "coordinates": [4.331371, 50.835263],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151467",
+    "name": "다카",
+    "english": "Dhaka",
+    "countryEn": "Bangladesh",
+    "code": "BD",
+    "coordinates": [90.406634, 23.725006],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151469",
+    "name": "루안다",
+    "english": "Luanda",
+    "countryEn": "Angola",
+    "code": "AO",
+    "coordinates": [13.232481, -8.83634],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151471",
+    "name": "알제",
+    "english": "Algiers",
+    "countryEn": "Algeria",
+    "code": "DZ",
+    "coordinates": [3.048607, 36.765011],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151477",
+    "name": "양곤",
+    "english": "Yangon",
+    "countryEn": "Myanmar",
+    "code": "MM",
+    "coordinates": [96.164732, 16.7853],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151479",
+    "name": "샌프란시스코",
+    "english": "San Francisco",
+    "countryEn": "United States of America",
+    "code": "US",
+    "coordinates": [-122.3996, 37.784263],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151483",
+    "name": "덴버",
+    "english": "Denver",
+    "countryEn": "United States of America",
+    "code": "US",
+    "coordinates": [-104.985962, 39.741134],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151485",
+    "name": "휴스턴",
+    "english": "Houston",
+    "countryEn": "United States of America",
+    "code": "US",
+    "coordinates": [-95.348436, 29.741273],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151487",
+    "name": "마이애미",
+    "english": "Miami",
+    "countryEn": "United States of America",
+    "code": "US",
+    "coordinates": [-80.226052, 25.789557],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151489",
+    "name": "애틀랜타",
+    "english": "Atlanta",
+    "countryEn": "United States of America",
+    "code": "US",
+    "coordinates": [-84.367642, 33.739457],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151491",
+    "name": "시카고",
+    "english": "Chicago",
+    "countryEn": "United States of America",
+    "code": "US",
+    "coordinates": [-87.635237, 41.847961],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151493",
+    "name": "카라카스",
+    "english": "Caracas",
+    "countryEn": "Venezuela",
+    "code": "VE",
+    "coordinates": [-66.918983, 10.502944],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151495",
+    "name": "키예프",
+    "english": "Kyiv",
+    "countryEn": "Ukraine",
+    "code": "UA",
+    "coordinates": [30.514682, 50.435313],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151497",
+    "name": "두바이",
+    "english": "Dubai",
+    "countryEn": "United Arab Emirates",
+    "code": "AE",
+    "coordinates": [55.286946, 25.214912],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151501",
+    "name": "타슈켄트",
+    "english": "Tashkent",
+    "countryEn": "Uzbekistan",
+    "code": "UZ",
+    "coordinates": [69.268823, 41.303828],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151503",
+    "name": "마드리드",
+    "english": "Madrid",
+    "countryEn": "Spain",
+    "code": "ES",
+    "coordinates": [-3.685297, 40.401972],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151505",
+    "name": "제네바",
+    "english": "Geneva",
+    "countryEn": "Switzerland",
+    "code": "CH",
+    "coordinates": [6.140028, 46.210008],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151507",
+    "name": "스톡홀름",
+    "english": "Stockholm",
+    "countryEn": "Sweden",
+    "code": "SE",
+    "coordinates": [18.0663, 59.324127],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151509",
+    "name": "방콕",
+    "english": "Bangkok",
+    "countryEn": "Thailand",
+    "code": "TH",
+    "coordinates": [100.514699, 13.751945],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151511",
+    "name": "리마",
+    "english": "Lima",
+    "countryEn": "Peru",
+    "code": "PE",
+    "coordinates": [-77.052008, -12.046067],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151513",
+    "name": "다카르",
+    "english": "Dakar",
+    "countryEn": "Senegal",
+    "code": "SN",
+    "coordinates": [-17.475076, 14.717778],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151515",
+    "name": "요하네스버그",
+    "english": "Johannesburg",
+    "countryEn": "South Africa",
+    "code": "ZA",
+    "coordinates": [28.028064, -26.168099],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151519",
+    "name": "암스테르담",
+    "english": "Amsterdam",
+    "countryEn": "Netherlands",
+    "code": "NL",
+    "coordinates": [4.914694, 52.351914],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151521",
+    "name": "카사블랑카",
+    "english": "Casablanca",
+    "countryEn": "Morocco",
+    "code": "MA",
+    "coordinates": [-7.618313, 33.601922],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151523",
+    "name": "서울특별시",
+    "english": "Seoul",
+    "countryEn": "South Korea",
+    "code": "KR",
+    "coordinates": [126.997785, 37.568295],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151525",
+    "name": "마닐라",
+    "english": "Manila",
+    "countryEn": "Philippines",
+    "code": "PH",
+    "coordinates": [120.980271, 14.606105],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151527",
+    "name": "몬테레이",
+    "english": "Monterrey",
+    "countryEn": "Mexico",
+    "code": "MX",
+    "coordinates": [-100.331931, 25.671941],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151529",
+    "name": "베를린",
+    "english": "Berlin",
+    "countryEn": "Germany",
+    "code": "DE",
+    "coordinates": [13.399603, 52.523764],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151531",
+    "name": "우루무치시",
+    "english": "Ürümqi",
+    "countryEn": "China",
+    "code": "CN",
+    "coordinates": [87.57306, 43.806958],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151533",
+    "name": "청두시",
+    "english": "Chengdu",
+    "countryEn": "China",
+    "code": "CN",
+    "coordinates": [104.068074, 30.671946],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151539",
+    "name": "킨샤사",
+    "english": "Kinshasa",
+    "countryEn": "Congo (Kinshasa)",
+    "code": "CD",
+    "coordinates": [15.313026, -4.327778],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151541",
+    "name": "뉴델리",
+    "english": "New Delhi",
+    "countryEn": "India",
+    "code": "IN",
+    "coordinates": [77.19998, 28.600023],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151543",
+    "name": "벵갈루루",
+    "english": "Bengaluru",
+    "countryEn": "India",
+    "code": "IN",
+    "coordinates": [77.558064, 12.971941],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151545",
+    "name": "아테네",
+    "english": "Athens",
+    "countryEn": "Greece",
+    "code": "GR",
+    "coordinates": [23.731375, 37.985272],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151547",
+    "name": "바그다드",
+    "english": "Baghdad",
+    "countryEn": "Iraq",
+    "code": "IQ",
+    "coordinates": [44.391923, 33.340594],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151549",
+    "name": "아디스아바바",
+    "english": "Addis Ababa",
+    "countryEn": "Ethiopia",
+    "code": "ET",
+    "coordinates": [38.698059, 9.035256],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151551",
+    "name": "테헤란",
+    "english": "Tehran",
+    "countryEn": "Iran",
+    "code": "IR",
+    "coordinates": [51.422398, 35.673889],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151555",
+    "name": "밴쿠버",
+    "english": "Vancouver",
+    "countryEn": "Canada",
+    "code": "CA",
+    "coordinates": [-123.12359, 49.275362],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151557",
+    "name": "토론토",
+    "english": "Toronto",
+    "countryEn": "Canada",
+    "code": "CA",
+    "coordinates": [-79.389459, 43.664645],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151559",
+    "name": "부에노스아이레스",
+    "english": "Buenos Aires",
+    "countryEn": "Argentina",
+    "code": "AR",
+    "coordinates": [-58.432513, -34.610715],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151561",
+    "name": "카불",
+    "english": "Kabul",
+    "countryEn": "Afghanistan",
+    "code": "AF",
+    "coordinates": [69.181314, 34.518636],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151563",
+    "name": "빈",
+    "english": "Vienna",
+    "countryEn": "Austria",
+    "code": "AT",
+    "coordinates": [16.364693, 48.201961],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151565",
+    "name": "멜버른",
+    "english": "Melbourne",
+    "countryEn": "Australia",
+    "code": "AU",
+    "coordinates": [144.97307, -37.818086],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151567",
+    "name": "타이베이시",
+    "english": "Taipei",
+    "countryEn": "Taiwan",
+    "code": "TW",
+    "coordinates": [121.568333, 25.035833],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151703",
+    "name": "오클랜드",
+    "english": "Auckland",
+    "countryEn": "New Zealand",
+    "code": "NZ",
+    "coordinates": [174.763027, -36.848055],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151569",
+    "name": "로스앤젤레스",
+    "english": "Los Angeles",
+    "countryEn": "United States of America",
+    "code": "US",
+    "coordinates": [-118.231986, 34.049219],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151573",
+    "name": "워싱턴 D.C.",
+    "english": "Washington",
+    "countryEn": "United States of America",
+    "code": "US",
+    "coordinates": [-77.011364, 38.901495],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151575",
+    "name": "뉴욕",
+    "english": "New York City",
+    "countryEn": "United States of America",
+    "code": "US",
+    "coordinates": [-73.995718, 40.721562],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151577",
+    "name": "런던",
+    "english": "London",
+    "countryEn": "United Kingdom",
+    "code": "GB",
+    "coordinates": [-0.118668, 51.501941],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151579",
+    "name": "이스탄불",
+    "english": "Istanbul",
+    "countryEn": "Turkey",
+    "code": "TR",
+    "coordinates": [28.974277, 41.017602],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151581",
+    "name": "리야드",
+    "english": "Riyadh",
+    "countryEn": "Saudi Arabia",
+    "code": "SA",
+    "coordinates": [46.720487, 24.634497],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151583",
+    "name": "케이프타운",
+    "english": "Cape Town",
+    "countryEn": "South Africa",
+    "code": "ZA",
+    "coordinates": [18.433042, -33.918065],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151585",
+    "name": "모스크바",
+    "english": "Moscow",
+    "countryEn": "Russia",
+    "code": "RU",
+    "coordinates": [37.613577, 55.75411],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151587",
+    "name": "멕시코시티",
+    "english": "Mexico City",
+    "countryEn": "Mexico",
+    "code": "MX",
+    "coordinates": [-99.132934, 19.444388],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151591",
+    "name": "라고스",
+    "english": "Lagos",
+    "countryEn": "Nigeria",
+    "code": "NG",
+    "coordinates": [3.389585, 6.445208],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151593",
+    "name": "로마",
+    "english": "Rome",
+    "countryEn": "Italy",
+    "code": "IT",
+    "coordinates": [12.481313, 41.897902],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151597",
+    "name": "나이로비",
+    "english": "Nairobi",
+    "countryEn": "Kenya",
+    "code": "KE",
+    "coordinates": [36.814711, -1.281401],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151599",
+    "name": "자카르타",
+    "english": "Jakarta",
+    "countryEn": "Indonesia",
+    "code": "ID",
+    "coordinates": [106.827492, -6.172472],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151601",
+    "name": "보고타",
+    "english": "Bogotá",
+    "countryEn": "Colombia",
+    "code": "CO",
+    "coordinates": [-74.08529, 4.598369],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151603",
+    "name": "카이로",
+    "english": "Cairo",
+    "countryEn": "Egypt",
+    "code": "EG",
+    "coordinates": [31.248022, 30.051906],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151605",
+    "name": "상하이시",
+    "english": "Shanghai",
+    "countryEn": "China",
+    "code": "CN",
+    "coordinates": [121.434559, 31.218398],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151609",
+    "name": "도쿄도",
+    "english": "Tokyo",
+    "countryEn": "Japan",
+    "code": "JP",
+    "coordinates": [139.749462, 35.686963],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151611",
+    "name": "뭄바이",
+    "english": "Mumbai",
+    "countryEn": "India",
+    "code": "IN",
+    "coordinates": [72.875839, 19.068408],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151613",
+    "name": "파리",
+    "english": "Paris",
+    "countryEn": "France",
+    "code": "FR",
+    "coordinates": [2.352992, 48.858092],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151615",
+    "name": "산티아고",
+    "english": "Santiago",
+    "countryEn": "Chile",
+    "code": "CL",
+    "coordinates": [-70.650504, -33.440205],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151617",
+    "name": "콜카타",
+    "english": "Kolkata",
+    "countryEn": "India",
+    "code": "IN",
+    "coordinates": [88.369126, 22.569579],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151619",
+    "name": "리우데자네이루",
+    "english": "Rio de Janeiro",
+    "countryEn": "Brazil",
+    "code": "BR",
+    "coordinates": [-43.212117, -22.907308],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151621",
+    "name": "상파울루",
+    "english": "São Paulo",
+    "countryEn": "Brazil",
+    "code": "BR",
+    "coordinates": [-46.626966, -23.556734],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151623",
+    "name": "시드니",
+    "english": "Sydney",
+    "countryEn": "Australia",
+    "code": "AU",
+    "coordinates": [151.212548, -33.871373],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151627",
+    "name": "싱가포르",
+    "english": "Singapore",
+    "countryEn": "Singapore",
+    "code": "SG",
+    "coordinates": [103.853875, 1.294979],
+    "testOnly": true
+  },
+  {
+    "id": "test-ne-1159151629",
+    "name": "홍콩",
+    "english": "Hong Kong",
+    "countryEn": "Hong Kong S.A.R.",
+    "code": "HK",
+    "coordinates": [114.183064, 22.306927],
+    "testOnly": true
+  }
+]
