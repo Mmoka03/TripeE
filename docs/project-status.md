@@ -43,7 +43,7 @@ Figma 디자인 파일: https://www.figma.com/design/j8BgA2aE2QQoOxHm9QMZMN
 ## 다음 작업
 
 1. 관리자 화면을 함께 검수하고 API 연결에 필요한 차이를 정리함.
-2. GitHub 저장소·보호 브랜치·PR 규칙을 설정할 예정임.
+2. GitHub 저장소를 생성했음. 브랜치·커밋·PR 규칙은 CONTRIBUTING.md에서 관리함. B 초대와 보호 브랜치 설정은 후속 작업임.
 3. Spring Boot와 PostgreSQL을 연결하고 관리자 인증·도시 조회·초안 저장부터 구현할 예정임.
 4. 교토 한 도시의 수정·게시·사용자 노출 흐름을 먼저 통합할 예정임.
 

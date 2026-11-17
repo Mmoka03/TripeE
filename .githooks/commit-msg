@@ -1,0 +1,6 @@
+#!/bin/sh
+# 자동 병합 메시지는 유지하고 일반 커밋 메시지만 검사함.
+if test -f "$(git rev-parse --git-path MERGE_HEAD)"; then
+  exit 0
+fi
+node tools/git-conventions/check.mjs commit "$1"
