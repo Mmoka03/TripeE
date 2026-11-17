@@ -1,5 +1,7 @@
 # 교토 보완 조사 반영 기록
 
+> 2026-11-06에 좌표·P2 사진 원본·선정 문안을 직접 대조했음. 현재 적용안과 실제 검수 결과는 [교토 콘텐츠 검수본](kyoto-content-draft.md)을 우선 참조함. 아래 내용은 11월 3일 PDF 반영 당시 기록임.
+
 반영일: 2026-11-03. 2026-11-03 보완 조사 결과를 정리한 문서임.
 
 PDF를 읽고 표·좌표·사진 카드·출처 주소를 대조해 문서를 갱신함. 이번 작업은 제출 자료의 프로젝트 반영이며 외부 웹사이트를 독립적으로 재검증한 작업이 아님. 아래 ‘확보’는 PDF의 조사 보고에 근거함. 출처 열람일은 PDF가 보고한 2026-11-03(Asia/Seoul), 개별 시·분 미기록임. 서버의 checkedAt·checkedBy·rightsConfirmed·공개 상태는 변경하지 않음.
@@ -8,13 +10,13 @@ PDF를 읽고 표·좌표·사진 카드·출처 주소를 대조해 문서를 �
 
 ## 반영 결과와 남은 작업
 
-| 과제 | 이번에 확보한 자료 | 반영·남은 작업 |
-| --- | --- | --- |
-| Q1 좌표 | Wikidata 도시 대표점, WGS84 설명, 구조화 데이터 이용 정책 | 후보 latitude 35.01161 / longitude 135.76811을 문서에 반영. 팀의 대표점 채택은 남음 |
-| Q2 사진 | P2의 저작자·CC BY 2.5 원문·파일 정보·표시 문구 | 최우선 사진 후보로 정리. 직접 이미지 URL, 실제 이미지 검수, alt·캡션과 표시 방식 승인 필요 |
-| Q3 한국 출발 | Peach의 기간 명시 ICN/GMP→KIX 운항계획, T2 이동, 하루카·버스 조건 | 적용 기간을 명시해 접근 초안 보완. 여행일별 운항·좌석·막차를 확정한 것은 아님 |
-| Q4 경험·현지 이동 | 경험 3개 상세 장소 근거와 교토역 출발 동선 | 사용자 문안·내부 근거를 갱신. 완전한 무단차 접근·최단 경로라고 주장하지 않음 |
-| Q5 안전 | 특정 지역 경보 및 상시 안내, 동적 화면 확인 한계 | 교토 현행 미발령은 미확인. `UNVERIFIED`, 안전 항목 0개 제안 유지 |
+| 과제              | 이번에 확보한 자료                                                | 반영·남은 작업                                                                             |
+| ----------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Q1 좌표           | Wikidata 도시 대표점, WGS84 설명, 구조화 데이터 이용 정책         | 후보 latitude 35.01161 / longitude 135.76811을 문서에 반영. 팀의 대표점 채택은 남음        |
+| Q2 사진           | P2의 저작자·CC BY 2.5 원문·파일 정보·표시 문구                    | 최우선 사진 후보로 정리. 직접 이미지 URL, 실제 이미지 검수, alt·캡션과 표시 방식 승인 필요 |
+| Q3 한국 출발      | Peach의 기간 명시 ICN/GMP→KIX 운항계획, T2 이동, 하루카·버스 조건 | 적용 기간을 명시해 접근 초안 보완. 여행일별 운항·좌석·막차를 확정한 것은 아님              |
+| Q4 경험·현지 이동 | 경험 3개 상세 장소 근거와 교토역 출발 동선                        | 사용자 문안·내부 근거를 갱신. 완전한 무단차 접근·최단 경로라고 주장하지 않음               |
+| Q5 안전           | 특정 지역 경보 및 상시 안내, 동적 화면 확인 한계                  | 교토 현행 미발령은 미확인. `UNVERIFIED`, 안전 항목 0개 제안 유지                           |
 
 좌표를 채택하고 이름과 함께 검토하면 `PREPARING` 검토가 가능함. `PUBLIC`에는 사진 최소 1장과 alt 및 모든 선정 콘텐츠의 출처 검토가 추가로 필요함. 방문 시기 등 이번 PDF에서 다시 조사하지 않은 내용은 이전 검토 상태를 유지함. 안전정보 미확인만으로 일반 공개를 막지는 않음.
 
@@ -31,14 +33,14 @@ PDF를 읽고 표·좌표·사진 카드·출처 주소를 대조해 문서를 �
 
 ### P2: 우선 검토 후보
 
-| 항목 | PDF가 보고한 내용 |
-| --- | --- |
-| 파일 페이지 | N4, Arashiyama Togetsukyo-bridge.jpg |
-| 저작자 | Tomomarusan, 본인 제작 표시 |
-| 선택 라이선스 | CC BY 2.5, 설명 N5·법률 원문 N6 |
-| 파일 정보 | JPEG, 3,008 × 2,000 = 6,016,000픽셀, 표시 용량 5.89 MB |
+| 항목           | PDF가 보고한 내용                                                                                                   |
+| -------------- | ------------------------------------------------------------------------------------------------------------------- |
+| 파일 페이지    | N4, Arashiyama Togetsukyo-bridge.jpg                                                                                |
+| 저작자         | Tomomarusan, 본인 제작 표시                                                                                         |
+| 선택 라이선스  | CC BY 2.5, 설명 N5·법률 원문 N6                                                                                     |
+| 파일 정보      | JPEG, 3,008 × 2,000 = 6,016,000픽셀, 표시 용량 5.89 MB                                                              |
 | 사용·변경 근거 | PDF는 상업 이용·변경 허용과 저작자·작품명·출처·라이선스 및 변경 표시 조건을 보고함. 서비스 적용 전 관리자 검토 필요 |
-| 미완료 | 직접 이미지 URL·실제 이미지 검수·정확한 파일 바이트 수·alt·캡션·사용 화면의 표시 방식 |
+| 미완료         | 직접 이미지 URL·실제 이미지 검수·정확한 파일 바이트 수·alt·캡션·사용 화면의 표시 방식                               |
 
 PDF에는 이미지 검색 결과를 언급하는 문장이 있지만 실제 원본 픽셀 검수 완료라고 하지 않음. PDF에 설명이 있다는 이유만으로 이미지를 본 것으로 처리하지 않음. 기존 초안의 ‘다리 너머 호린지’ alt도 확정하지 않음.
 
@@ -74,39 +76,39 @@ https://creativecommons.org/licenses/by/2.5/
 
 `N`은 2026-11-03 보완 조사에서 붙인 ID이며, `S`는 최초 조사에서 붙인 ID임. 다음은 갱신한 초안의 핵심 출처 색인임. 조사 원문은 정리했으므로 URL이 실려 있다는 것만으로 이번 편집에서 직접 열람한 것은 아님.
 
-| ID | 자료·발행자 | URL | PDF 보고 수준·용도 |
-| --- | --- | --- | --- |
-| N1 | Kyoto / Wikidata 기여자 | https://www.wikidata.org/wiki/Q34600 | 본문·도시 좌표 |
-| N2 | coordinate location / Wikidata | https://www.wikidata.org/wiki/Property:P625 | 본문·좌표계 |
-| N3 | Wikidata:Licensing / Wikidata | https://www.wikidata.org/wiki/Wikidata:Licensing | 본문·구조화 데이터 정책 |
-| N4 | Arashiyama Togetsukyo-bridge / Tomomarusan, Commons | https://commons.wikimedia.org/wiki/File:Arashiyama_Togetsukyo-bridge.jpg | 파일 설명 본문, 픽셀 검수 아님 |
-| N5 | Attribution 2.5 Generic / Creative Commons | https://creativecommons.org/licenses/by/2.5/ | 라이선스 설명 |
-| N6 | Attribution 2.5 Generic Legal Code / Creative Commons | https://creativecommons.org/licenses/by/2.5/legalcode | 법률 원문 열람 보고 |
-| N12 | Peach_FlightSchedule_20261021 / Peach Aviation | https://www.flypeach.com/application/files/8917/9245/8562/20261021_W26_20261025-20270327_int_JP.pdf | 기간 명시 PDF, 편명 추출 일부 깨짐 |
-| N13 | 생각나면 떠나는 도쿄 / Peach Aviation | https://www.flypeach.com/kr/lm/st/route/new_icn_nrt | 본문 서울→간사이 표 대조 |
-| N14 | Seoul feels a lot closer! / Peach Aviation | https://www.flypeach.com/en/lm/st/route/osaka_seoul_gimpo | 기간 만료 표, 현재 근거에서 제외 |
-| N15 | Shuttle bus to Terminal 2 Building / Kansai Airports | https://www.kansai-airport.or.jp/en/access/t2 | 상세 본문·T2 접근 |
-| N16 | HARUKA One-way Ticket Information / JR-WEST | https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/haruka/ | 상세 상품 본문·직통/예약, 가격 제외 |
-| N17 | Train Usage Guide / JR-WEST | https://www.westjr.co.jp/travel-information/en/train-usage-guide/ | 본문·수하물 안내 |
-| N18 | Time table/Fares / Kansai Airport Transportation Enterprise | https://www.kate.co.jp/en/timetable/detail/KY | 노선표·교토 버스 |
-| N19 | Instructions / Kansai Airport Transportation Enterprise | https://www.kate.co.jp/en/guide/ | 상세 본문·방향별 예약/수하물 |
-| N20 | Search for tickets / JR-WEST | https://www.westjr.co.jp/travel-information/en/tickets-passes/route-search/ | 검색 양식만, 개별일 검색 미실행 |
-| N21 | Limited Express Trains Train Status Information / JR-WEST | https://global.trafficinfo.westjr.co.jp/en/express | 동적 화면의 갱신시점 한계 |
-| N22 | Senbon Torii / Fushimi Inari Taisha | https://inari.jp/en/map/spot_07/ | 상세 본문·경관/봉납 |
-| N23 | Access / Fushimi Inari Taisha | https://inari.jp/en/access/ | 상세 본문·JR 이나리역 |
-| N24 | Request for All Visitors / Fushimi Inari Taisha | https://inari.jp/en/request/ | 상세 본문, 2022-01-01 표기·이용 안내 |
-| N26 | VISIT / Kiyomizu-dera Temple | https://www.kiyomizudera.or.jp/en/visit/ | 상세 본문·본당/오쿠노인, 과거 팬데믹 문구 제외 |
-| N27 | FAQ / Kiyomizu-dera Temple | https://www.kiyomizudera.or.jp/en/faq/ | 상세 본문·경내 접근성/이용 안내 |
-| N28 | Comfortable access to Higashiyama / Kyoto Travel | https://www.kyoto.travel/en/getting-around/comfortable-access-to-higashiyama-kiyomizu-dera-temple/ | 상세 본문·지하철/도보 |
-| N29 | Kiyomizudera Temple / JNTO | https://faq.japan-travel.jnto.go.jp/en/spot/2199/ | 상세 본문·오르막/주변 길 |
-| N30 | Arashiyama Bamboo Grove / JNTO | https://www.japan.travel/en/spot/1141/ | 상세 본문·숲길/도보 |
-| N31 | Comfortable access to Saga/Arashiyama / Kyoto Travel | https://kyoto.travel/en/getting-around/comfortable-access-to-saga-arashiyama/ | 상세 본문·JR 접근 |
-| N32 | Saga & Arashiyama / Kyoto Travel | https://kyoto.travel/en/areas/saga-arashiyama/ | 지역 본문·경관/보전 |
+| ID  | 자료·발행자                                                                                                             | URL                                                                                                                                 | PDF 보고 수준·용도                                   |
+| --- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| N1  | Kyoto / Wikidata 기여자                                                                                                 | https://www.wikidata.org/wiki/Q34600                                                                                                | 본문·도시 좌표                                       |
+| N2  | coordinate location / Wikidata                                                                                          | https://www.wikidata.org/wiki/Property:P625                                                                                         | 본문·좌표계                                          |
+| N3  | Wikidata:Licensing / Wikidata                                                                                           | https://www.wikidata.org/wiki/Wikidata:Licensing                                                                                    | 본문·구조화 데이터 정책                              |
+| N4  | Arashiyama Togetsukyo-bridge / Tomomarusan, Commons                                                                     | https://commons.wikimedia.org/wiki/File:Arashiyama_Togetsukyo-bridge.jpg                                                            | 파일 설명 본문, 픽셀 검수 아님                       |
+| N5  | Attribution 2.5 Generic / Creative Commons                                                                              | https://creativecommons.org/licenses/by/2.5/                                                                                        | 라이선스 설명                                        |
+| N6  | Attribution 2.5 Generic Legal Code / Creative Commons                                                                   | https://creativecommons.org/licenses/by/2.5/legalcode                                                                               | 법률 원문 열람 보고                                  |
+| N12 | Peach_FlightSchedule_20261021 / Peach Aviation                                                                          | https://www.flypeach.com/application/files/8917/9245/8562/20261021_W26_20261025-20270327_int_JP.pdf                                 | 기간 명시 PDF, 편명 추출 일부 깨짐                   |
+| N13 | 생각나면 떠나는 도쿄 / Peach Aviation                                                                                   | https://www.flypeach.com/kr/lm/st/route/new_icn_nrt                                                                                 | 본문 서울→간사이 표 대조                             |
+| N14 | Seoul feels a lot closer! / Peach Aviation                                                                              | https://www.flypeach.com/en/lm/st/route/osaka_seoul_gimpo                                                                           | 기간 만료 표, 현재 근거에서 제외                     |
+| N15 | Shuttle bus to Terminal 2 Building / Kansai Airports                                                                    | https://www.kansai-airport.or.jp/en/access/t2                                                                                       | 상세 본문·T2 접근                                    |
+| N16 | HARUKA One-way Ticket Information / JR-WEST                                                                             | https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/haruka/                                                        | 상세 상품 본문·직통/예약, 가격 제외                  |
+| N17 | Train Usage Guide / JR-WEST                                                                                             | https://www.westjr.co.jp/travel-information/en/train-usage-guide/                                                                   | 본문·수하물 안내                                     |
+| N18 | Time table/Fares / Kansai Airport Transportation Enterprise                                                             | https://www.kate.co.jp/en/timetable/detail/KY                                                                                       | 노선표·교토 버스                                     |
+| N19 | Instructions / Kansai Airport Transportation Enterprise                                                                 | https://www.kate.co.jp/en/guide/                                                                                                    | 상세 본문·방향별 예약/수하물                         |
+| N20 | Search for tickets / JR-WEST                                                                                            | https://www.westjr.co.jp/travel-information/en/tickets-passes/route-search/                                                         | 검색 양식만, 개별일 검색 미실행                      |
+| N21 | Limited Express Trains Train Status Information / JR-WEST                                                               | https://global.trafficinfo.westjr.co.jp/en/express                                                                                  | 동적 화면의 갱신시점 한계                            |
+| N22 | Senbon Torii / Fushimi Inari Taisha                                                                                     | https://inari.jp/en/map/spot_07/                                                                                                    | 상세 본문·경관/봉납                                  |
+| N23 | Access / Fushimi Inari Taisha                                                                                           | https://inari.jp/en/access/                                                                                                         | 상세 본문·JR 이나리역                                |
+| N24 | Request for All Visitors / Fushimi Inari Taisha                                                                         | https://inari.jp/en/request/                                                                                                        | 상세 본문, 2022-01-01 표기·이용 안내                 |
+| N26 | VISIT / Kiyomizu-dera Temple                                                                                            | https://www.kiyomizudera.or.jp/en/visit/                                                                                            | 상세 본문·본당/오쿠노인, 과거 팬데믹 문구 제외       |
+| N27 | FAQ / Kiyomizu-dera Temple                                                                                              | https://www.kiyomizudera.or.jp/en/faq/                                                                                              | 상세 본문·경내 접근성/이용 안내                      |
+| N28 | Comfortable access to Higashiyama / Kyoto Travel                                                                        | https://www.kyoto.travel/en/getting-around/comfortable-access-to-higashiyama-kiyomizu-dera-temple/                                  | 상세 본문·지하철/도보                                |
+| N29 | Kiyomizudera Temple / JNTO                                                                                              | https://faq.japan-travel.jnto.go.jp/en/spot/2199/                                                                                   | 상세 본문·오르막/주변 길                             |
+| N30 | Arashiyama Bamboo Grove / JNTO                                                                                          | https://www.japan.travel/en/spot/1141/                                                                                              | 상세 본문·숲길/도보                                  |
+| N31 | Comfortable access to Saga/Arashiyama / Kyoto Travel                                                                    | https://kyoto.travel/en/getting-around/comfortable-access-to-saga-arashiyama/                                                       | 상세 본문·JR 접근                                    |
+| N32 | Saga & Arashiyama / Kyoto Travel                                                                                        | https://kyoto.travel/en/areas/saga-arashiyama/                                                                                      | 지역 본문·경관/보전                                  |
 | N33 | Things to Keep in Mind while Exploring Kyoto and its Kiyomizu, Arashiyama and Gion Areas / Kyoto Travel, Misako Tateoka | https://kyoto.travel/en/travel-inspiration/things-to-keep-in-mind-while-exploring-kyoto-and-its-kiyomizu-arashiyama-and-gion-areas/ | 상세 본문, 2023-11-17·통행/쓰레기/짐. 벌금 수치 제외 |
-| N34 | 일본 국가 상세 / 대한민국 외교부 | https://www.0404.go.kr/ntnSafetyInfo/183/detail | 특정 지역 경보 표시 보고, 교토 미발령 확정 아님 |
-| N35 | Safety Information / Kyoto Travel | https://www.kyoto.travel/en/safety-info/ | 상세 본문·상시 대응 안내 |
-| N36 | 警報・注意報 / 일본 기상청 | https://www.jma.go.jp/bosai/warning/#area_type=offices&area_code=260000 | 화면 일부 추출, 지역별 현행 상태 확인 실패 |
-| N39 | Kyoto Nishiki Food Market / Kyoto Travel | https://kyoto.travel/en/destinations/kyoto-nishiki-food-market/ | 상세 본문·취식 안내 재확인 보고 |
+| N34 | 일본 국가 상세 / 대한민국 외교부                                                                                        | https://www.0404.go.kr/ntnSafetyInfo/183/detail                                                                                     | 특정 지역 경보 표시 보고, 교토 미발령 확정 아님      |
+| N35 | Safety Information / Kyoto Travel                                                                                       | https://www.kyoto.travel/en/safety-info/                                                                                            | 상세 본문·상시 대응 안내                             |
+| N36 | 警報・注意報 / 일본 기상청                                                                                              | https://www.jma.go.jp/bosai/warning/#area_type=offices&area_code=260000                                                             | 화면 일부 추출, 지역별 현행 상태 확인 실패           |
+| N39 | Kyoto Nishiki Food Market / Kyoto Travel                                                                                | https://kyoto.travel/en/destinations/kyoto-nishiki-food-market/                                                                     | 상세 본문·취식 안내 재확인 보고                      |
 
 ## 다음 작업
 
