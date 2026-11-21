@@ -586,7 +586,7 @@ const etagHeader = {
 };
 const response = (schema, description = 'Success', etag = false) => ({
   description,
-  ...(etag ? { headers: etagHeader } : {}),
+  ...(etag ? { headers: { ...etagHeader } } : {}),
   ...(schema
     ? {
         content: {
@@ -652,6 +652,7 @@ function op(path, method, operationId, summary, options = {}) {
   if (media) success.content = media;
   const errorSet = new Set([
     400,
+    ...(request ? [413, 415] : []),
     500,
     ...(auth ? [401, 403] : []),
     ...(lock ? [409] : []),

@@ -1,0 +1,4 @@
+# 기본 실행과 빠른 TDD에는 외부 DB가 필요하지 않음.
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration

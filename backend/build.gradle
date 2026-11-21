@@ -1,0 +1,130 @@
+plugins {
+  id 'java'
+  id 'jacoco'
+  id 'org.springframework.boot' version '4.1.2'
+}
+
+jacoco {
+  toolVersion = '0.8.13'
+}
+
+group = 'com.tripee'
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(21)
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+  implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+  implementation 'io.github.openfeign.querydsl:querydsl-jpa:7.7'
+  annotationProcessor 'io.github.openfeign.querydsl:querydsl-apt:7.7:jpa'
+  annotationProcessor platform(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+  annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
+  implementation 'org.springframework.boot:spring-boot-starter-security'
+  implementation 'org.springframework.boot:spring-boot-starter-validation'
+  implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+  implementation 'com.twelvemonkeys.imageio:imageio-webp:3.15.0'
+  runtimeOnly 'org.postgresql:postgresql'
+  testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+  testImplementation 'org.testcontainers:testcontainers-postgresql'
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+  useJUnitPlatform {
+    excludeTags 'postgres'
+  }
+}
+
+['controller', 'service'].each { layer ->
+  tasks.register("${layer}Test", Test) {
+    group = 'verification'
+    description = "Runs ${layer} layer tests without PostgreSQL."
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform {
+      includeTags layer
+      excludeTags 'postgres'
+    }
+  }
+}
+
+tasks.register('repositoryTest', Test) {
+  group = 'verification'
+  description = 'Runs repository tests against the configured PostgreSQL database.'
+  testClassesDirs = sourceSets.test.output.classesDirs
+  classpath = sourceSets.test.runtimeClasspath
+  useJUnitPlatform {
+    includeTags 'repository'
+  }
+  doNotTrackState('Checks the current PostgreSQL connection')
+}
+
+tasks.register('postgresTest', Test) {
+  group = 'verification'
+  description = 'Verifies the app connection and permissions against the configured PostgreSQL database.'
+  testClassesDirs = sourceSets.test.output.classesDirs
+  classpath = sourceSets.test.runtimeClasspath
+  useJUnitPlatform {
+    includeTags 'postgres'
+  }
+  // The external database and its grants may change between runs.
+  doNotTrackState('Checks the current PostgreSQL connection')
+}
+
+tasks.register('postgresContainerTest', Test) {
+  group = 'verification'
+  description = 'Runs PostgreSQL integration tests in an isolated Testcontainers database.'
+  testClassesDirs = sourceSets.test.output.classesDirs
+  classpath = sourceSets.test.runtimeClasspath
+  useJUnitPlatform { includeTags 'postgres' }
+  systemProperty 'tripee.testcontainers', 'true'
+  systemProperty 'tripee.contract.responses', layout.buildDirectory.file('contract/responses.jsonl').get().asFile.absolutePath
+  doFirst {
+    def output = layout.buildDirectory.file('contract/responses.jsonl').get().asFile
+    output.parentFile.mkdirs()
+    output.delete()
+  }
+  environment 'TRIPEE_TEST_ISOLATED_DB', 'true'
+  environment 'TRIPEE_TEST_CITY_ID', '1'
+  doNotTrackState('Starts an isolated PostgreSQL container for every run')
+}
+
+tasks.named('jacocoTestReport', JacocoReport) {
+  dependsOn tasks.named('test')
+  reports {
+    xml.required = true
+    html.required = true
+  }
+}
+
+['postgresCoverageReport': ['postgresTest'], 'combinedCoverageReport': ['test', 'postgresTest'],
+ 'postgresContainerCoverageReport': ['postgresContainerTest'],
+ 'combinedContainerCoverageReport': ['test', 'postgresContainerTest']].each { reportName, runs ->
+  tasks.register(reportName, JacocoReport) {
+    group = 'verification'
+    description = "Reports coverage from ${runs.join(' and ')}; run those tests first."
+    mustRunAfter runs.collect { tasks.named(it) }
+    sourceSets sourceSets.main
+    def dataFiles = runs.collect { layout.buildDirectory.file("jacoco/${it}.exec") }
+    executionData.setFrom(dataFiles)
+    onlyIf {
+      if (dataFiles.any { !it.get().asFile.exists() }) {
+        throw new GradleException("Missing coverage data; run ${runs.join(' and ')} first.")
+      }
+      true
+    }
+    reports {
+      xml.required = true
+      html.required = true
+    }
+  }
+}

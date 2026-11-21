@@ -435,6 +435,26 @@
               }
             }
           },
+          "413": {
+            "description": "Payload too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
           "429": {
             "description": "Rate limited",
             "content": {
@@ -697,6 +717,26 @@
           },
           "403": {
             "description": "Permission or CSRF failure",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Payload too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -1060,6 +1100,26 @@
               }
             }
           },
+          "413": {
+            "description": "Payload too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
           "422": {
             "description": "Validation failed",
             "content": {
@@ -1125,12 +1185,6 @@
                 "schema": {
                   "type": "string"
                 }
-              },
-              "Location": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Created resource URI."
               }
             },
             "content": {
@@ -1252,12 +1306,6 @@
                 "schema": {
                   "type": "string"
                 }
-              },
-              "Location": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Created resource URI."
               }
             },
             "content": {
@@ -1320,6 +1368,26 @@
           },
           "412": {
             "description": "Resource version changed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Payload too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -1698,6 +1766,26 @@
           },
           "409": {
             "description": "Workflow or lease conflict",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Payload too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -2128,12 +2216,6 @@
                 "schema": {
                   "type": "string"
                 }
-              },
-              "Location": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Created resource URI."
               }
             },
             "content": {
@@ -2265,12 +2347,6 @@
                 "schema": {
                   "type": "string"
                 }
-              },
-              "Location": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Created resource URI."
               }
             },
             "content": {
@@ -2343,6 +2419,16 @@
           },
           "413": {
             "description": "Payload too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -2632,6 +2718,26 @@
               }
             }
           },
+          "413": {
+            "description": "Payload too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
           "500": {
             "description": "Unexpected failure",
             "content": {
@@ -2765,6 +2871,26 @@
               }
             }
           },
+          "413": {
+            "description": "Payload too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
           "422": {
             "description": "Validation failed",
             "content": {
@@ -2848,12 +2974,6 @@
                 "schema": {
                   "type": "string"
                 }
-              },
-              "Location": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Created resource URI."
               }
             },
             "content": {
@@ -2906,6 +3026,26 @@
           },
           "409": {
             "description": "Workflow or lease conflict",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Payload too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -2979,12 +3119,6 @@
                 "schema": {
                   "type": "string"
                 }
-              },
-              "Location": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Created resource URI."
               }
             },
             "content": {
@@ -3097,12 +3231,6 @@
                 "schema": {
                   "type": "string"
                 }
-              },
-              "Location": {
-                "schema": {
-                  "type": "string"
-                },
-                "description": "Created resource URI."
               }
             },
             "content": {
@@ -3155,6 +3283,26 @@
           },
           "412": {
             "description": "Resource version changed",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Payload too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
             "content": {
               "application/problem+json": {
                 "schema": {
@@ -3662,6 +3810,26 @@
               }
             }
           },
+          "413": {
+            "description": "Payload too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
           "422": {
             "description": "Validation failed",
             "content": {
@@ -3886,6 +4054,16 @@
           },
           "413": {
             "description": "Payload too large",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Problem"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported media type",
             "content": {
               "application/problem+json": {
                 "schema": {
