@@ -3,7 +3,7 @@
 작성일: 2026-09-28. PostgreSQL 채택 확정. 사용자 검수를 반영한 정책 기준이다. 정책 승인과 구현·통합 검증 완료는 구분한다.
 
 - 논리 모델: [ERD v2](erd-v2.md)
-- 실행 가능한 초기 DDL: [db/schema.sql](../db/schema.sql)
+- 실행 가능한 초기 DDL: [backend/db/schema.sql](../backend/db/schema.sql)
 - 검증 코드: [validate.mjs](../tools/db-validation/validate.mjs)
 - 대상: PostgreSQL 18 계열. 실제 배포 마이너 버전은 구현 시작 시 지원 중인 패치 버전으로 고정한다.
 - 검증: PGlite 0.5.8 / PostgreSQL 18.3 WASM 엔진에서 DDL 생성 및 72개 동작 사례 통과. 네이티브 PostgreSQL/Docker 및 다중 연결 동시성 검증은 아직 하지 않았다.
@@ -267,7 +267,7 @@ WHERE id = :revision_id AND edit_version = :expected_version
 
 ```sh
 # 네이티브 PostgreSQL을 별도로 준비한 경우, 새 전용 DB에 실행
-psql -v ON_ERROR_STOP=1 -d tripee -f db/schema.sql
+psql -v ON_ERROR_STOP=1 -d tripee -f backend/db/schema.sql
 
 # Node.js와 pnpm이 있는 환경에서 메모리 내 검증
 cd tools/db-validation

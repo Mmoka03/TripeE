@@ -4,6 +4,11 @@ BEGIN;
 CREATE SCHEMA tripee;
 SET LOCAL search_path = tripee, public;
 
+CREATE TABLE photo_cleanup_job (
+    storage_key varchar(512) PRIMARY KEY,
+    created_at timestamptz NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE admin_account (
     id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     login_id varchar(64) NOT NULL,

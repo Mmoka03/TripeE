@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "test": "node validate.mjs"
+    "test": "node validate.mjs",
+    "test:live": "node --test live-public.test.mjs",
+    "test:integration": "node verify-integration.mjs"
   },
   "dependencies": {
     "@apidevtools/swagger-parser": "13.1.0",
