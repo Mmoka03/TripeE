@@ -3,7 +3,7 @@
 세계지도에서 도시를 선택하고 여행 전 필요한 정보를 확인하는 서비스.
 React와 Spring Boot를 사용하는 2인 포트폴리오 프로젝트로 진행 중임.
 
-현재 사용자 지도와 관리자 화면을 로컬에서 실행할 수 있음. 관리자 시연 데이터는 브라우저에 저장함. Spring Boot 서버는 독립 실행하거나 `postgres` 프로필로 개발 DB에 연결할 수 있음. 화면과 REST API 연동은 후속 작업임.
+사용자 지도·검색·도시 상세는 Spring Boot API와 연결했음. 기존 교토 검수본을 개발 DB에 등록하는 도구를 제공함. 관리자 화면은 아직 브라우저에 시연 데이터를 저장하며 API 연결은 후속 작업임.
 
 ## 실행
 
@@ -17,16 +17,18 @@ pnpm dev
 ```
 
 - 사용자 화면: http://127.0.0.1:5174/
+- DB 없는 디자인 시연: http://127.0.0.1:5174/?demo=1
 - 소개 페이지: http://127.0.0.1:5174/design/index.html
 - 관리자 화면: http://127.0.0.1:5174/admin
 - 사용자 와이어프레임: http://127.0.0.1:5174/wireframe/index.html
 
-Docker 없이 실행 가능함. 지도는 인터넷 연결이 필요하며, 소개 페이지의 사진·영상·Pretendard 글꼴은 저장소에 포함함.
+디자인 시연은 Docker 없이 실행 가능함. 실제 도시 정보는 개발 DB와 백엔드가 필요하며 `/api` 요청을 Vite가 백엔드 8080 포트로 전달함. 지도는 인터넷 연결이 필요하며, 소개 페이지의 사진·영상·Pretendard 글꼴은 저장소에 포함함.
 지도 스타일을 바꾸려면 `frontend/.env.example`을 `frontend/.env.local`로 복사해 수정함.
 
 PostgreSQL 개발 DB는 Docker Compose로 선택 실행할 수 있음. 설정과 초기화 주의점은 [Docker 개발 DB 실행](docs/docker-development.md)을 따름.
 
 Spring Boot 서버 실행과 TDD 개발 방법은 [백엔드 안내](backend/README.md)를 따름.
+교토 데이터 등록과 실제 화면 확인은 [개발 데이터 안내](tools/dev-data/README.md)를 따름.
 
 ## 현재 구현
 
@@ -40,7 +42,7 @@ Spring Boot 서버 실행과 TDD 개발 방법은 [백엔드 안내](backend/REA
 - Spring Boot의 공개 도시 목록·상세·검색·활성 태그 조회, 관리자 세션용 CSRF 토큰 발급
 - PostgreSQL 초기 DDL과 API 계약 검증 도구
 
-여행 문구와 사진은 자리 표시자임. AI 정리, 실제 인증, 사진 업로드와 서버 저장은 연결할 예정임. 관리자에서 게시한 내용도 아직 사용자 지도에 반영되지 않음.
+일반 지도는 API의 공개 도시만 표시하며 연결 실패를 시연 데이터로 대체하지 않음. 교토 상세는 검수 자료를 사용하며 안전정보는 미확인 상태임. 소개 페이지와 디자인 시연에는 예시 콘텐츠가 남아 있음. AI 정리와 관리자 화면의 인증·업로드·저장 연결은 후속 작업임. 관리자 시연 화면의 변경은 실제 지도에 반영되지 않음.
 
 ## 디렉터리
 
@@ -65,7 +67,7 @@ pnpm build
 pnpm format:check
 ```
 
-`pnpm test`는 관리자 시연·지도 묶음·소개 예제·와이어프레임 생성·API 계약·DB 제약조건·Git 규칙을 검사함. PostgreSQL 다중 연결 검증은 백엔드의 `./gradlew postgresContainerTest`로 별도 실행함. 프론트엔드와 실제 서버 연동 검증은 후속 작업임. 지도 번들의 크기 경고가 남아 있음.
+`pnpm test`는 관리자 시연·지도 묶음·소개 예제·공개 API 변환·교토 등록 자료·와이어프레임 생성·API 계약·DB 제약조건·Git 규칙을 검사함. PostgreSQL 다중 연결 검증은 백엔드의 `./gradlew postgresContainerTest`로 별도 실행함. 실행 중인 서버는 `pnpm --dir tools/api-contract test:live`로 확인함. 지도 번들의 크기 경고가 남아 있음.
 
 각 검증·생성 도구의 역할과 실행 방법은 [tools 안내](tools/README.md)를 참고함.
 

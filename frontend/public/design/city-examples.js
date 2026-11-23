@@ -20,7 +20,7 @@
   }
 
   const $ = (selector) => document.querySelector(selector);
-  const cityLink = (city) => `/?city=${encodeURIComponent(city.id)}`;
+  const cityLink = (city) => `/?cityName=${encodeURIComponent(city.english)}`;
   const setPhoto = (selector, photo) => {
     const img = $(selector);
     img.src = photo.src;

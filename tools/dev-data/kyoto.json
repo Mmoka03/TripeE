@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "reviewDocument": "docs/kyoto-content-draft.md",
+  "nameKo": "교토",
+  "nameEn": "Kyoto",
+  "coordinates": {
+    "latitude": 35.01161,
+    "longitude": 135.76811
+  },
+  "tagline": "붉은 도리이 길과 오래된 사찰, 대나무숲과 시장을 둘러보며 여행하는 도시입니다.",
+  "tags": [
+    {
+      "code": "TEMPLES_SHRINES",
+      "labelKo": "사찰과 신사",
+      "labelEn": "Temples and Shrines"
+    },
+    {
+      "code": "SEASONAL_SCENERY",
+      "labelKo": "계절 풍경",
+      "labelEn": "Seasonal Scenery"
+    },
+    {
+      "code": "WALKING",
+      "labelKo": "도보 탐방",
+      "labelEn": "Walking"
+    }
+  ],
+  "photo": {
+    "file": "frontend/public/design/kyoto.jpg",
+    "sha256": "5131c3e6b5ff7e9426b4caa6febf428df4e45ac5e70660a9a3fc747b4cd4c757",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Arashiyama_Togetsukyo-bridge.jpg",
+    "creatorName": "Tomomarusan",
+    "licenseName": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5/",
+    "usageNote": "기존 웹용 축소·압축본 사용. 업로드 시 PNG 변환 및 메타데이터 제거. 화면에 맞춰 크롭함.",
+    "altText": "교토 아라시야마의 강을 가로지르는 도게쓰교와 뒤편 산비탈의 벚꽃",
+    "caption": "Arashiyama Togetsukyo-bridge · 2007년 4월 촬영 · 웹용 축소·압축, PNG 변환, 화면 크롭"
+  },
+  "sources": [
+    {
+      "url": "https://inari.jp/en/map/spot_07/",
+      "title": "도리이 설명",
+      "publisher": "후시미이나리 타이샤"
+    },
+    {
+      "url": "https://inari.jp/en/access/",
+      "title": "후시미이나리 접근",
+      "publisher": "후시미이나리 타이샤"
+    },
+    {
+      "url": "https://www.japan.travel/en/spot/1141/",
+      "title": "대나무숲",
+      "publisher": "JNTO"
+    },
+    {
+      "url": "https://kyoto.travel/en/areas/saga-arashiyama/",
+      "title": "지역 안내",
+      "publisher": "Kyoto Travel"
+    },
+    {
+      "url": "https://kyoto.travel/en/getting-around/comfortable-access-to-saga-arashiyama/",
+      "title": "아라시야마",
+      "publisher": "Kyoto Travel"
+    },
+    {
+      "url": "https://kyoto.travel/en/destinations/kyoto-nishiki-food-market/",
+      "title": "니시키시장",
+      "publisher": "Kyoto Travel"
+    },
+    {
+      "url": "https://www.kiyomizudera.or.jp/en/visit/",
+      "title": "계절 관람 안내",
+      "publisher": "기요미즈데라"
+    },
+    {
+      "url": "https://kyoto.travel/en/getting-around/comfortable-access-to-higashiyama-kiyomizu-dera-temple/",
+      "title": "히가시야마 접근",
+      "publisher": "Kyoto Travel"
+    },
+    {
+      "url": "https://kyoto.travel/en/seasonal-info/",
+      "title": "계절 안내",
+      "publisher": "Kyoto Travel"
+    },
+    {
+      "url": "https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/haruka/",
+      "title": "JR-WEST",
+      "publisher": "JR-WEST"
+    },
+    {
+      "url": "https://www.kate.co.jp/en/timetable/detail/KY",
+      "title": "공항버스",
+      "publisher": "Kansai Airport Transportation Enterprise"
+    },
+    {
+      "url": "https://www.flypeach.com/application/files/8917/9245/8562/20261021_W26_20261025-20270327_int_JP.pdf",
+      "title": "Peach 계획",
+      "publisher": "Peach Aviation"
+    },
+    {
+      "url": "https://inari.jp/en/request/",
+      "title": "후시미이나리",
+      "publisher": "후시미이나리 타이샤"
+    }
+  ],
+  "contentItems": [
+    {
+      "kind": "EXPERIENCE",
+      "title": "후시미이나리의 도리이 길과 참배 공간 살펴보기",
+      "body": "붉은 도리이가 이어지는 센본도리이 길을 걸으며 후시미이나리의 참배 문화를 만나보세요. 기원과 감사의 뜻으로 봉납된 도리이를 통해 이곳이 지닌 신앙의 흔적을 살펴볼 수 있습니다.",
+      "displayOrder": 1,
+      "isSelected": true,
+      "sourceUrls": ["https://inari.jp/en/map/spot_07/", "https://inari.jp/en/access/"],
+      "evidenceNote": "2026-11-06 기존 검수본을 개발 데이터로 등록함. 신규 원문 재검수나 B의 최종 승인 이력을 의미하지 않음. 공식 안내의 도리이 봉납 설명을 대조했음. 통행·촬영 주의사항은 고려사항으로 이동했음. [도리이 설명 N22](https://inari.jp/en/map/spot_07/)\n\n교토역에서 JR 나라선의 이나리역 정차 열차를 이용한 뒤 신사로 도보 이동하는 접근안을 채택함. 역과 신사의 인접 관계를 확인했음. [접근 안내 N23](https://inari.jp/en/access/)"
+    },
+    {
+      "kind": "EXPERIENCE",
+      "title": "아라시야마의 대나무숲과 강변 둘러보기",
+      "body": "높게 자란 대나무 사이로 이어지는 숲길을 걸어보세요. 도게쓰교 주변의 강변 풍경도 함께 살펴보며 아라시야마를 둘러볼 수 있습니다.",
+      "displayOrder": 2,
+      "isSelected": true,
+      "sourceUrls": [
+        "https://www.japan.travel/en/spot/1141/",
+        "https://kyoto.travel/en/areas/saga-arashiyama/",
+        "https://kyoto.travel/en/getting-around/comfortable-access-to-saga-arashiyama/"
+      ],
+      "evidenceNote": "2026-11-06 기존 검수본을 개발 데이터로 등록함. 신규 원문 재검수나 B의 최종 승인 이력을 의미하지 않음. JNTO의 숲길 설명과 관광기관의 아라시야마 지역·도게쓰교 소개를 대조했음. 대나무숲과 강변을 함께 둘러보는 선택안으로 작성했음. 철도 접근·혼잡 안내는 현지 이동으로 이동했음. [대나무숲 N30](https://www.japan.travel/en/spot/1141/), [지역 안내 N32](https://kyoto.travel/en/areas/saga-arashiyama/), [아라시야마 접근 N31](https://kyoto.travel/en/getting-around/comfortable-access-to-saga-arashiyama/)"
+    },
+    {
+      "kind": "EXPERIENCE",
+      "title": "니시키시장에서 교토 식재료 살펴보기",
+      "body": "교토 채소와 유바(두부 껍질), 건어물 등 여러 식재료가 모인 니시키시장을 둘러보세요. 시장을 따라 점포를 살펴보며 교토의 식문화를 만나볼 수 있습니다.",
+      "displayOrder": 3,
+      "isSelected": true,
+      "sourceUrls": ["https://kyoto.travel/en/destinations/kyoto-nishiki-food-market/"],
+      "evidenceNote": "2026-11-06 기존 검수본을 개발 데이터로 등록함. 신규 원문 재검수나 B의 최종 승인 이력을 의미하지 않음. 식재료 소개와 유바의 설명을 공식 관광 페이지에서 확인했음. 취식 안내는 고려사항으로 이동했음. 식문화를 첫 화면에서 보여주기 위한 선정 제안이며, E5 니조성은 세부 문안 검수를 보류함. [니시키시장 N39](https://kyoto.travel/en/destinations/kyoto-nishiki-food-market/)"
+    },
+    {
+      "kind": "EXPERIENCE",
+      "title": "기요미즈데라와 히가시야마의 길 걷기",
+      "body": "기요미즈데라의 목조 본당과 무대를 둘러보고, 오쿠노인 전망 지점에서 본당과 교토 시가지의 경관을 바라보세요. 니넨자카·산넨자카 등 주변 언덕길을 함께 걸으며 사찰과 거리 풍경을 만나볼 수 있습니다.",
+      "displayOrder": 4,
+      "isSelected": false,
+      "sourceUrls": [
+        "https://www.kiyomizudera.or.jp/en/visit/",
+        "https://kyoto.travel/en/getting-around/comfortable-access-to-higashiyama-kiyomizu-dera-temple/"
+      ],
+      "evidenceNote": "2026-11-06 기존 검수본을 개발 데이터로 등록함. 신규 원문 재검수나 B의 최종 승인 이력을 의미하지 않음. 본당의 목조 구조와 오쿠노인 전망은 사찰 공식 설명에서, 주변 길을 연결하는 도보 경로는 관광기관 안내에서 확인했음. [경내 안내 N26](https://www.kiyomizudera.or.jp/en/visit/), [히가시야마 접근 N28](https://kyoto.travel/en/getting-around/comfortable-access-to-higashiyama-kiyomizu-dera-temple/)\n\n교토역 → 가라스마선 → 가라스마오이케역 → 도자이선 → 히가시야마역 → 네네노미치·니넨자카·산넨자카 경유 도보 접근을 채택함. 원문은 히가시야마역부터 약 35분을 안내하므로, 짧은 역세권 접근으로 표시하지 않음. 이동 경로는 현지 이동에, 보행 부담은 고려사항에 반영했음."
+    },
+    {
+      "kind": "VISIT_PERIOD",
+      "title": "계절 풍경과 기후를 함께 고려하기",
+      "body": "봄에는 꽃, 가을에는 단풍을 중심으로 방문 시기를 생각해볼 수 있습니다. 여름에는 더위와 습도·비에, 겨울에는 추위에 대비하세요. 꽃과 단풍의 시기는 해마다 달라지므로 출발 전 최신 안내와 예보를 확인해주세요.",
+      "displayOrder": 1,
+      "isSelected": true,
+      "sourceUrls": [
+        "https://kyoto.travel/en/seasonal-info/",
+        "https://www.kiyomizudera.or.jp/en/visit/"
+      ],
+      "evidenceNote": "2026-11-06 기존 검수본을 개발 데이터로 등록함. 신규 원문 재검수나 B의 최종 승인 이력을 의미하지 않음. 공식 계절 안내의 봄 꽃·가을 단풍·여름 고온다습과 비·겨울 추위를 대조했음. 개화·단풍 시기의 연도별 변동은 사찰 안내에서도 확인했음. 이번 본문은 기후 수치를 사용하지 않으므로 S3 평년값을 확인 완료 출처에 추가하지 않음. [계절 안내 S2](https://kyoto.travel/en/seasonal-info/), [계절 관람 안내 N26](https://www.kiyomizudera.or.jp/en/visit/)"
+    },
+    {
+      "kind": "ARRIVAL",
+      "title": "간사이국제공항에서 철도나 버스로 이동하기",
+      "body": "한국에서 출발한다면 간사이국제공항(KIX)을 거치는 경로를 검토해보세요. 공항에서 특급 하루카로 교토역까지 이동하거나 교토역 방면 공항버스를 이용할 수 있습니다. 여행일의 항공편과 도착 터미널, 철도·버스 시간표와 예약 조건을 확인해주세요.",
+      "displayOrder": 1,
+      "isSelected": true,
+      "sourceUrls": [
+        "https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/haruka/",
+        "https://www.kate.co.jp/en/timetable/detail/KY",
+        "https://www.flypeach.com/application/files/8917/9245/8562/20261021_W26_20261025-20270327_int_JP.pdf"
+      ],
+      "evidenceNote": "2026-11-06 기존 검수본을 개발 데이터로 등록함. 신규 원문 재검수나 B의 최종 승인 이력을 의미하지 않음. 하루카의 간사이공항–교토 직통 안내와 버스 노선표의 공항–교토역 양방향 연결을 확인했음. 할인상품 자격·가격을 일반 탑승 조건에 적용하지 않음. [JR-WEST N16](https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/haruka/), [공항버스 N18](https://www.kate.co.jp/en/timetable/detail/KY)\n\n한국 출발 경로의 보조 근거로 N12에서 ICN·GMP→KIX와 계획 기간 2026-10-25~2027-03-27을 확인했음. 사용자 본문에서는 편명·시간·특정 항공사를 제외해 경로 중심으로 줄였음. N12는 적용 기간 만료나 운항 변경 시 재확인함. 기간 이후 한국 출발 연결을 다시 확인해야 함. [Peach 계획 N12](https://www.flypeach.com/application/files/8917/9245/8562/20261021_W26_20261025-20270327_int_JP.pdf)"
+    },
+    {
+      "kind": "LOCAL_TRANSPORT",
+      "title": "철도와 도보·버스를 조합해 이동하기",
+      "body": "후시미이나리는 JR 나라선 이나리역에서, 아라시야마 대나무숲은 JR 사가노선 사가아라시야마역에서 도보로 접근할 수 있습니다. 기요미즈데라는 지하철 히가시야마역에서 주변 거리를 거쳐 걷는 경로도 있습니다. 관광지 주변의 버스와 JR 사가노선은 혼잡할 수 있으니 이동 시간을 넉넉히 잡으세요.",
+      "displayOrder": 1,
+      "isSelected": true,
+      "sourceUrls": [
+        "https://inari.jp/en/access/",
+        "https://www.japan.travel/en/spot/1141/",
+        "https://kyoto.travel/en/getting-around/comfortable-access-to-higashiyama-kiyomizu-dera-temple/",
+        "https://kyoto.travel/en/getting-around/comfortable-access-to-saga-arashiyama/"
+      ],
+      "evidenceNote": "2026-11-06 기존 검수본을 개발 데이터로 등록함. 신규 원문 재검수나 B의 최종 승인 이력을 의미하지 않음. 경험 본문에서 덜어낸 이동 정보를 목적지별로 모았음. 이나리역 인접 관계, 사가아라시야마역 도보 접근, 히가시야마역 경유 경로와 지역별 혼잡을 대조했음. 히가시야마역 경로는 긴 보행을 포함하므로 고려사항과 함께 표시함. [후시미이나리 접근 N23](https://inari.jp/en/access/), [대나무숲 N30](https://www.japan.travel/en/spot/1141/) [히가시야마 N28](https://kyoto.travel/en/getting-around/comfortable-access-to-higashiyama-kiyomizu-dera-temple/), [아라시야마 N31](https://kyoto.travel/en/getting-around/comfortable-access-to-saga-arashiyama/)"
+    },
+    {
+      "kind": "CONSIDERATION",
+      "title": "걷는 구간과 장소별 이용 안내 확인하기",
+      "body": "히가시야마를 둘러볼 때는 오르막과 긴 도보 구간을 고려해 신발과 휴식 계획을 준비하세요. 후시미이나리의 좁은 길에서는 촬영으로 통행을 막지 말고 현장 출입·촬영 안내를 따라주세요. 니시키시장에서는 걸으면서 먹는 것을 피하고 구매한 점포의 안내에 따라 먹거나 포장해 가져가세요.",
+      "displayOrder": 1,
+      "isSelected": true,
+      "sourceUrls": [
+        "https://kyoto.travel/en/getting-around/comfortable-access-to-higashiyama-kiyomizu-dera-temple/",
+        "https://inari.jp/en/request/",
+        "https://kyoto.travel/en/destinations/kyoto-nishiki-food-market/"
+      ],
+      "evidenceNote": "2026-11-06 기존 검수본을 개발 데이터로 등록함. 신규 원문 재검수나 B의 최종 승인 이력을 의미하지 않음. 경험 본문에 중복되던 주의사항을 이 항목으로 모았음. 히가시야마의 보행 부담과 두 장소의 이용 안내를 확인했으며, 신발·휴식 계획은 보행 부담을 고려한 편집 제안임. 원문의 표현·사진을 복제하지 않고 짧게 직접 작성했음. [히가시야마 접근 N28](https://kyoto.travel/en/getting-around/comfortable-access-to-higashiyama-kiyomizu-dera-temple/) [후시미이나리 N24](https://inari.jp/en/request/), [니시키시장 N39](https://kyoto.travel/en/destinations/kyoto-nishiki-food-market/)"
+    }
+  ]
+}

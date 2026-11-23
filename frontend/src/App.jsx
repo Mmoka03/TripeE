@@ -3,18 +3,22 @@ import MapView from './MapView';
 import Icon from './Icon';
 import ClusterCard from './ClusterCard';
 import { mapThemes, getInitialTheme, themeVariables } from './mapThemes';
-import { cities, countries, nearbyFixtures, worldCityFixtures } from './data';
+import { cities as demoCities, countries, nearbyFixtures, worldCityFixtures } from './data';
+import CityDetail from './CityDetail';
+import { getJson, mapCity, mapSearchResult } from './publicApi';
 import './layout.css';
 import './travel-theme.css';
 
-const RECENT_CITIES_KEY = 'tripee.recent-cities.v1';
-const knownCities = [...cities, ...nearbyFixtures, ...worldCityFixtures];
+const demoMode = new URLSearchParams(window.location.search).get('demo') === '1';
+const RECENT_CITIES_KEY = demoMode ? 'tripee.recent-cities.v1' : 'tripee.recent-api-cities.v1';
+const EXPLORATION_KEY = demoMode ? 'tripee.exploration.v1' : 'tripee.api-exploration.v1';
+const demoKnownCities = [...demoCities, ...nearbyFixtures, ...worldCityFixtures];
 
 function readRecentCities() {
   try {
     const saved = JSON.parse(localStorage.getItem(RECENT_CITIES_KEY) || '[]');
     return Array.isArray(saved)
-      ? [...new Set(saved)].filter((id) => knownCities.some((city) => city.id === id)).slice(0, 3)
+      ? [...new Set(saved)].filter((id) => typeof id === 'string').slice(0, 3)
       : [];
   } catch {
     return [];
@@ -23,23 +27,31 @@ function readRecentCities() {
 
 function readExploration() {
   try {
-    return JSON.parse(sessionStorage.getItem('tripee.exploration.v1') || '{}') || {};
+    return JSON.parse(sessionStorage.getItem(EXPLORATION_KEY) || '{}') || {};
   } catch {
     return {};
   }
 }
 const restored = readExploration();
 const restoredGroup = Array.isArray(restored.group)
-  ? restored.group.map((id) => knownCities.find((c) => c.id === id)).filter(Boolean)
+  ? restored.group.map((id) => demoKnownCities.find((c) => c.id === id)).filter(Boolean)
   : [];
 export default function App() {
+  const [apiCities, setApiCities] = useState([]);
+  const [listState, setListState] = useState('loading');
+  const [listRetry, setListRetry] = useState(0);
+  const [notice, setNotice] = useState('');
+  const [apiSearch, setApiSearch] = useState({ query: '', items: [], state: 'idle' });
+  const cities = demoMode ? demoCities : apiCities;
+  const knownCities = demoMode ? demoKnownCities : apiCities;
+  const restoredOnce = useRef(false);
   const [recentIds, setRecentIds] = useState(readRecentCities);
   const [selected, setSelected] = useState(
-      knownCities.find((c) => c.id === restored.selected) || null,
+      (demoMode && knownCities.find((c) => c.id === restored.selected)) || null,
     ),
     [query, setQuery] = useState(''),
     [searching, setSearching] = useState(false);
-  const [group, setGroup] = useState(restoredGroup),
+  const [group, setGroup] = useState(demoMode ? restoredGroup : []),
     [size, setSize] = useState(100),
     [navigation, setNavigation] = useState(null);
   const [status, setStatus] = useState('loading'),
@@ -59,11 +71,15 @@ export default function App() {
     searchInput = useRef(null),
     groupArea = useRef(null),
     groupTrigger = useRef(null);
-  const shownCities = useMemo(() => (testing ? knownCities : cities), [testing]);
+  const shownCities = useMemo(
+    () => (demoMode && testing ? knownCities : cities),
+    [testing, cities],
+  );
   const recentCities = recentIds
     .map((id) => shownCities.find((city) => city.id === id))
     .filter(Boolean);
   const open = (city, fromGroup = false) => {
+    setNotice('');
     priorFocus.current = document.activeElement;
     setSelected(city);
     setPhoto(0);
@@ -72,6 +88,66 @@ export default function App() {
     setSearchOpen(false);
     searchInput.current?.blur();
   };
+  useEffect(() => {
+    if (demoMode) return;
+    const controller = new AbortController();
+    setListState('loading');
+    getJson('/cities', controller.signal)
+      .then(({ items }) => {
+        if (controller.signal.aborted) return;
+        const loaded = items.map(mapCity);
+        setApiCities(loaded);
+        setListState('ready');
+        if (!restoredOnce.current) {
+          restoredOnce.current = true;
+          const params = new URLSearchParams(window.location.search);
+          const cityName = params.get('cityName');
+          const id = params.get('city') || restored.selected;
+          const city = cityName
+            ? loaded.find((c) => c.english === cityName || c.name === cityName)
+            : loaded.find((c) => c.id === id);
+          if (city) {
+            setSelected(city);
+            if (cityName || params.has('city'))
+              setNavigation({ ...city, type: 'city', serial: Date.now() });
+          } else if (cityName || params.has('city'))
+            setNotice('이 도시는 아직 공개된 정보가 없어요. 다른 도시를 탐색해주세요.');
+          if (!cityName && !params.has('city'))
+            setGroup(loaded.filter((c) => restored.group?.includes(c.id)));
+        }
+      })
+      .catch((error) => {
+        if (!controller.signal.aborted) {
+          setApiCities([]);
+          setListState('error');
+        }
+      });
+    return () => controller.abort();
+  }, [listRetry]);
+  useEffect(() => {
+    if (demoMode || !query.trim() || !searchOpen) return;
+    const controller = new AbortController();
+    const text = query.trim();
+    setApiSearch({ query: text, items: [], state: 'loading' });
+    const timer = setTimeout(() => {
+      getJson(`/search?q=${encodeURIComponent(text)}&limit=20`, controller.signal)
+        .then(({ items }) => {
+          if (!controller.signal.aborted)
+            setApiSearch({
+              query: text,
+              items: items.map((item) => mapSearchResult(item, apiCities, countries)),
+              state: 'ready',
+            });
+        })
+        .catch(() => {
+          if (!controller.signal.aborted) setApiSearch({ query: text, items: [], state: 'error' });
+        });
+    }, 250);
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, [query, searchOpen, apiCities]);
   const close = () => {
     const cityId = selected?.id;
     setSelected(null);
@@ -159,6 +235,7 @@ export default function App() {
     return () => window.removeEventListener('keydown', escape);
   }, [searching, query, group, selected, searchOpen]);
   useEffect(() => {
+    if (!demoMode) return;
     const id = new URLSearchParams(window.location.search).get('city');
     const city = cities.find((item) => item.id === id);
     if (city) {
@@ -169,7 +246,7 @@ export default function App() {
   useEffect(() => {
     try {
       sessionStorage.setItem(
-        'tripee.exploration.v1',
+        EXPLORATION_KEY,
         JSON.stringify({ selected: selected?.id, group: group.map((c) => c.id), testing }),
       );
     } catch {
@@ -191,7 +268,7 @@ export default function App() {
     });
   };
   const term = query.trim().toLocaleLowerCase();
-  const results = term
+  const demoResults = term
     ? [
         ...shownCities.map((c) => ({ ...c, type: 'city' })),
         ...countries.map((c) => ({ ...c, type: 'country' })),
@@ -201,6 +278,7 @@ export default function App() {
           .some((s) => s.toLocaleLowerCase().includes(term)),
       )
     : [];
+  const results = demoMode ? demoResults : apiSearch.query === query.trim() ? apiSearch.items : [];
   const choose = (item) => {
     setSearching(false);
     setSearchOpen(false);
@@ -226,10 +304,10 @@ export default function App() {
         >
           <img className="brand-icon" src="/brand/tripee-mark.svg" alt="" width="32" height="32" />
           TripeE
-          <span className="preview-badge">디자인 시안</span>
+          {demoMode && <span className="preview-badge">디자인 시안</span>}
         </a>
         <span className="header-note">다음 여행, 도시에서 시작하세요.</span>
-        <span className="sample-label">샘플 콘텐츠</span>
+        {demoMode && <span className="sample-label">샘플 콘텐츠</span>}
         <a className="journey-link" href="/design/index.html">
           소개 보기 ↗
         </a>
@@ -295,6 +373,7 @@ export default function App() {
                   aria-controls="city-search-results"
                   aria-expanded={Boolean(searching && term)}
                   placeholder="도시 또는 나라 검색"
+                  maxLength={100}
                   value={query}
                   onFocus={() => setSearching(true)}
                   onChange={(e) => {
@@ -309,7 +388,12 @@ export default function App() {
             </div>
             {searchOpen && searching && term && (
               <div id="city-search-results" className="search-results" aria-label="검색 결과">
-                {results.length ? (
+                {!demoMode &&
+                (apiSearch.query !== query.trim() || apiSearch.state === 'loading') ? (
+                  <p role="status">도시를 찾고 있어요.</p>
+                ) : !demoMode && apiSearch.state === 'error' ? (
+                  <p role="alert">검색 정보를 불러오지 못했어요. 검색어를 다시 입력해주세요.</p>
+                ) : results.length ? (
                   results.map((item) => (
                     <button
                       key={`${item.type}-${item.id || item.code}`}
@@ -344,6 +428,20 @@ export default function App() {
             onGroup={openGroup}
             onStatus={setStatus}
           />
+          {!demoMode && (listState !== 'ready' || !apiCities.length || notice) && (
+            <div className="city-data-status" role={listState === 'error' ? 'alert' : 'status'}>
+              {listState === 'loading' ? (
+                '도시 정보를 불러오는 중이에요.'
+              ) : listState === 'error' ? (
+                <>
+                  도시 목록을 불러오지 못했어요.
+                  <button onClick={() => setListRetry((v) => v + 1)}>다시 시도</button>
+                </>
+              ) : (
+                notice || '아직 등록된 공개 도시가 없어요.'
+              )}
+            </div>
+          )}
           {status === 'loading' && (
             <div className="map-status" role="status">
               <span className="plane">
@@ -356,7 +454,7 @@ export default function App() {
             <div className="map-status error" role="alert">
               지도를 불러오지 못했어요.
               <button onClick={() => setRetry((v) => v + 1)}>다시 시도</button>
-              <small>도시 검색으로 상세 배치를 확인할 수 있어요.</small>
+              <small>도시 검색으로 여행 정보를 확인할 수 있어요.</small>
             </div>
           )}
           <div className="map-attribution" aria-label="지도 데이터 출처">
@@ -451,7 +549,9 @@ export default function App() {
                 </h2>
               </div>
             </div>
-            {mode === 'loading' ? (
+            {!demoMode ? (
+              <CityDetail key={selected.id} cityId={selected.id} />
+            ) : mode === 'loading' ? (
               <div className="state-view" role="status">
                 <span className="plane">
                   <Icon name="plane" />
@@ -573,58 +673,60 @@ export default function App() {
           </aside>
         )}
       </main>
-      <footer className="review-toolbar">
-        <span>시안 검수</span>
-        <label className="theme-picker">
-          지도 색상
-          <select
-            aria-label="지도 색상 시안"
-            value={themeId}
-            onChange={(e) => {
-              const next = e.target.value;
-              setThemeId(next);
-              const url = new URL(window.location.href);
-              url.searchParams.set('theme', next);
-              window.history.replaceState(null, '', url);
-            }}
-          >
-            {Object.entries(mapThemes).map(([key, value]) => (
-              <option key={key} value={key}>
-                {value.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          상세 상태
-          <select
-            aria-label="상세 상태"
-            value={mode}
-            onChange={(e) => {
-              setMode(e.target.value);
-              if (!selected) open(cities[1]);
-            }}
-          >
-            <option value="normal">기본 배치</option>
-            <option value="loading">로딩</option>
-            <option value="preparing">정보 준비 중</option>
-            <option value="error">오류</option>
-          </select>
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={testing}
-            onChange={(e) => {
-              setTesting(e.target.checked);
-              setGroup([]);
-              if (!e.target.checked && selected?.testOnly) close();
-            }}
-          />
-          다수 도시 시연 ({knownCities.length}곳)
-        </label>
-        <small>여행 정보·사진은 게시용 자료가 아닙니다.</small>
-      </footer>
+      {demoMode && (
+        <footer className="review-toolbar">
+          <span>시안 검수</span>
+          <label className="theme-picker">
+            지도 색상
+            <select
+              aria-label="지도 색상 시안"
+              value={themeId}
+              onChange={(e) => {
+                const next = e.target.value;
+                setThemeId(next);
+                const url = new URL(window.location.href);
+                url.searchParams.set('theme', next);
+                window.history.replaceState(null, '', url);
+              }}
+            >
+              {Object.entries(mapThemes).map(([key, value]) => (
+                <option key={key} value={key}>
+                  {value.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            상세 상태
+            <select
+              aria-label="상세 상태"
+              value={mode}
+              onChange={(e) => {
+                setMode(e.target.value);
+                if (!selected) open(cities[1]);
+              }}
+            >
+              <option value="normal">기본 배치</option>
+              <option value="loading">로딩</option>
+              <option value="preparing">정보 준비 중</option>
+              <option value="error">오류</option>
+            </select>
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={testing}
+              onChange={(e) => {
+                setTesting(e.target.checked);
+                setGroup([]);
+                if (!e.target.checked && selected?.testOnly) close();
+              }}
+            />
+            다수 도시 시연 ({knownCities.length}곳)
+          </label>
+          <small>여행 정보·사진은 게시용 자료가 아닙니다.</small>
+        </footer>
+      )}
     </div>
   );
 }
