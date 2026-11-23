@@ -46,6 +46,9 @@ Spring Security의 `BCryptPasswordEncoder.encode`로 만든 BCrypt 해시를 사
 획득 응답의 `leaseToken`을 이후 `X-Edit-Lock-Token` 헤더에 전달함. 같은 경로의
 `DELETE`로 반납하고, `POST /heartbeats`로 5분 유효 시간을 갱신함. 변경 요청에는
 CSRF 토큰도 필요함. 앱 계정 권한을 갱신하려면 DB 안내의 프로비저닝을 다시 실행함.
+편집권 획득·갱신·반납과 초안 변경·안전정보 게시는 DB 행 잠금을 얻은 뒤 세션 유효성을
+다시 확인함. 잠금 대기 중 세션이 만료되거나 무효화되면 `401 SESSION_EXPIRED`를 반환함.
+편집권 연결 확인은 관리자 활동으로 취급하지 않으며 한 시간 비활동 만료를 연장하지 않음.
 
 사진 파일 조회는 기본적으로 백엔드 실행 디렉터리의 `data/photos/`를 사용함. 다른 위치는
 `TRIPEE_PHOTOS_DIRECTORY` 환경 변수로 설정함. 이미지 제공 API는 공개 도시의 현재 게시본에
@@ -60,7 +63,7 @@ PNG로 저장하며 장당 입력과 저장 결과는 각각 10 MiB, 해상도�
 명령이 아닌 신뢰할 수 없는 데이터로 취급하고 외부 서비스 연결 및 취소를 안전하게 처리해야 함.
 AI 호출은 DB 잠금 밖에서 최대 30초 동안 기다리며 응답은 자동으로 저장하거나 게시하지 않음.
 
-요청 DTO에는 Jakarta Validation 제약을 적용하고 MVC 테스트로 입력·응답을 확인함. 공통 설정은 DTO에 선언되지 않은 JSON 필드를 거부함. 공개 조회와 관리자 접근 오류에는 Problem Details의 `type`, `status`, `instance`와 프로젝트 필드 `code`, `traceId`를 담음. 이후 관리자 쓰기 API에서는 422 응답의 필드별 오류도 검증함.
+요청 DTO에는 Jakarta Validation 제약을 적용하고 MVC 테스트로 입력·응답을 확인함. 공통 설정은 DTO에 선언되지 않은 JSON 필드를 거부함. 공개 조회와 관리자 접근 오류에는 Problem Details의 `type`, `status`, `instance`와 프로젝트 필드 `code`, `traceId`를 담음. 관리자 쓰기 API의 422 오류 응답에 필드별 `violations`를 제공하는 작업은 아직 남아 있음.
 
 백엔드는 하나의 애플리케이션으로 배포하고 `controller`, `service`, `repository`, `config` 계층 아래에
 `admin`, `city`, `tag` 기능별 패키지를 둠. `controller`는 HTTP 요청·응답, `service`는 업무 규칙과
@@ -73,6 +76,8 @@ PostgreSQL 데이터 접근 방식과 변경 기준은 [데이터 접근 결정]
 기능을 추가할 때는 계약에서 기대 동작 하나를 골라 실패하는 테스트를 먼저 실행하고, 통과하는 최소 구현을 작성한 뒤 리팩터링함. 예를 들어 준비 중인 도시가 지도 핀에 포함되는지는 `./gradlew test --tests '*CityVisibilityTest'`로 확인함.
 
 - `./gradlew build`는 DB 없이 도메인 규칙, MVC 요청 처리, 서버 기동을 테스트하고 실행 JAR를 생성함.
+  Windows에서 심볼릭 링크 생성 권한이 없으면 링크 경로 이탈 검사 1건만 건너뜀.
+  일반 파일·상위 경로 접근 검사는 계속 실행하며, Linux CI에서는 링크 검사도 실행함.
 - `./gradlew postgresTest`는 실행 중인 PostgreSQL에 앱 계정으로 접속해 기본 스키마, 도시 조회와 접근 권한을 확인함. 매번 현재 DB를 대상으로 실행함.
 - `./gradlew controllerTest`는 HTTP 경로·검증·인증 경계를 검사함. 세션 테스트는 서비스와 보안 필터를 함께 사용함.
 - `./gradlew serviceTest`는 DB 없이 업무 규칙을 검사함.

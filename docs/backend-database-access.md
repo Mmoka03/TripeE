@@ -31,10 +31,11 @@ JPA와 Querydsl JPA도 내부적으로 JDBC 드라이버를 사용하므로 `jdb
 | `SafetyRepository.current`                             | 현재 낮음      | JDBC 유지함. 안전정보·출처·확인자를 중첩 JSON 집계로 한 번에 조회함. JPA 전환에는 별도의 일괄 조회/조립 설계가 필요함.                                                                                                                                           |
 | `CityDetailRepository.find`                            | 현재 낮음      | JDBC 유지함. 사진·태그·콘텐츠·안전정보의 필터와 정렬을 포함한 PostgreSQL JSON 집계를 사용함. 단순 연관 엔티티 순회로 바꾸면 추가 쿼리가 생길 수 있음.                                                                                                            |
 
-직접 `JdbcClient`를 주입받는 운영 구현체는 **9개에서 5개**로 줄었음.
-남은 구현체는 `JdbcAdminCityCommands`, `DraftRepository`, `EditLockRepository`,
-`SafetyRepository`, `CityDetailRepository`임. 테스트 데이터 준비와 DB 권한 검증에서의 JDBC는
-운영 데이터 접근 전환 대상이 아님.
+직접 `JdbcClient`를 주입받는 운영 클래스는 현재 8개임.
+`JdbcAdminCityCommands`, `DraftRepository`, `DraftContentStore`, `DraftSafetyStore`,
+`DraftPublicationStore`, `EditLockRepository`, `SafetyRepository`, `CityDetailRepository`를 포함함.
+초안 내부 작업을 세 Store로 나누었으므로 클래스 수를 접근 방식 전환 성과로 비교하지 않음.
+테스트 데이터 준비와 DB 권한 검증에서의 JDBC는 운영 데이터 접근 전환 대상이 아님.
 
 ## Querydsl 설정과 조회 모델
 
