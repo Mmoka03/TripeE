@@ -54,6 +54,7 @@ public class EditLockService {
       Lease lease = transactions.execute(status -> {
         locks.lockCity(cityId);
         Instant now = clock.instant();
+        AdminSession.requireActive(session, now);
         if (locks.find(cityId).filter(item -> now.isBefore(item.expiresAt())).isPresent()) {
           throw conflict("EDIT_LOCK_HELD", "다른 편집 창이 이 도시를 편집 중입니다.");
         }
@@ -71,6 +72,7 @@ public class EditLockService {
       return transactions.execute(status -> {
         locks.lockCity(cityId);
         Instant now = clock.instant();
+        AdminSession.requireActive(session, now);
         var current = requireOwner(cityId, actorId, token, session, now);
         Instant renewed = now.isAfter(current.expiresAt().minusSeconds(300))
             ? now : current.expiresAt().minusSeconds(300);
@@ -85,6 +87,7 @@ public class EditLockService {
       transactions.executeWithoutResult(status -> {
         locks.lockCity(cityId);
         Instant now = clock.instant();
+        AdminSession.requireActive(session, now);
         var lock = locks.find(cityId);
         if (lock.isEmpty() || !now.isBefore(lock.get().expiresAt())) return;
         requireOwner(cityId, actorId, token, session, now);
@@ -106,20 +109,14 @@ public class EditLockService {
     }
   }
 
-  /**
-   * Executes a draft operation while holding the city row lock and the session monitor.
-   * Lease and session validity are checked inside the same transaction as the operation.
-   */
+  // 도시 행 잠금과 세션 모니터를 유지하며 같은 트랜잭션에서 세션·편집권을 검사함.
   public <T> T withLease(long cityId, long actorId, String token, HttpSession session,
                          java.util.function.Supplier<T> operation) {
     synchronized (session) {
       return transactions.execute(status -> {
         locks.lockCity(cityId);
         Instant now = clock.instant();
-        Object value = session.getAttribute(AdminSession.ATTRIBUTE);
-        if (!(value instanceof AdminSession state) || state.expired(now)) {
-          throw new ApiException(HttpStatus.UNAUTHORIZED, "SESSION_EXPIRED", "세션이 만료되었습니다.");
-        }
+        AdminSession.requireActive(session, now);
         requireOwner(cityId, actorId, token, session, now);
         return operation.get();
       });

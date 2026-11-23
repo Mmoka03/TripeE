@@ -48,32 +48,35 @@ public class DraftWriteValidator {
       sources(item.get("sources"));
     }
     JsonNode safety = draft.get("safetyDraft");
-    if (!safety.isNull()) {
-      objectFields(safety, Set.of("reviewState", "items"));
-      if (!Set.of("UNVERIFIED", "PARTIAL", "CHECKED").contains(text(safety.get("reviewState")))) invalid();
-      Set<Integer> safetyOrder = new HashSet<>();
-      for (JsonNode item : array(safety.get("items"))) {
-        objectFields(item, Set.of("kind", "assessment", "officialLevel", "scopeType", "originalScopeText",
-            "cityCoverage", "cityScopeNote", "title", "body", "displayOrder", "effectiveFrom", "effectiveUntil", "sources"));
-        String kind = text(item.get("kind"));
-        String assessment = text(item.get("assessment"));
-        String level = item.get("officialLevel").isNull() ? null : text(item.get("officialLevel"));
-        if (!safetyOrder.add(positiveInt(item.get("displayOrder")))) invalid();
-        if (!(kind.equals("OFFICIAL_ADVISORY") && assessment.equals("ISSUED")
-                  && level != null && Set.of("LEVEL_1", "LEVEL_2", "LEVEL_3", "LEVEL_4", "SPECIAL").contains(level))
-            && !(kind.equals("OFFICIAL_ADVISORY") && assessment.equals("NOT_ISSUED") && level == null)
-            && !(kind.equals("LOCAL_CAUTION") && assessment.equals("CAUTION") && level == null)) invalid();
-        nullableEnum(item.get("scopeType"), Set.of("COUNTRY_WIDE", "REGION", "CITY", "SPECIFIC_PLACE"));
-        nullableEnum(item.get("cityCoverage"), Set.of("WHOLE_CITY", "PART_OF_CITY"));
-        nullableText(item.get("originalScopeText"), 4000);
-        nullableText(item.get("cityScopeNote"), 4000);
-        nullableText(item.get("title"), 200);
-        nullableText(item.get("body"), 3000);
-        var from = instant(item.get("effectiveFrom"));
-        var until = instant(item.get("effectiveUntil"));
-        if (from != null && until != null && !until.isAfter(from)) invalid();
-        sources(item.get("sources"));
-      }
+    if (!safety.isNull()) validateSafety(safety);
+  }
+
+  // 일반 초안 저장과 안전정보 독립 게시에서 같은 입력 규칙을 사용함.
+  public void validateSafety(JsonNode safety) {
+    objectFields(safety, Set.of("reviewState", "items"));
+    if (!Set.of("UNVERIFIED", "PARTIAL", "CHECKED").contains(text(safety.get("reviewState")))) invalid();
+    Set<Integer> safetyOrder = new HashSet<>();
+    for (JsonNode item : array(safety.get("items"))) {
+      objectFields(item, Set.of("kind", "assessment", "officialLevel", "scopeType", "originalScopeText",
+          "cityCoverage", "cityScopeNote", "title", "body", "displayOrder", "effectiveFrom", "effectiveUntil", "sources"));
+      String kind = text(item.get("kind"));
+      String assessment = text(item.get("assessment"));
+      String level = item.get("officialLevel").isNull() ? null : text(item.get("officialLevel"));
+      if (!safetyOrder.add(positiveInt(item.get("displayOrder")))) invalid();
+      if (!(kind.equals("OFFICIAL_ADVISORY") && assessment.equals("ISSUED")
+                && level != null && Set.of("LEVEL_1", "LEVEL_2", "LEVEL_3", "LEVEL_4", "SPECIAL").contains(level))
+          && !(kind.equals("OFFICIAL_ADVISORY") && assessment.equals("NOT_ISSUED") && level == null)
+          && !(kind.equals("LOCAL_CAUTION") && assessment.equals("CAUTION") && level == null)) invalid();
+      nullableEnum(item.get("scopeType"), Set.of("COUNTRY_WIDE", "REGION", "CITY", "SPECIFIC_PLACE"));
+      nullableEnum(item.get("cityCoverage"), Set.of("WHOLE_CITY", "PART_OF_CITY"));
+      nullableText(item.get("originalScopeText"), 4000);
+      nullableText(item.get("cityScopeNote"), 4000);
+      nullableText(item.get("title"), 200);
+      nullableText(item.get("body"), 3000);
+      var from = instant(item.get("effectiveFrom"));
+      var until = instant(item.get("effectiveUntil"));
+      if (from != null && until != null && !until.isAfter(from)) invalid();
+      sources(item.get("sources"));
     }
   }
 
@@ -105,7 +108,7 @@ public class DraftWriteValidator {
   }
 
   private static void objectFields(JsonNode value, Set<String> fields) {
-    if (!value.isObject() || value.size() != fields.size() || fields.stream().anyMatch(field -> !value.has(field))) invalid();
+    if (value == null || !value.isObject() || value.size() != fields.size() || fields.stream().anyMatch(field -> !value.has(field))) invalid();
   }
 
   private static long id(JsonNode value) {

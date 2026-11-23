@@ -14,6 +14,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.HexFormat;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -37,12 +39,87 @@ class EditLockServiceTest {
   }
 
   @Test
+  void sessionExpiringWhileWaitingForCityLockCannotAcquireLease() {
+    executeCallbacks();
+    var clock = mock(Clock.class);
+    when(clock.instant()).thenReturn(now);
+    var guarded = new EditLockService(repository, transactions, clock);
+    var session = new MockHttpSession();
+    session.setAttribute(AdminSession.ATTRIBUTE, new AdminSession("7", "A", now));
+    var editor = UUID.randomUUID();
+    doAnswer(call -> {
+      when(clock.instant()).thenReturn(now.plusSeconds(3600));
+      return null;
+    }).when(repository).lockCity(1);
+    when(repository.find(1)).thenReturn(Optional.empty(), Optional.of(new EditLockRepository.Lock(
+        7, "A", editor, "hash", now.plusSeconds(3900))));
+    assertThatThrownBy(() -> guarded.acquire(1, 7, editor, session))
+        .isInstanceOfSatisfying(ApiException.class, e -> assertThat(e.code()).isEqualTo("SESSION_EXPIRED"));
+    verify(repository, never()).save(anyLong(), anyLong(), any(), anyString(), any());
+  }
+
+  @Test
+  void idleSessionCannotRenewAnOtherwiseValidLease() {
+    executeCallbacks();
+    var clock = mock(Clock.class);
+    when(clock.instant()).thenReturn(now);
+    var guarded = new EditLockService(repository, transactions, clock);
+    var session = new MockHttpSession();
+    session.setAttribute(AdminSession.ATTRIBUTE, new AdminSession("7", "A", now.minusSeconds(3599)));
+    var editor = UUID.randomUUID();
+    String[] savedHash = new String[1];
+    doAnswer(call -> { savedHash[0] = call.getArgument(3); return null; })
+        .when(repository).save(eq(1L), eq(7L), eq(editor), anyString(), eq(now));
+    when(repository.find(1)).thenAnswer(call -> savedHash[0] == null ? Optional.empty()
+        : Optional.of(new EditLockRepository.Lock(7, "A", editor, savedHash[0], now.plusSeconds(300))));
+    var lease = guarded.acquire(1, 7, editor, session);
+    // 잠금 유효 시간은 남았지만 요청이 DB 잠금을 기다리는 사이 비활동 세션이 만료됨.
+    doAnswer(call -> { when(clock.instant()).thenReturn(now.plusSeconds(1)); return null; })
+        .when(repository).lockCity(1);
+    assertThatThrownBy(() -> guarded.heartbeat(1, 7, lease.leaseToken(), session))
+        .isInstanceOfSatisfying(ApiException.class, e -> assertThat(e.code()).isEqualTo("SESSION_EXPIRED"));
+    verify(repository, never()).renew(anyLong(), any());
+  }
+
+  @ParameterizedTest
+  @ValueSource(strings = {"acquire", "heartbeat", "release", "write"})
+  @SuppressWarnings("unchecked")
+  void sessionInvalidatedWhileWaitingForCityLockReturnsUnauthorized(String operation) {
+    executeCallbacks();
+    doAnswer(call -> {
+      ((java.util.function.Consumer<org.springframework.transaction.TransactionStatus>) call.getArgument(0))
+          .accept(null);
+      return null;
+    }).when(transactions).executeWithoutResult(any());
+    var session = new MockHttpSession();
+    session.setAttribute(AdminSession.ATTRIBUTE, new AdminSession("7", "A", now));
+    doAnswer(call -> { session.invalidate(); return null; }).when(repository).lockCity(1);
+    when(repository.find(1)).thenReturn(Optional.empty());
+    assertThatThrownBy(() -> {
+      switch (operation) {
+        case "acquire" -> service.acquire(1, 7, UUID.randomUUID(), session);
+        case "heartbeat" -> service.heartbeat(1, 7, "token", session);
+        case "release" -> service.release(1, 7, "token", session);
+        default -> service.withLease(1, 7, "token", session, () -> "saved");
+      }
+    }).isInstanceOfSatisfying(ApiException.class, e -> {
+      assertThat(e.status().value()).isEqualTo(401);
+      assertThat(e.code()).isEqualTo("SESSION_EXPIRED");
+    });
+    verify(repository, never()).save(anyLong(), anyLong(), any(), anyString(), any());
+    verify(repository, never()).renew(anyLong(), any());
+    verify(repository, never()).delete(anyLong());
+  }
+
+  @Test
   void activeLeaseBlocksEvenSameAdministrator() {
     executeCallbacks();
+    var session = new MockHttpSession();
+    session.setAttribute(AdminSession.ATTRIBUTE, new AdminSession("7", "A", now));
     when(repository.find(1)).thenReturn(Optional.of(new EditLockRepository.Lock(
         7, "A", UUID.randomUUID(), "hash", now.plusSeconds(1))));
-    assertThatThrownBy(() -> service.acquire(1, 7, UUID.randomUUID(), new MockHttpSession()))
-        .isInstanceOf(ApiException.class);
+    assertThatThrownBy(() -> service.acquire(1, 7, UUID.randomUUID(), session))
+        .isInstanceOfSatisfying(ApiException.class, e -> assertThat(e.code()).isEqualTo("EDIT_LOCK_HELD"));
     verify(repository, never()).save(anyLong(), anyLong(), any(), anyString(), any());
   }
 
@@ -62,6 +139,8 @@ class EditLockServiceTest {
     executeCallbacks();
     var originalSession = new MockHttpSession();
     var otherSession = new MockHttpSession();
+    originalSession.setAttribute(AdminSession.ATTRIBUTE, new AdminSession("7", "A", now));
+    otherSession.setAttribute(AdminSession.ATTRIBUTE, new AdminSession("7", "A", now));
     var editor = UUID.randomUUID();
     String[] savedHash = new String[1];
     doAnswer(call -> {
@@ -76,11 +155,11 @@ class EditLockServiceTest {
         .digest(lease.leaseToken().getBytes(StandardCharsets.UTF_8)));
     assertThat(savedHash[0]).isEqualTo(expectedHash).isNotEqualTo(lease.leaseToken());
     assertThatThrownBy(() -> service.heartbeat(1, 7, lease.leaseToken(), otherSession))
-        .isInstanceOf(ApiException.class);
+        .isInstanceOfSatisfying(ApiException.class, e -> assertThat(e.code()).isEqualTo("EDIT_LOCK_NOT_OWNED"));
     when(repository.find(1)).thenReturn(Optional.of(new EditLockRepository.Lock(
         7, "A", editor, savedHash[0], now)));
     assertThatThrownBy(() -> service.heartbeat(1, 7, lease.leaseToken(), originalSession))
-        .isInstanceOf(ApiException.class);
+        .isInstanceOfSatisfying(ApiException.class, e -> assertThat(e.code()).isEqualTo("EDIT_LOCK_EXPIRED"));
     verify(repository, never()).renew(anyLong(), any());
   }
 

@@ -108,15 +108,10 @@ public class DraftService {
       if (!reviewed.equals(currentSafety.get("revisionId"))) {
         throw new ApiException(HttpStatus.CONFLICT, "SAFETY_CHANGED", "공개 안전정보가 변경되었습니다.");
       }
-      var validation = json.createObjectNode();
-      validation.putNull("nameKo"); validation.putNull("nameEn");
-      validation.putNull("coordinates"); validation.putNull("tagline");
-      validation.putArray("tagIds"); validation.putArray("photos"); validation.putArray("contentItems");
-      validation.set("safetyDraft", input.get("safety"));
-      validator.validate(validation);
       if (input.get("safety").isNull()) {
         throw new ApiException(HttpStatus.UNPROCESSABLE_ENTITY, "VALIDATION_FAILED", "안전정보를 입력해 주세요.");
       }
+      validator.validateSafety(input.get("safety"));
       Long reviewedId = reviewed.isNull() ? null : Long.parseLong(reviewed.asString());
       drafts.reviewSafety(cityId, actorId, before, input.get("safety"), reviewedId);
       return versioned(current(cityId));

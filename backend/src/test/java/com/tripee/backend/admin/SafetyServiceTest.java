@@ -31,7 +31,21 @@ class SafetyServiceTest {
   private final JsonMapper json = new JsonMapper();
   private final Instant now = Instant.parse("2026-01-01T00:00:00Z");
   private final SafetyService service = new SafetyService(safety, drafts, locks, new DraftWriteValidator(),
-      new PublicationValidator(), json, transactions, Clock.fixed(now, ZoneOffset.UTC));
+      new PublicationValidator(), transactions, Clock.fixed(now, ZoneOffset.UTC));
+
+  @SuppressWarnings("unchecked")
+  @Test
+  void sessionInvalidatedWhileWaitingForCityLockCannotPublishSafety() {
+    when(transactions.execute(any())).thenAnswer(call ->
+        ((TransactionCallback<Object>) call.getArgument(0)).doInTransaction(null));
+    var session = new MockHttpSession();
+    session.setAttribute(AdminSession.ATTRIBUTE, new AdminSession("1", "A", now));
+    doAnswer(call -> { session.invalidate(); return null; }).when(locks).lockCity(1);
+    assertThatThrownBy(() -> service.publish(1, 1, "\"safety-1-empty\"",
+        json.readTree("{\"reviewState\":\"UNVERIFIED\",\"items\":[]}"), session))
+        .isInstanceOfSatisfying(ApiException.class, e -> assertThat(e.code()).isEqualTo("SESSION_EXPIRED"));
+    verifyNoInteractions(safety, drafts);
+  }
 
   @SuppressWarnings("unchecked")
   @Test

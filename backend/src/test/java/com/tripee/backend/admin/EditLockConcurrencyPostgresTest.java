@@ -35,6 +35,8 @@ class EditLockConcurrencyPostgresTest extends com.tripee.backend.PostgresIntegra
     long cityB = jdbc.sql("insert into city(country_id) values (1) returning id").query(Long.class).single();
     var sessionA = new MockHttpSession();
     var sessionB = new MockHttpSession();
+    sessionA.setAttribute(AdminSession.ATTRIBUTE, new AdminSession("1", "A", Instant.now()));
+    sessionB.setAttribute(AdminSession.ATTRIBUTE, new AdminSession("2", "B", Instant.now()));
     var leaseA = locks.acquire(cityA, 1, UUID.randomUUID(), sessionA);
     var leaseB = locks.acquire(cityB, 2, UUID.randomUUID(), sessionB);
     assertThat(locks.view(cityA).isLocked()).isTrue();

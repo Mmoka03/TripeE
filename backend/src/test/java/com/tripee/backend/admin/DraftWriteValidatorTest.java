@@ -26,6 +26,27 @@ class DraftWriteValidatorTest {
   }
 
   @ParameterizedTest
+  @ValueSource(strings = {"UNVERIFIED", "PARTIAL", "CHECKED"})
+  void validatesStandaloneSafetyWithoutSyntheticDraftFields(String state) {
+    var safety = json.createObjectNode().put("reviewState", state);
+    safety.putArray("items");
+    assertThatCode(() -> validator.validateSafety(safety)).doesNotThrowAnyException();
+    var combined = draft();
+    combined.set("safetyDraft", safety);
+    assertThatCode(() -> validator.validate(combined)).doesNotThrowAnyException();
+    safety.put("unexpected", true);
+    assertThatThrownBy(() -> validator.validateSafety(safety)).isInstanceOf(ApiException.class);
+    assertThatThrownBy(() -> validator.validate(combined)).isInstanceOf(ApiException.class);
+  }
+
+  @Test
+  void rejectsMissingStandaloneSafetyButAllowsUnmodifiedSafetyInDraft() {
+    assertThatThrownBy(() -> validator.validateSafety(null)).isInstanceOf(ApiException.class);
+    assertThatThrownBy(() -> validator.validateSafety(json.nullNode())).isInstanceOf(ApiException.class);
+    assertThatCode(() -> validator.validate(draft())).doesNotThrowAnyException();
+  }
+
+  @ParameterizedTest
   @CsvSource({"-90,-180", "90,180", "0,0"})
   void acceptsCoordinateBoundaries(double latitude, double longitude) {
     var input = draft();
