@@ -83,7 +83,7 @@ pnpm test
 pnpm build
 ```
 
-현재 Actions는 Git 규칙 검사만 수행함. 앱 테스트·빌드의 원격 자동화는 별도 추가할 예정임. 규칙 변경 시 이 문서와 tools/git-conventions/check.mjs, 테스트를 함께 수정함.
+Actions는 Git 규칙을 검사함. 백엔드·인프라 변경 PR에서는 Backend 검사도 실행해 Java 21 빌드와 PostgreSQL 앱 계정 연결·권한을 검증함. Git 규칙 변경 시 이 문서와 tools/git-conventions/check.mjs, 테스트를 함께 수정함.
 
 ## 코드와 문서
 

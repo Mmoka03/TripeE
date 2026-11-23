@@ -401,6 +401,16 @@ check('활동 시각 클라이언트 입력 거부', () => {
   assert.equal(validate({ event: 'INPUT', occurredAt: now }), false);
 });
 
+check('Location 헤더는 생성 응답에만 명시됨', () => {
+  for (const [path, operations] of Object.entries(spec.paths)) {
+    for (const [method, operation] of Object.entries(operations)) {
+      for (const [status, response] of Object.entries(operation.responses ?? {})) {
+        if (response.headers?.Location) assert.equal(status, '201', `${method} ${path} ${status}`);
+      }
+    }
+  }
+});
+
 const report = {
   openapi: '3.1.1',
   paths: Object.keys(spec.paths).length,

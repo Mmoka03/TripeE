@@ -1,6 +1,9 @@
 node_modules/
 .pnpm-store/
 frontend/dist/
+backend/.gradle/
+backend/build/
+backend/data/
 .env
 .env.*
 !.env.example

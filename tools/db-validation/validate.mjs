@@ -2,7 +2,7 @@ import { PGlite } from '@electric-sql/pglite';
 import { readFile, writeFile } from 'node:fs/promises';
 
 const db = new PGlite();
-await db.exec(await readFile(new URL('../../db/schema.sql', import.meta.url), 'utf8'));
+await db.exec(await readFile(new URL('../../backend/db/schema.sql', import.meta.url), 'utf8'));
 await db.exec('SET search_path = tripee, public');
 const version = (await db.query('SELECT version()')).rows[0].version;
 await db.exec(`BEGIN;

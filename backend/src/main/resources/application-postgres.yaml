@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: 'jdbc:postgresql://${TRIPEE_DB_HOST:127.0.0.1}:${POSTGRES_HOST_PORT:5433}/${POSTGRES_DB:tripee}'
+    username: ${TRIPEE_DB_USER:tripee_backend}
+    password: ${TRIPEE_DB_PASSWORD}
+    hikari:
+      schema: tripee
+  sql:
+    init:
+      mode: never
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
