@@ -4,6 +4,7 @@ import com.tripee.backend.repository.admin.PhotoRepository;
 import com.tripee.backend.service.admin.PhotoFileService;
 import com.tripee.backend.common.exception.ApiException;
 import java.nio.file.Files;
+import java.nio.file.FileSystemException;
 import java.nio.file.Path;
 import java.util.Optional;
 import org.junit.jupiter.api.Tag;
@@ -26,19 +27,37 @@ class PhotoFileServiceTest {
     Path outside = Files.write(temporary.resolve("outside.png"), new byte[] {(byte) 137,80,78,71,13,10,26,10});
     Files.write(storage.resolve("image"), Files.readAllBytes(outside));
     Files.writeString(storage.resolve("invalid"), "not an image");
-    Files.createSymbolicLink(storage.resolve("link"), outside);
     when(repository.storageKey(1, false)).thenReturn(Optional.of("image"));
     when(repository.storageKey(2, false)).thenReturn(Optional.of("../outside.png"));
-    when(repository.storageKey(3, false)).thenReturn(Optional.of("link"));
     when(repository.storageKey(4, false)).thenReturn(Optional.of("invalid"));
     when(repository.storageKey(5, false)).thenReturn(Optional.empty());
     var service = new PhotoFileService(repository, storage.toString());
 
     assertThat(service.read(1, false).mediaType()).isEqualTo(MediaType.IMAGE_PNG);
-    for (long id : new long[] {2, 3, 4, 5}) {
+    for (long id : new long[] {2, 4, 5}) {
       assertThatThrownBy(() -> service.read(id, false)).isInstanceOfSatisfying(ApiException.class,
           e -> assertThat(e.status()).isEqualTo(HttpStatus.NOT_FOUND));
     }
+  }
+
+  @Test
+  void rejectsSymbolicLinkEscapingStorage() throws Exception {
+    Path storage = Files.createDirectory(temporary.resolve("photos"));
+    Path outside = Files.write(temporary.resolve("outside.png"), new byte[] {(byte) 137,80,78,71,13,10,26,10});
+    try {
+      Files.createSymbolicLink(storage.resolve("link"), outside);
+    } catch (FileSystemException | UnsupportedOperationException unavailable) {
+      // Windows에서 링크 생성 권한이 없더라도 나머지 파일 접근 검사는 실행함. Linux CI 실패는 유지함.
+      if (System.getProperty("os.name").startsWith("Windows")) {
+        org.junit.jupiter.api.Assumptions.assumeTrue(false,
+            "Windows 파일시스템에서 심볼릭 링크를 만들 수 없음: " + unavailable.getMessage());
+      }
+      throw unavailable;
+    }
+    when(repository.storageKey(3, false)).thenReturn(Optional.of("link"));
+    var service = new PhotoFileService(repository, storage.toString());
+    assertThatThrownBy(() -> service.read(3, false)).isInstanceOfSatisfying(ApiException.class,
+        e -> assertThat(e.status()).isEqualTo(HttpStatus.NOT_FOUND));
   }
 
   @Test
