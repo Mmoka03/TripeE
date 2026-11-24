@@ -3,7 +3,9 @@ import { readFile } from 'node:fs/promises';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 
-const spec = JSON.parse(await readFile(new URL('../../docs/openapi-v1.json', import.meta.url)));
+const spec = JSON.parse(
+  await readFile(new URL('../../docs/backend/openapi-v1.json', import.meta.url)),
+);
 const file = new URL('../../backend/build/contract/responses.jsonl', import.meta.url);
 const raw = await readFile(file, 'utf8');
 const responses = raw.trim().split('\n').filter(Boolean).map(JSON.parse);

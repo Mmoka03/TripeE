@@ -54,9 +54,9 @@ PowerShell에서는 `infra/`에서 최초 한 번 `Copy-Item .env.example .env`�
 
 1. `infra/.env`의 `TRIPEE_DB_PASSWORD`에 앱 전용 비밀번호를 입력함. 기존 환경 파일이면 이 키를 추가함.
 2. `infra/`에서 `docker compose run --rm --no-deps db-provision`을 실행함. 일회성 컨테이너가 관리 계정으로 앱 로그인을 준비하고, 마지막에 앱 계정으로 새 TCP 연결을 열어 도시 테이블 읽기를 확인함.
-3. Spring Boot에서 같은 앱 비밀번호를 사용함. 서버 설정과 검증 명령은 [백엔드 안내](../backend/README.md)를 참고함.
+3. Spring Boot에서 같은 앱 비밀번호를 사용함. 서버 설정과 검증 명령은 [백엔드 안내](../../backend/README.md)를 참고함.
 
-앱 계정은 `tripee` 스키마에서 지도 핀·검색·태그·도시 상세에 필요한 데이터를 읽을 수 있음. 상세 조회에는 게시본의 사진 메타데이터, 콘텐츠, 안전정보와 공개 출처가 포함됨. 기존 계정은 위 준비 명령을 다시 실행해 새 조회 권한을 적용함. 허용 열은 [계정 설정 SQL](../infra/provision-backend.sql)에서 확인함.
+앱 계정은 `tripee` 스키마에서 지도 핀·검색·태그·도시 상세에 필요한 데이터를 읽을 수 있음. 상세 조회에는 게시본의 사진 메타데이터, 콘텐츠, 안전정보와 공개 출처가 포함됨. 기존 계정은 위 준비 명령을 다시 실행해 새 조회 권한을 적용함. 허용 열은 [계정 설정 SQL](../../infra/provision-backend.sql)에서 확인함.
 
 같은 계정 준비 명령을 다시 실행하면 기존 비밀번호를 유지하고 권한과 로그인을 재확인함. 비밀번호를 교체할 때는 관리자로 `psql`에 접속해 `\password tripee_backend`로 바꾼 후 `infra/.env`와 백엔드 실행 환경의 값을 맞춤.
 
@@ -64,7 +64,7 @@ PowerShell에서는 `infra/`에서 최초 한 번 `Copy-Item .env.example .env`�
 
 ## 초기 DDL 동작
 
-[초기 DDL](../backend/db/schema.sql)은 새 PostgreSQL 데이터 볼륨이 만들어질 때 한 번만 실행됨. 이는 해당 파일이 비어 있는 전용 DB의 초기 DDL이기 때문임. 이미 초기화된 볼륨에 DDL을 다시 실행하거나 기존 데이터를 지우지 않음.
+[초기 DDL](../../backend/db/schema.sql)은 새 PostgreSQL 데이터 볼륨이 만들어질 때 한 번만 실행됨. 이는 해당 파일이 비어 있는 전용 DB의 초기 DDL이기 때문임. 이미 초기화된 볼륨에 DDL을 다시 실행하거나 기존 데이터를 지우지 않음.
 
 스키마 변경은 향후 Spring Boot 구현과 함께 Flyway 등 마이그레이션 도구를 도입해 버전 파일로 관리함. `schema.sql`을 수정한 뒤 기존 볼륨을 삭제하는 방식은 공동 개발 DB에 사용하지 않음.
 

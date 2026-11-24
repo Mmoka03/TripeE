@@ -1,5 +1,5 @@
 -- PostgreSQL 초기 DDL임. 빈 데이터베이스에 한 번 적용하는 용도로 작성했음.
--- 인증·게시·삭제 트랜잭션은 서비스에서 처리해야 함. docs/db-constraints-v1.md를 참고함.
+-- 인증·게시·삭제 트랜잭션은 서비스에서 처리해야 함. docs/backend/db-constraints-v1.md를 참고함.
 BEGIN;
 CREATE SCHEMA tripee;
 SET LOCAL search_path = tripee, public;

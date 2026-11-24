@@ -79,7 +79,7 @@ Spring Data는 OpenFeign Querydsl 포크를 best-effort로 지원하므로 업�
 - 공개 화면은 정적 데이터, 관리자 화면은 `createDemoService(localStorage)`를 사용함. 프론트엔드 담당자와 실제 API 연결 및 브라우저 E2E 검증이 필요함.
 - AI 제공자는 미정임. 요청·응답 검증 구조는 있지만 실제 후보 생성은 사용할 수 없음.
 - 로그인·AI 요청 제한, DB 버전별 마이그레이션, 상태·메트릭 관측, 백업·복구 절차가 필요함. 세션과 사진 저장은 현재 서버 인스턴스에 의존함.
-- `docs/project-status.md`에는 서버 구현 전이라는 오래된 상태가 있고, `docs/backend-api-scope.md`에는 이미 구현된 잠금 반납이 예정 작업으로 남아 있음.
+- `docs/project-status.md`에는 서버 구현 전이라는 오래된 상태가 있고, `docs/backend/backend-api-scope.md`에는 이미 구현된 잠금 반납이 예정 작업으로 남아 있음.
 - 백엔드와 여러 문서가 로컬에서 아직 추적되지 않은 상태임. 원격 반영이나 PR 상태는 이번에 확인하지 않았음.
 
 ## 권장 작업 순서

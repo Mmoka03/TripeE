@@ -24,7 +24,7 @@ pnpm dev
 Docker 없이 실행 가능함. 지도는 인터넷 연결이 필요하며, 소개 페이지의 사진·영상·Pretendard 글꼴은 저장소에 포함함.
 지도 스타일을 바꾸려면 `frontend/.env.example`을 `frontend/.env.local`로 복사해 수정함.
 
-PostgreSQL 개발 DB는 Docker Compose로 선택 실행할 수 있음. 설정과 초기화 주의점은 [Docker 개발 DB 실행](docs/docker-development.md)을 따름.
+PostgreSQL 개발 DB는 Docker Compose로 선택 실행할 수 있음. 설정과 초기화 주의점은 [Docker 개발 DB 실행](docs/backend/docker-development.md)을 따름.
 
 Spring Boot 서버 실행과 TDD 개발 방법은 [백엔드 안내](backend/README.md)를 따름.
 
@@ -48,7 +48,9 @@ Spring Boot 서버 실행과 TDD 개발 방법은 [백엔드 안내](backend/REA
 backend/          Spring Boot 서버와 JUnit 테스트
   db/schema.sql   PostgreSQL 초기 DDL
 frontend/         React 사용자·관리자 화면과 Vite 환경 설정
-docs/             API 계약, ERD, 조사 자료와 개발 문서
+docs/             프로젝트 공통·프론트엔드·콘텐츠 조사 문서
+  backend/        백엔드 API 계약, DB 설계, 실행·평가 문서
+    testing/      백엔드 테스트 설계·실행·보안·법령 검증 명세
 infra/            로컬 Docker Compose와 PostgreSQL 환경 설정
 tools/            API·DB·Git 규칙 검증과 Figma 내보내기 도구
 ```
@@ -72,9 +74,10 @@ pnpm format:check
 ## 문서
 
 - [프로젝트 범위와 진행 상태](docs/project-status.md)
-- [ERD](docs/erd-v2.md) · [DB 제약조건](docs/db-constraints-v1.md)
-- [API 정책](docs/api-v1.md) · [OpenAPI](docs/openapi-v1.json)
-- [백엔드 API 연결 순서와 테스트 범위](docs/backend-api-scope.md)
+- [백엔드 문서 모음](docs/backend/README.md) · [테스트 명세 모음](docs/backend/testing/README.md)
+- [ERD](docs/backend/erd-v2.md) · [DB 제약조건](docs/backend/db-constraints-v1.md)
+- [API 정책](docs/backend/api-v1.md) · [OpenAPI](docs/backend/openapi-v1.json)
+- [백엔드 API 연결 순서와 테스트 범위](docs/backend/backend-api-scope.md)
 - [지도 설정](docs/map-decision-v1.md)
 - [디자인 자산 출처와 화면 검수 기록](docs/design-assets.md)
 - [관리자 구현 범위](docs/admin-implementation-v1.md)

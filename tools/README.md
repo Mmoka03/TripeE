@@ -12,7 +12,7 @@
 
 ## 파일별 역할
 
-- `api-contract/build.mjs`: `docs/openapi-v1.json`을 생성하므로 실행 시 해당 파일을 덮어쓴다.
+- `api-contract/build.mjs`: `docs/backend/openapi-v1.json`을 생성하므로 실행 시 해당 파일을 덮어쓴다.
 - `api-contract/validate.mjs`: OpenAPI 구조와 계약 사례를 검사하고 `results.json`을 작성한다.
 - `api-contract/live-public.test.mjs`: 실행 중인 서버의 공개 API 일부를 실제 HTTP로 확인한다.
   서버와 필요한 게시 데이터가 별도로 준비돼야 하며, 관리자 API 전체를 검증하지 않는다.

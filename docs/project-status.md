@@ -34,7 +34,7 @@ AI 입력은 등록한 출처와 사람이 제공한 본문을 사용하며 URL 
 
 ## 문서 기준
 
-DB의 물리 제약조건은 `backend/db/schema.sql`과 `db-constraints-v1.md`, API 계약은 `api-v1.md`와 `openapi-v1.json`을 기준으로 함. OpenAPI는 `tools/api-contract/build.mjs`에서 생성하므로 생성기를 수정한 뒤 `pnpm api:generate`를 실행함.
+DB의 물리 제약조건은 `backend/db/schema.sql`과 [DB 제약조건](backend/db-constraints-v1.md), API 계약은 [API 정책](backend/api-v1.md)과 [OpenAPI](backend/openapi-v1.json)를 기준으로 함. OpenAPI는 `tools/api-contract/build.mjs`에서 생성하므로 생성기를 수정한 뒤 `pnpm api:generate`를 실행함. 백엔드 문서는 [backend](backend/README.md), 테스트 명세는 [backend/testing](backend/testing/README.md)에 모음.
 
 현재 화면은 계약의 모든 필드를 구현한 상태가 아님. 특히 안전정보 복수 항목과 실제 출처 자원 관리가 남아 있음. 서버 연동 시 계약과의 차이를 확인해야 함.
 

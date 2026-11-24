@@ -3,7 +3,7 @@
   "info": {
     "title": "TripeE MVP API",
     "version": "0.1.0",
-    "description": "Baseline approved 2026-10-01; not an implemented server. Companion: docs/api-v1.md. JSON camelCase; bigint IDs are strings. Admin session + CSRF. Workflow constraints remain normative in companion document."
+    "description": "Baseline approved 2026-10-01; not an implemented server. Companion: docs/backend/api-v1.md. JSON camelCase; bigint IDs are strings. Admin session + CSRF. Workflow constraints remain normative in companion document."
   },
   "servers": [
     {

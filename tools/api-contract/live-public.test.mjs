@@ -5,7 +5,9 @@ import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 
 const base = new URL('/api/v1/', process.env.TRIPEE_API_ORIGIN || 'http://127.0.0.1:8080');
-const spec = JSON.parse(await readFile(new URL('../../docs/openapi-v1.json', import.meta.url)));
+const spec = JSON.parse(
+  await readFile(new URL('../../docs/backend/openapi-v1.json', import.meta.url)),
+);
 const ajv = new Ajv2020({ strict: false, allErrors: true });
 addFormats(ajv);
 const specId = 'urn:tripee:live';

@@ -1,5 +1,7 @@
 # 백엔드 실행과 테스트
 
+설계·환경·평가 자료는 [백엔드 문서 모음](../docs/backend/README.md), 테스트 계획과 상세 케이스는 [테스트 명세 모음](../docs/backend/testing/README.md)에 정리함.
+
 JDK 21을 준비하고 저장소 루트에서 실행함. 첫 실행에는 Gradle과 의존성을 다운로드할 인터넷 연결이 필요함.
 
 ```sh
@@ -8,11 +10,11 @@ cd backend
 ./gradlew bootRun
 ```
 
-기본 포트는 8080이며 Windows에서는 `gradlew.bat`를 사용함. DB 없이 서버 기동과 관리자 CSRF 발급을 확인할 수 있음. 공개 조회 4종은 아래 `postgres` 프로필에서 실행함. 화면별 경로와 남은 관리자 기능은 [API 연결 순서](../docs/backend-api-scope.md)에 정리함.
+기본 포트는 8080이며 Windows에서는 `gradlew.bat`를 사용함. DB 없이 서버 기동과 관리자 CSRF 발급을 확인할 수 있음. 공개 조회 4종은 아래 `postgres` 프로필에서 실행함. 화면별 경로와 남은 관리자 기능은 [API 연결 순서](../docs/backend/backend-api-scope.md)에 정리함.
 
 ## PostgreSQL 연결
 
-[개발 DB 실행 안내](../docs/docker-development.md)에 따라 DB를 시작하고 앱 계정 `tripee_backend`를 준비함. 기존 개발 DB도 `infra/`에서 `docker compose run --rm --no-deps db-provision`을 한 번 다시 실행해 상세·태그 조회 권한을 적용함. `postgres` 프로필은 기본 스키마를 `tripee`로 지정하며 DDL 초기화는 Compose가 담당함.
+[개발 DB 실행 안내](../docs/backend/docker-development.md)에 따라 DB를 시작하고 앱 계정 `tripee_backend`를 준비함. 기존 개발 DB도 `infra/`에서 `docker compose run --rm --no-deps db-provision`을 한 번 다시 실행해 상세·태그 조회 권한을 적용함. `postgres` 프로필은 기본 스키마를 `tripee`로 지정하며 DDL 초기화는 Compose가 담당함.
 
 Mac의 zsh에서 `backend/`로 이동한 뒤 아래 명령을 실행함. 첫 줄에서 `infra/.env`에 설정한 앱 비밀번호를 입력함. 호스트에서 실행하는 Gradle은 Compose의 환경 파일을 자동으로 읽지 않음.
 
@@ -71,7 +73,7 @@ AI 호출은 DB 잠금 밖에서 최대 30초 동안 기다리며 응답은 자�
 오류 응답은 `common/exception`, 공통 요청 필터는 `common/filter`, JPA 엔티티는 `entity`에 둠.
 도시 검색·조회와 감사 이력은 `repository/*/querydsl`, 사진·정리 작업은
 `repository/admin/jpa`에서 구현함. Querydsl Q 타입은 Gradle 컴파일 시 자동 생성함.
-PostgreSQL 데이터 접근 방식과 변경 기준은 [데이터 접근 결정](../docs/backend-database-access.md)을 참고함.
+PostgreSQL 데이터 접근 방식과 변경 기준은 [데이터 접근 결정](../docs/backend/backend-database-access.md)을 참고함.
 
 기능을 추가할 때는 계약에서 기대 동작 하나를 골라 실패하는 테스트를 먼저 실행하고, 통과하는 최소 구현을 작성한 뒤 리팩터링함. 예를 들어 준비 중인 도시가 지도 핀에 포함되는지는 `./gradlew test --tests '*CityVisibilityTest'`로 확인함.
 
