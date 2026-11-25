@@ -2,7 +2,7 @@
 
 수정일: 2026-09-28. 논리 설계 문서이며 구현/DDL 검증 완료를 뜻하지 않는다. 현재 논리 모델임.
 
-> PostgreSQL 채택 확정. 물리 자료형·제약조건·DB/서비스 책임의 최신 기준은 [제약조건 정의 v1](db-constraints-v1.md)과 [초기 DDL](../backend/db/schema.sql)을 따른다. DDL은 메모리 내 PostgreSQL 엔진으로 검증했으며 서비스 및 네이티브 서버 검증은 별도다.
+> PostgreSQL 채택 확정. 물리 자료형·제약조건·DB/서비스 책임의 최신 기준은 [제약조건 정의 v1](db-constraints-v1.md)과 [초기 DDL](../../backend/db/schema.sql)을 따른다. DDL은 메모리 내 PostgreSQL 엔진으로 검증했으며 서비스 및 네이티브 서버 검증은 별도다.
 
 ## 1. 확정된 요구사항과 제안한 처리 규칙
 

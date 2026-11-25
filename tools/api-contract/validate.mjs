@@ -4,7 +4,7 @@ import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import assert from 'node:assert/strict';
 
-const specUrl = new URL('../../docs/openapi-v1.json', import.meta.url);
+const specUrl = new URL('../../docs/backend/openapi-v1.json', import.meta.url);
 const spec = JSON.parse(await readFile(specUrl, 'utf8'));
 await SwaggerParser.validate(structuredClone(spec));
 const ajv = new Ajv2020({ strict: false, allErrors: true });

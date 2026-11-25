@@ -5,7 +5,7 @@ on:
     paths:
       - 'backend/**'
       - 'infra/**'
-      - 'docs/openapi-v1.json'
+      - 'docs/backend/openapi-v1.json'
       - 'tools/api-contract/**'
       - 'pnpm-lock.yaml'
       - 'package.json'

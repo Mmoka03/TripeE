@@ -1045,7 +1045,7 @@ const doc = {
     title: 'TripeE MVP API',
     version: '0.1.0',
     description:
-      'Baseline approved 2026-10-01; not an implemented server. Companion: docs/api-v1.md. JSON camelCase; bigint IDs are strings. Admin session + CSRF. Workflow constraints remain normative in companion document.',
+      'Baseline approved 2026-10-01; not an implemented server. Companion: docs/backend/api-v1.md. JSON camelCase; bigint IDs are strings. Admin session + CSRF. Workflow constraints remain normative in companion document.',
   },
   servers: [
     {
@@ -1069,7 +1069,7 @@ const doc = {
   },
 };
 await writeFile(
-  new URL('../../docs/openapi-v1.json', import.meta.url),
+  new URL('../../docs/backend/openapi-v1.json', import.meta.url),
   JSON.stringify(doc, null, 2) + '\n',
 );
 const operations = Object.values(paths).reduce((n, v) => n + Object.keys(v).length, 0);

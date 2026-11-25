@@ -1,6 +1,6 @@
 # 프로젝트 범위와 진행 상태
 
-2026-11-23, 백엔드 PR #5의 구현 기준임. develop 반영 여부는 PR 병합 상태로 확인함.
+백엔드 PR #5가 `develop`에 병합된 상태를 기준으로 작성함.
 
 ## 목표와 팀
 
@@ -34,7 +34,7 @@ AI 입력은 등록한 출처와 사람이 제공한 본문을 사용하며 URL 
 
 ## 문서 기준
 
-DB의 물리 제약조건은 `backend/db/schema.sql`과 `db-constraints-v1.md`, API 계약은 `api-v1.md`와 `openapi-v1.json`을 기준으로 함. OpenAPI는 `tools/api-contract/build.mjs`에서 생성하므로 생성기를 수정한 뒤 `pnpm api:generate`를 실행함.
+DB의 물리 제약조건은 `backend/db/schema.sql`과 [DB 제약조건](backend/db-constraints-v1.md), API 계약은 [API 정책](backend/api-v1.md)과 [OpenAPI](backend/openapi-v1.json)를 기준으로 함. OpenAPI는 `tools/api-contract/build.mjs`에서 생성하므로 생성기를 수정한 뒤 `pnpm api:generate`를 실행함. 백엔드 문서는 [backend](backend/README.md), 테스트 명세는 [backend/testing](backend/testing/README.md)에 모음.
 
 현재 화면은 계약의 모든 필드를 구현한 상태가 아님. 특히 안전정보 복수 항목과 실제 출처 자원 관리가 남아 있음. 서버 연동 시 계약과의 차이를 확인해야 함.
 
@@ -42,13 +42,12 @@ Figma 디자인 파일: https://www.figma.com/design/j8BgA2aE2QQoOxHm9QMZMN
 
 ## 다음 작업
 
-1. 백엔드 PR의 변경 내용과 자동 검사 결과를 검수하고 병합함.
-2. 관리자 화면과 API 계약의 차이를 정리하고 로그인·도시 조회·초안 저장부터 연결함.
-3. 교토 한 도시의 수정·게시·사용자 노출 흐름을 실제 브라우저에서 검증함.
-4. 안전정보 충돌·세션 만료·편집권 만료·사진 접근 오류의 화면 처리를 확인함.
+1. 관리자 화면과 API 계약의 차이를 정리하고 로그인·도시 조회·초안 저장부터 연결함.
+2. 교토 한 도시의 수정·게시·사용자 노출 흐름을 실제 브라우저에서 검증함.
+3. 안전정보 충돌·세션 만료·편집권 만료·사진 접근 오류의 화면 처리를 확인함.
 
 AI 제공자 연동, 필드별 422 오류, 로그인 요청 제한과 운영 준비 작업은 별도로 남아 있음.
-브랜치·커밋·PR 규칙은 CONTRIBUTING.md, API 구현 범위는 backend-api-scope.md에서 관리함.
+브랜치·커밋·PR 규칙은 [협업 규칙](../CONTRIBUTING.md), API 구현 범위는 [백엔드 API 연결 순서](backend/backend-api-scope.md)에서 관리함.
 
 ## 초기 저장소 정리
 

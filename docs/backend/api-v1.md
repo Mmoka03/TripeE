@@ -6,7 +6,7 @@
 
 - 기계 판독 명세: [openapi-v1.json](openapi-v1.json) — OpenAPI 3.1.1, Swagger Editor 등에서 확인 가능.
 - 기존 정책: [ERD v2](erd-v2.md), [PostgreSQL 제약조건](db-constraints-v1.md).
-- 작성 도구: [build.mjs](../tools/api-contract/build.mjs), 검증: [validate.mjs](../tools/api-contract/validate.mjs).
+- 작성 도구: [build.mjs](../../tools/api-contract/build.mjs), 검증: [validate.mjs](../../tools/api-contract/validate.mjs).
 - 아래 기본값을 포함한 API 정책 검수가 완료되었다. 본문에 남은 '제안' 표현도 승인된 기본값을 의미한다.
 
 ## 1. 승인된 추가 기준
