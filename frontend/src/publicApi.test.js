@@ -1,6 +1,32 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { getJson, mapCity, mapSearchResult, safeLink } from './publicApi.js';
+import { getJson, mapCity, mapSearchResult, onPublicMapReturn, safeLink } from './publicApi.js';
+
+test('숨은 탭에서는 조회하지 않고 복귀 이벤트가 겹쳐도 한 번만 갱신함', (t) => {
+  t.mock.timers.enable({ apis: ['setTimeout'] });
+  const view = new EventTarget();
+  const page = Object.assign(new EventTarget(), { defaultView: view, visibilityState: 'hidden' });
+  const refresh = t.mock.fn();
+  const unsubscribe = onPublicMapReturn(refresh, page);
+  view.dispatchEvent(new Event('focus'));
+  t.mock.timers.tick(100);
+  assert.equal(refresh.mock.callCount(), 0);
+
+  page.visibilityState = 'visible';
+  page.dispatchEvent(new Event('visibilitychange'));
+  view.dispatchEvent(new Event('focus'));
+  t.mock.timers.tick(100);
+  assert.equal(refresh.mock.callCount(), 1);
+
+  view.dispatchEvent(Object.assign(new Event('pageshow'), { persisted: true }));
+  t.mock.timers.tick(100);
+  assert.equal(refresh.mock.callCount(), 2);
+  view.dispatchEvent(new Event('focus'));
+  unsubscribe();
+  page.dispatchEvent(new Event('visibilitychange'));
+  t.mock.timers.tick(100);
+  assert.equal(refresh.mock.callCount(), 2);
+});
 
 const city = {
   id: '9007199254740993',
@@ -48,6 +74,7 @@ test('API 요청에 취소 신호를 전달하고 응답을 그대로 반환함'
   t.mock.method(globalThis, 'fetch', async (url, options) => {
     assert.equal(url, '/api/v1/cities');
     assert.equal(options.signal, controller.signal);
+    assert.equal(options.cache, 'no-store');
     return Response.json({ items: [city] });
   });
   assert.equal((await getJson('/cities', controller.signal)).items[0].id, city.id);

@@ -1,11 +1,11 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useEffectEvent, useMemo, useRef, useState } from 'react';
 import MapView from './MapView';
 import Icon from './Icon';
 import ClusterCard from './ClusterCard';
 import { mapThemes, getInitialTheme, themeVariables } from './mapThemes';
 import { cities as demoCities, countries, nearbyFixtures, worldCityFixtures } from './data';
 import CityDetail from './CityDetail';
-import { getJson, mapCity, mapSearchResult } from './publicApi';
+import { getJson, mapCity, mapSearchResult, onPublicMapReturn } from './publicApi';
 import './layout.css';
 import './travel-theme.css';
 
@@ -13,6 +13,14 @@ const demoMode = new URLSearchParams(window.location.search).get('demo') === '1'
 const RECENT_CITIES_KEY = demoMode ? 'tripee.recent-cities.v1' : 'tripee.recent-api-cities.v1';
 const EXPLORATION_KEY = demoMode ? 'tripee.exploration.v1' : 'tripee.api-exploration.v1';
 const demoKnownCities = [...demoCities, ...nearbyFixtures, ...worldCityFixtures];
+
+function clearUnavailableCityLink() {
+  const url = new URL(window.location.href);
+  url.searchParams.delete('cityName');
+  url.searchParams.delete('city');
+  if (url.hash === '#safety') url.hash = '';
+  if (url.href !== window.location.href) window.history.replaceState(window.history.state, '', url);
+}
 
 function readRecentCities() {
   try {
@@ -40,6 +48,8 @@ export default function App() {
   const [apiCities, setApiCities] = useState([]);
   const [listState, setListState] = useState('loading');
   const [listRetry, setListRetry] = useState(0);
+  const listRequest = useRef(null);
+  const [detailRefresh, setDetailRefresh] = useState(0);
   const [notice, setNotice] = useState('');
   const [apiSearch, setApiSearch] = useState({ query: '', items: [], state: 'idle' });
   const cities = demoMode ? demoCities : apiCities;
@@ -82,48 +92,81 @@ export default function App() {
     setNotice('');
     priorFocus.current = document.activeElement;
     setSelected(city);
+    if (!demoMode) setDetailRefresh((version) => version + 1);
     setPhoto(0);
     if (!fromGroup) setGroup([]);
     setSearching(false);
     setSearchOpen(false);
     searchInput.current?.blur();
   };
+  function removeUnavailableCities(isUnavailable) {
+    setRecentIds((previous) =>
+      previous.some(isUnavailable) ? previous.filter((id) => !isUnavailable(id)) : previous,
+    );
+    setGroup((previous) =>
+      previous.some((city) => isUnavailable(city.id))
+        ? previous.filter((city) => !isUnavailable(city.id))
+        : previous,
+    );
+    if (selected && isUnavailable(selected.id)) {
+      setSelected(null);
+      clearUnavailableCityLink();
+      setNotice('현재 공개된 도시 정보가 없어요. 다른 도시를 탐색해주세요.');
+      if (panel.current?.contains(document.activeElement))
+        searchToggle.current?.focus({ preventScroll: true });
+    }
+  }
+  function handleUnavailable(id) {
+    // 상세 404보다 먼저 시작된 목록 응답이 비공개 핀을 되살리지 않게 함.
+    listRequest.current?.abort();
+    setApiCities((previous) => previous.filter((city) => city.id !== id));
+    removeUnavailableCities((cityId) => cityId === id);
+    setListRetry((version) => version + 1);
+  }
+  const acceptList = useEffectEvent((loaded) => {
+    setApiCities(loaded);
+    setListState('ready');
+    const byId = new Map(loaded.map((city) => [city.id, city]));
+    removeUnavailableCities((id) => !byId.has(id));
+    if (selected && byId.has(selected.id)) {
+      setSelected(byId.get(selected.id));
+      setDetailRefresh((version) => version + 1);
+    }
+    if (restoredOnce.current) return;
+    restoredOnce.current = true;
+    const params = new URLSearchParams(window.location.search);
+    const cityName = params.get('cityName');
+    const id = params.get('city') || restored.selected;
+    const city = cityName
+      ? loaded.find((c) => c.english === cityName || c.name === cityName)
+      : byId.get(id);
+    if (city) {
+      setSelected(city);
+      if (cityName || params.has('city'))
+        setNavigation({ ...city, type: 'city', serial: Date.now() });
+    } else if (cityName || params.has('city'))
+      setNotice('이 도시는 아직 공개된 정보가 없어요. 다른 도시를 탐색해주세요.');
+    if (!cityName && !params.has('city'))
+      setGroup(loaded.filter((c) => restored.group?.includes(c.id)));
+  });
   useEffect(() => {
     if (demoMode) return;
     const controller = new AbortController();
-    setListState('loading');
+    listRequest.current = controller;
+    if (!restoredOnce.current) setListState('loading');
     getJson('/cities', controller.signal)
       .then(({ items }) => {
-        if (controller.signal.aborted) return;
-        const loaded = items.map(mapCity);
-        setApiCities(loaded);
-        setListState('ready');
-        if (!restoredOnce.current) {
-          restoredOnce.current = true;
-          const params = new URLSearchParams(window.location.search);
-          const cityName = params.get('cityName');
-          const id = params.get('city') || restored.selected;
-          const city = cityName
-            ? loaded.find((c) => c.english === cityName || c.name === cityName)
-            : loaded.find((c) => c.id === id);
-          if (city) {
-            setSelected(city);
-            if (cityName || params.has('city'))
-              setNavigation({ ...city, type: 'city', serial: Date.now() });
-          } else if (cityName || params.has('city'))
-            setNotice('이 도시는 아직 공개된 정보가 없어요. 다른 도시를 탐색해주세요.');
-          if (!cityName && !params.has('city'))
-            setGroup(loaded.filter((c) => restored.group?.includes(c.id)));
-        }
+        if (!controller.signal.aborted) acceptList(items.map(mapCity));
       })
-      .catch((error) => {
-        if (!controller.signal.aborted) {
-          setApiCities([]);
-          setListState('error');
-        }
+      .catch(() => {
+        if (!controller.signal.aborted) setListState('error');
       });
     return () => controller.abort();
   }, [listRetry]);
+  useEffect(() => {
+    if (demoMode) return;
+    return onPublicMapReturn(() => setListRetry((version) => version + 1));
+  }, []);
   useEffect(() => {
     if (demoMode || !query.trim() || !searchOpen) return;
     const controller = new AbortController();
@@ -180,22 +223,27 @@ export default function App() {
     setSearching(false);
   };
   const openGroup = (items) => {
+    setNotice('');
     groupTrigger.current = document.activeElement;
     setSelected(null);
     setSearching(false);
     setSearchOpen(false);
     setGroup(items);
+    if (!demoMode) setListRetry((version) => version + 1);
   };
+  const selectedId = selected?.id;
+  function rememberCity(id) {
+    setRecentIds((previous) =>
+      previous[0] === id ? previous : [id, ...previous.filter((item) => item !== id)].slice(0, 3),
+    );
+  }
   useEffect(() => {
-    if (selected) {
-      // 검색·지도 핀·직접 링크 모두 상세를 연 시점에 최근 기록을 갱신함.
-      setRecentIds((previous) =>
-        [selected.id, ...previous.filter((id) => id !== selected.id)].slice(0, 3),
-      );
+    if (selectedId) {
+      if (demoMode) rememberCity(selectedId);
       closeButton.current?.focus();
       panel.current?.scrollTo(0, 0);
     }
-  }, [selected]);
+  }, [selectedId]);
   useEffect(() => {
     try {
       localStorage.setItem(RECENT_CITIES_KEY, JSON.stringify(recentIds));
@@ -287,6 +335,7 @@ export default function App() {
     setNavigation({ ...item, serial: Date.now() });
     if (item.type === 'city') open(item);
     else {
+      setNotice('');
       setSelected(null);
       searchToggle.current?.focus({ preventScroll: true });
     }
@@ -550,7 +599,13 @@ export default function App() {
               </div>
             </div>
             {!demoMode ? (
-              <CityDetail key={selected.id} cityId={selected.id} />
+              <CityDetail
+                key={selected.id}
+                cityId={selected.id}
+                refresh={detailRefresh}
+                onAvailable={rememberCity}
+                onUnavailable={handleUnavailable}
+              />
             ) : mode === 'loading' ? (
               <div className="state-view" role="status">
                 <span className="plane">

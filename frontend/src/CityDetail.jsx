@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useEffectEvent, useRef, useState } from 'react';
 import Icon from './Icon';
 import { getJson, safeLink } from './publicApi';
 import './public-api.css';
@@ -86,21 +86,26 @@ function PhotoGallery({ photos }) {
   );
 }
 
-export default function CityDetail({ cityId }) {
+export default function CityDetail({ cityId, refresh, onAvailable, onUnavailable }) {
   const [result, setResult] = useState(null);
   const [retry, setRetry] = useState(0);
+  const available = useEffectEvent(onAvailable);
+  const unavailable = useEffectEvent(onUnavailable);
   useEffect(() => {
     const controller = new AbortController();
-    setResult(null);
     getJson(`/cities/${encodeURIComponent(cityId)}`, controller.signal)
       .then((data) => {
-        if (!controller.signal.aborted) setResult({ cityId, data });
+        if (controller.signal.aborted) return;
+        setResult({ cityId, data });
+        available(cityId);
       })
       .catch((error) => {
-        if (!controller.signal.aborted) setResult({ cityId, error });
+        if (controller.signal.aborted) return;
+        if (error.status === 404) unavailable(cityId);
+        else setResult({ cityId, error });
       });
     return () => controller.abort();
-  }, [cityId, retry]);
+  }, [cityId, retry, refresh]);
   if (result?.cityId !== cityId)
     return (
       <div className="state-view" role="status">
