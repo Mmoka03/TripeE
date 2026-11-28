@@ -5,11 +5,34 @@ export class ApiError extends Error {
   }
 }
 
+export function onPublicMapReturn(onReturn, page = document) {
+  const view = page.defaultView;
+  let timer;
+  // 탭 복귀 때 연달아 오는 visibilitychange와 focus를 한 번의 조회로 묶음.
+  const refresh = () => {
+    clearTimeout(timer);
+    if (page.visibilityState === 'visible') timer = setTimeout(onReturn, 50);
+  };
+  const restorePage = (event) => {
+    if (event.persisted) refresh();
+  };
+  page.addEventListener('visibilitychange', refresh);
+  view.addEventListener('focus', refresh);
+  view.addEventListener('pageshow', restorePage);
+  return () => {
+    clearTimeout(timer);
+    page.removeEventListener('visibilitychange', refresh);
+    view.removeEventListener('focus', refresh);
+    view.removeEventListener('pageshow', restorePage);
+  };
+}
+
 export async function getJson(path, signal) {
   let response;
   try {
     response = await fetch(`/api/v1${path}`, {
       signal,
+      cache: 'no-store',
       headers: { Accept: 'application/json' },
     });
   } catch (error) {
