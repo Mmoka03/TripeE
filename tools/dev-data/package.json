@@ -1,0 +1,12 @@
+{
+  "name": "tripee-dev-data",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "kyoto": "node import-kyoto.mjs",
+    "test": "node --test *.test.mjs"
+  },
+  "dependencies": {
+    "bcryptjs": "3.0.3"
+  }
+}

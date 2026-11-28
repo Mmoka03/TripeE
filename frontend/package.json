@@ -6,7 +6,7 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "test:admin": "node --test src/admin/demoService.test.js",
-    "test:public": "node --test src/cityClusters.test.js tests/intro-examples.test.js",
+    "test:public": "node --test src/cityClusters.test.js tests/intro-examples.test.js src/publicApi.test.js",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {

@@ -17,7 +17,7 @@ const ClusterCard = forwardRef(function ClusterCard(
       (!country || c.country === country) &&
       [c.name, c.english].some((v) => v?.toLowerCase().includes(query.trim().toLowerCase())),
   );
-  const kyoto = cities.some((city) => city.id === '2');
+  const kyoto = cities.some((city) => city.code === 'JP' && city.english === 'Kyoto');
   const [failed, setFailed] = useState(false);
   return (
     <section

@@ -7,6 +7,7 @@
 | ------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
 | `api-contract/`     | OpenAPI 문서 생성·계약 검사 및 실행 중인 서버의 공개 API 일부 검사  | `pnpm api:generate`, `pnpm test:api`, `pnpm --dir tools/api-contract test:live` |
 | `db-validation/`    | PGlite에서 초기 스키마를 적용하고 제약조건 사례를 검사              | `pnpm test:db`                                                                  |
+| `dev-data/`         | 기존 교토 검수본을 실제 관리자 API로 개발 DB에 등록                 | `pnpm data:kyoto`, `pnpm test:data`                                             |
 | `git-conventions/`  | 브랜치, 커밋 제목, PR 대상 규칙 검사                                | `pnpm test:git`                                                                 |
 | `wireframe-export/` | 화면 데이터와 이미지를 Figma 가져오기 패키지로 생성하고 패키지 검증 | `pnpm test:wireframe`, `node tools/wireframe-export/build.mjs <출력 폴더>`      |
 
@@ -23,6 +24,7 @@
   `code.js`와 `ui.html`은 가져오기 도구의 구성 요소이며 `build.test.mjs`는 결과를 검사한다.
 
 `api-contract`와 `db-validation`은 각 폴더의 `package.json`과 잠금 파일로 의존성을 관리한다.
+`dev-data`도 별도 의존성을 설치하며 실행 조건과 재실행 정책은 [등록 안내](dev-data/README.md)를 따른다.
 두 `results.json`은 생성 결과이며 Git에서 제외된다. 백엔드 PostgreSQL 통합 테스트는
 `backend/`에서 `./gradlew postgresContainerTest`로 실행한다. 기존 Python 실행 스크립트는
 `backend/tools/`에 호환용으로 남아 있다. 자세한 실행 안내는 [백엔드 README](../backend/README.md)를 참고한다.
